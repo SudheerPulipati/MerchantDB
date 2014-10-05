@@ -10,20 +10,25 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
-
 	<definition name="home" extends="base">
 		<put-attribute name="title" value="Merchant DB" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 	</definition>
-
-	<definition name="createCompany" extends="base">
-		<put-attribute name="title" value="Create Company" />
-		<put-attribute name="body" value="/WEB-INF/views/createCompany.jsp" />
+	<definition name="createCityGroup" extends="base">
+		<put-attribute name="title" value="Create City Group" />
+		<put-attribute name="body" value="/WEB-INF/views/createCityGroup.jsp" />
 	</definition>
-
+	<definition name="viewCityGroup" extends="base">
+		<put-attribute name="title" value="View City Group" />
+		<put-attribute name="body" value="/WEB-INF/views/viewCityGroup.jsp" />
+	</definition>
+	<definition name="viewCityGroupJSON" extends="base">
+		<put-attribute name="title" value="JSON" />
+		<put-attribute name="body" value="/WEB-INF/views/viewCityGroupJSON.jsp" />
+	</definition>
+	
 	<definition name="viewCompany" extends="base">
 		<put-attribute name="title" value="View Company" />
 		<put-attribute name="body" value="/WEB-INF/views/viewCompany.jsp" />
 	</definition>
-
 </tiles-definitions>

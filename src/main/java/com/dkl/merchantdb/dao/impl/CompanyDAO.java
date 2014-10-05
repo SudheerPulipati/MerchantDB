@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.dkl.merchantdb.dao.intf.ICompanyDAO;
-import com.dkl.merchantdb.mapper.CompanyMapper;
+import com.dkl.merchantdb.dao.mapper.CompanyMapper;
 import com.dkl.merchantdb.to.CompanyTO;
 
 public class CompanyDAO implements ICompanyDAO {
@@ -14,8 +14,9 @@ public class CompanyDAO implements ICompanyDAO {
 	private static final String CREATE_COMPANY = "insert into company values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	private static final String VIEW_COMPANY = "select companyid,companyname,streetname,city,state,pincode,tin,phone,email,slipsindicator,creationdate,modifieddate from company";
+
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public int createCompany(CompanyTO companyTO) {
@@ -33,7 +34,7 @@ public class CompanyDAO implements ICompanyDAO {
 	public List<CompanyTO> viewCompany() {
 		return jdbcTemplate.query(VIEW_COMPANY, new CompanyMapper());
 	}
-	
+
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
@@ -41,7 +42,5 @@ public class CompanyDAO implements ICompanyDAO {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
-	
 
 }

@@ -1,11 +1,10 @@
 package com.dkl.merchantdb.controller;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import javax.swing.text.TableView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.dkl.merchantdb.bo.CompanyBO;
+import com.dkl.merchantdb.to.CityGroupJSON;
+import com.dkl.merchantdb.to.CityGroupTO;
+import com.dkl.merchantdb.to.CompanyJSON;
 import com.dkl.merchantdb.to.CompanyTO;
 import com.google.gson.Gson;
 
@@ -73,21 +74,23 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/viewCompany")
-	//@ResponseBody
-	public String viewCompany(Model model) {
-		System.out.println("viewCompany");
-		List<CompanyTO> companyTOs = companyBO.viewCompany();
-		Gson gson = new Gson();
-		gson.toJson(companyTOs);
+	public String viewCompany() {
 		return "viewCompany";
 	}
 
 	@RequestMapping(value = "/viewCompanyJSON")
 	@ResponseBody
 	public String viewCompanyJSON(Model model) {
-		System.out.println("viewCompanyJSON");
 		List<CompanyTO> companyTOs = companyBO.viewCompany();
+		CompanyJSON companyJSON = new CompanyJSON();
+		companyJSON.setDraw(1);
+		companyJSON.setRecordsFiltered(57);
+		companyJSON.setRecordsTotal(57);
+		companyJSON.setData(companyTOs);
+		System.out.println(companyTOs.get(0).getCreationDate());
+		System.out.println(companyTOs.get(0).getModifiedDate());
+		System.out.println(companyTOs.get(0).getSlipsIndicator());
 		Gson gson = new Gson();
-		return gson.toJson(companyTOs);
+		return gson.toJson(companyJSON);
 	}
 }

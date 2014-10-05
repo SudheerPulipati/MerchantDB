@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
 <title><tiles:insertAttribute name="title" ignore="true" />  
 </title>  
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>  
 <body>  
     <table border="1" cellspacing="2" align="center" width="1100" height="600">  

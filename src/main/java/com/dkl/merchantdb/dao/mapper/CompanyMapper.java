@@ -1,4 +1,4 @@
-package com.dkl.merchantdb.mapper;
+package com.dkl.merchantdb.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

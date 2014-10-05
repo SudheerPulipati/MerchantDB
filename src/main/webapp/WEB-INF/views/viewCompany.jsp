@@ -6,14 +6,64 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View Company</title>
-<script>
-
-
+<script type="text/javascript""<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script type="text/javascript"
+	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#viewCompany').dataTable({
+			"processing" : true,
+			"serverSide" : true,
+			"ajax" : {
+				"url" : "http://localhost:8080/merchantdb/viewCompanyJSON",
+				"type" : "POST"
+			},
+			"columns" : [ {
+				"data" : "companyID"
+			}, {
+				"data" : "companyName"
+			}, {
+				"data" : "city"
+			}, {
+				"data" : "state"
+			}, {
+				"data" : "pinCode"
+			}, {
+				"data" : "tinNumber"
+			}, {
+				"data" : "phoneNumber"
+			}, {
+				"data" : "email"
+			}, {
+				"data" : "slipsIndicator"
+			}, {
+				"data" : "creationDate"
+			}, {
+				"data" : "modifiedDate"
+			} ]
+		});
+	});
 </script>
 </head>
 <body>
-	<table id="example">
-
+	<table id="viewCompany">
+		<thead>
+			<tr>
+				<th>CompanyID</th>
+				<th>CompanyName</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Pincode</th>
+				<th>TIN Number</th>
+				<th>Phone Number</th>
+				<th>E-Mail</th>
+				<th>SlipsIndicator</th>
+				<th>Creation Date</th>
+				<th>Modified Date</th>
+			</tr>
+		</thead>
 	</table>
 
 </body>
