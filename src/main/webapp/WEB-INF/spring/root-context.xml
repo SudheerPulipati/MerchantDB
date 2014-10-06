@@ -38,6 +38,14 @@
 	<bean id="companyDAO" class = "com.dkl.merchantdb.dao.impl.CompanyDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
 	</bean>
+	
+	<bean id="purchaseOrderBO" class = "com.dkl.merchantdb.bo.PurchaseOrderBO">
+		<property name="purchaseOrderDAO" ref = "purchaseOrderDAO"></property>
+	</bean>
+	<bean id="purchaseOrderDAO" class = "com.dkl.merchantdb.dao.impl.PurchaseOrderDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/merchant_theme/" />
 	<mvc:annotation-driven />
 </beans>

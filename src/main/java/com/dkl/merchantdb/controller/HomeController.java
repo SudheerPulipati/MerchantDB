@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dkl.merchantdb.bo.CompanyBO;
+import com.dkl.merchantdb.bo.PurchaseOrderBO;
 import com.dkl.merchantdb.to.CityGroupJSON;
 import com.dkl.merchantdb.to.CityGroupTO;
 import com.dkl.merchantdb.to.CompanyJSON;
 import com.dkl.merchantdb.to.CompanyTO;
+import com.dkl.merchantdb.to.PurchaseOrderTOS;
 import com.google.gson.Gson;
 
 /**
@@ -32,6 +34,9 @@ public class HomeController {
 
 	@Autowired
 	private CompanyBO companyBO;
+	
+	@Autowired
+	private PurchaseOrderBO purchaseOrderBO;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -92,5 +97,19 @@ public class HomeController {
 		System.out.println(companyTOs.get(0).getSlipsIndicator());
 		Gson gson = new Gson();
 		return gson.toJson(companyJSON);
+	}
+	
+	@RequestMapping(value = "/purchaseOrder")
+	public String purchaseOrder() {
+		return "purchaseOrder";
+	}
+	
+	@RequestMapping(value = "/savePurchaseOrder")
+	public String savePurchaseOrder(PurchaseOrderTOS purchaseOrderTO,Model model) {
+		System.out.println("purchaseOrder");
+		if(purchaseOrderBO.savePurchases(purchaseOrderTO).length>0){
+			model.addAttribute("success", "PurchaseOrder saved successfully.");
+		}
+		return "purchaseOrder";
 	}
 }
