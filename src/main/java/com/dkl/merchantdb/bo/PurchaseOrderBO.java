@@ -1,15 +1,15 @@
 package com.dkl.merchantdb.bo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.dkl.merchantdb.dao.impl.PurchaseOrderDAO;
 import com.dkl.merchantdb.to.PurchaseOrderTO;
 import com.dkl.merchantdb.to.PurchaseOrderTOS;
 
+@Component
 public class PurchaseOrderBO {
 
 	@Autowired

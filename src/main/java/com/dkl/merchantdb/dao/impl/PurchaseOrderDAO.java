@@ -7,11 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.dkl.merchantdb.dao.intf.IPurchaseOrderDAO;
 import com.dkl.merchantdb.to.PurchaseOrderTO;
-import com.dkl.merchantdb.to.PurchaseOrderTOS;
 
+@Component
 public class PurchaseOrderDAO implements IPurchaseOrderDAO {
 
 	@Autowired
