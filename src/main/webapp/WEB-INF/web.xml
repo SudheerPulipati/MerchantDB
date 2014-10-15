@@ -20,7 +20,7 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <servlet>
+  <!-- <servlet>
     <description></description>
     <display-name>CityGroupController</display-name>
     <servlet-name>CityGroupController</servlet-name>
@@ -40,5 +40,5 @@
   <servlet-mapping>
     <servlet-name>HomeController</servlet-name>
     <url-pattern>/HomeController</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 </web-app>

@@ -26,7 +26,10 @@
 		<put-attribute name="title" value="JSON" />
 		<put-attribute name="body" value="/WEB-INF/views/viewCityGroupJSON.jsp" />
 	</definition>
-	
+	<definition name="createCompany" extends="base">
+		<put-attribute name="title" value="Create Company" />
+		<put-attribute name="body" value="/WEB-INF/views/createCompany.jsp" />
+	</definition>
 	<definition name="viewCompany" extends="base">
 		<put-attribute name="title" value="View Company" />
 		<put-attribute name="body" value="/WEB-INF/views/viewCompany.jsp" />
@@ -36,4 +39,16 @@
 		<put-attribute name="title" value="Purchase Order" />
 		<put-attribute name="body" value="/WEB-INF/views/purchaseOrder.jsp" />
 	</definition>
+	<definition name="createParty" extends="base">
+		<put-attribute name="title" value="Create Party" />
+		<put-attribute name="body" value="/WEB-INF/views/createParty.jsp" />
+	</definition>
+	<definition name="viewParty" extends="base">
+		<put-attribute name="title" value="View Parties" />
+		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" />
+	</definition>
+<!-- 	<definition name="login" extends="base"> -->
+<!-- 		<put-attribute name="title" value="Login" /> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" /> -->
+<!-- 	</definition> -->
 </tiles-definitions>
