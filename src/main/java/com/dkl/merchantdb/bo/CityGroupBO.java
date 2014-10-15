@@ -3,14 +3,14 @@ package com.dkl.merchantdb.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.dkl.merchantdb.dao.impl.CityGroupDAO;
+import com.dkl.merchantdb.dao.intf.ICityGroupDAO;
 import com.dkl.merchantdb.to.CityGroupTO;
 
 @Component
 public class CityGroupBO {
 	
 	@Autowired
-	CityGroupDAO cityGroupDAO;
+	ICityGroupDAO cityGroupDAO;
 	
 	public void create(CityGroupTO cityGroupTO){
 		cityGroupDAO.create(cityGroupTO);

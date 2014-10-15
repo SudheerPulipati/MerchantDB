@@ -3,17 +3,18 @@ package com.dkl.merchantdb.bo;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.dkl.merchantdb.dao.impl.CompanyDAO;
+import com.dkl.merchantdb.dao.intf.ICompanyDAO;
 import com.dkl.merchantdb.to.CompanyTO;
 
+@Component
 public class CompanyBO {
 
 	@Autowired
-	private CompanyDAO companyDAO;
+	private ICompanyDAO companyDAO;
 
 	public int createCompany(CompanyTO companyTO) {
-		System.out.println("In BO");
 		return companyDAO.createCompany(companyTO);
 	}
 	
@@ -21,11 +22,11 @@ public class CompanyBO {
 		return companyDAO.viewCompany();
 	}
 
-	public CompanyDAO getCompanyDAO() {
-		return companyDAO;
-	}
-
-	public void setCompanyDAO(CompanyDAO companyDAO) {
-		this.companyDAO = companyDAO;
-	}
+//	public CompanyDAO getCompanyDAO() {
+//		return companyDAO;
+//	}
+//
+//	public void setCompanyDAO(CompanyDAO companyDAO) {
+//		this.companyDAO = companyDAO;
+//	}
 }

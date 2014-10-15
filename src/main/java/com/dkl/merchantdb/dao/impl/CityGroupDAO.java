@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.dkl.merchantdb.dao.intf.IcityGroupDAO;
+import com.dkl.merchantdb.dao.intf.ICityGroupDAO;
 import com.dkl.merchantdb.dao.mapper.CityGroupRowMapper;
 import com.dkl.merchantdb.to.CityGroupTO;
 
 @Component
-public class CityGroupDAO implements IcityGroupDAO {
+public class CityGroupDAO implements ICityGroupDAO {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;

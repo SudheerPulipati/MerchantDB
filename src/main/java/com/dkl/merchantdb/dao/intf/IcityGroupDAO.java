@@ -3,9 +3,8 @@ package com.dkl.merchantdb.dao.intf;
 import java.util.List;
 
 import com.dkl.merchantdb.to.CityGroupTO;
-import com.dkl.merchantdb.to.CityGroupTO;
 
-public interface IcityGroupDAO {
+public interface ICityGroupDAO {
 
 	 void create(CityGroupTO cityGroupTO);
 	 CityGroupTO read(String id);

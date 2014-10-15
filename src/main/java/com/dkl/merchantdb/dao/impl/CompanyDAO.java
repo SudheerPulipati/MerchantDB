@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.dkl.merchantdb.dao.intf.ICompanyDAO;
 import com.dkl.merchantdb.dao.mapper.CompanyMapper;
 import com.dkl.merchantdb.to.CompanyTO;
 
+@Component
 public class CompanyDAO implements ICompanyDAO {
 
 	private static final String CREATE_COMPANY = "insert into company values(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -35,12 +37,12 @@ public class CompanyDAO implements ICompanyDAO {
 		return jdbcTemplate.query(VIEW_COMPANY, new CompanyMapper());
 	}
 
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+//	public JdbcTemplate getJdbcTemplate() {
+//		return jdbcTemplate;
+//	}
+//
+//	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+//		this.jdbcTemplate = jdbcTemplate;
+//	}
 
 }
