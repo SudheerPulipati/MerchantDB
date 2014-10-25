@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="base" template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/dklfHeader.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/dklfMenu.jsp" />
+		<put-attribute name="beforeBody" value="/WEB-INF/views/dklfBeforeBody.jsp"/>
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+	<definition name="login" extends="base">
+		<put-attribute name="header" value="/WEB-INF/views/loginHeader.jsp" />
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+	<definition name="home" extends="base">
+		<put-attribute name="title" value="Merchant DB" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	<!-- Company -->
+	<definition name="createCompany" extends="base">
+		<put-attribute name="title" value="Create Company" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/createCompany.jsp" />
+	</definition>
+	<definition name="updateCompany" extends="base">
+		<put-attribute name="title" value="Update Company" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/updateCompany.jsp" />
+	</definition>
+	<definition name="companyAdminView" extends="base">
+		<put-attribute name="title" value="Admin View" />
+	</definition>
+	<!-- -->
+	<definition name="createCityGroup" extends="base">
+		<put-attribute name="title" value="Create City Group" />
+		<put-attribute name="body" value="/WEB-INF/views/createCityGroup.jsp" />
+	</definition>
+	<definition name="viewCityGroup" extends="base">
+		<put-attribute name="title" value="View City Group" />
+		<put-attribute name="body" value="/WEB-INF/views/viewCityGroup.jsp" />
+	</definition>
+	<definition name="viewCityGroupJSON" extends="base">
+		<put-attribute name="title" value="JSON" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewCityGroupJSON.jsp" />
+	</definition>
+
+	<definition name="createLedgerGroup" extends="base">
+		<put-attribute name="title" value="Create Ledger Group" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/createLedgerGroup.jsp" />
+	</definition>
+	<definition name="viewLedgerGroup" extends="base">
+		<put-attribute name="title" value="View Ledger Group" />
+		<put-attribute name="body" value="/WEB-INF/views/viewLedgerGroup.jsp" />
+	</definition>
+	<definition name="viewLedgerGroupJSON" extends="base">
+		<put-attribute name="title" value="Ledger Group JSON" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewLedgerGroupJSON.jsp" />
+	</definition>
+
+
+	<!-- Party -->
+	<definition name="createParty" extends="base">
+		<put-attribute name="title" value="Create Party" />
+		<put-attribute name="body" value="/WEB-INF/views/createParty.jsp" />
+	</definition>
+	<definition name="viewParty" extends="base">
+		<put-attribute name="title" value="View Party" />
+		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" />
+	</definition>
+
+	<!-- -->
+</tiles-definitions>
