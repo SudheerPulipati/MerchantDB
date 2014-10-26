@@ -71,10 +71,4 @@ public class CompanyDAO implements ICompanyDAO {
 		return jdbcTemplate.update(DELETE_QUERY, new Object[] { companyID });
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:/dklf", "root", "password");
-		Statement statement = connection.createStatement();
-		System.out.println("connected successfully");
-	}
 }

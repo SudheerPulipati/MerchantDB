@@ -30,8 +30,8 @@ public class LedgGroupBO {
 		return ledgGroupDAO.read(ledgGroupID);
 	}
 	
-	public List<LedgGroupTO> readAll(){
-		return ledgGroupDAO.readAll();
+	public List<LedgGroupTO> readAllByFK(Long companyId){
+		return ledgGroupDAO.readAll(companyId);
 	}
 	
 	public void update(LedgGroupTO ledgGroupTO){

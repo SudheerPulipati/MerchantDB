@@ -16,7 +16,7 @@ import com.dkl.merchantdb.bo.UserLoginBO;
 import com.dkl.merchantdb.to.UserLoginTO;
 
 @Controller
-@SessionAttributes({ "userDetail", "companyDetails" })
+@SessionAttributes({ "username", "companyList" })
 public class UserLoginController {
 
 	@Autowired
@@ -26,24 +26,23 @@ public class UserLoginController {
 	private CompanyBO companyBO;
 
 	@RequestMapping(value = "/processLogin")
-	public String processLogin(UserLoginTO userLoginTO, Model model, HttpServletRequest request) {
+	public String processLogin(UserLoginTO userLoginTO, Model model) {
 		System.out.println("userLoginController" + userLoginTO.getUsername());
-		HttpSession session = request.getSession();
-		if(session.getId()==null){
-			return "home";
-		}
+//		HttpSession session = request.getSession();
+//		if(session.getId()==null){
+//			return "home";
+//		}
 		String viewName = null;
 		UserLoginTO userLoginResponse = userLoginBO.getUserInfo(userLoginTO.getUsername(), userLoginTO.getPassword());
 		if (userLoginResponse != null) {
 			List<String> userRoles = userLoginBO.getUserRoles(userLoginResponse.getUserID());
-			
-			
-			session.setAttribute("username", userLoginTO.getUsername());
-			session.setAttribute("companyList", companyBO.viewCompanyList());
+//			session.setAttribute("username", userLoginTO.getUsername());
+//			session.setAttribute("companyList", companyBO.viewCompanyList());
+			model.addAttribute("username", userLoginTO.getUsername());
 			if (userRoles.contains("admin")) {
+				model.addAttribute("companyList", companyBO.viewCompanyList());
 				viewName = "home";
-			} else {
-				System.out.println("not admin");
+			} else{
 				viewName = "home";
 			}
 

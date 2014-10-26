@@ -8,7 +8,7 @@ public interface IcityGroupDAO {
 
 	 void create(CityGroupTO cityGroupTO);
 	 CityGroupTO read(String id);
-	 List<CityGroupTO> readAll();
 	 void update(CityGroupTO cityGroupTO);
 	 void delete(String cityGroupID);
+	List<CityGroupTO> readAllByFK(Long companyId);
 }

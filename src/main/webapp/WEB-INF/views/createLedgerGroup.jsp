@@ -8,7 +8,6 @@
 </head>
 <body>
 	<form action="/merchantdb/saveLedgerGroup" method="post">
-	<input type="hidden" name="companyID" value="<%=request.getParameter("companyID")%>">
 		<table>
 			<tr>
 				<td>Group Name</td>
@@ -16,18 +15,17 @@
 			</tr>
 			<tr>
 				<td>Group Type</td>
-				<td>
-					<select name="ledgGroupType">
+				<td><select name="ledgGroupType">
 						<option value="select">Select</option>
 						<option value="assets">Assests</option>
 						<option value="liabilities">Liabilities</option>
 						<option value="income">Income</option>
 						<option value="expenditure">Expenditure</option>
-					</select>
-				</td>
+				</select></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Save"><input type="reset" value="Clear"></td>
+				<td colspan="2"><input type="submit" value="Save"><input
+					type="reset" value="Clear"></td>
 			</tr>
 		</table>
 	</form>

@@ -43,7 +43,7 @@
 			}, {
 				"data" : "cityGroupName"
 			} ]
-		});
+		}).makeEditable();
 		var table = $('#viewCityGroup').DataTable();
 		$('#viewCityGroup tbody').on('click', 'tr', function() {
 			var rowData = table.row(this).data();

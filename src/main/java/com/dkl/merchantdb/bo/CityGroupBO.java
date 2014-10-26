@@ -27,8 +27,8 @@ public class CityGroupBO {
 		return cityGroupDAO.read(cityGroupID);
 	}
 	
-	public List<CityGroupTO> readAll(){
-		return cityGroupDAO.readAll();
+	public List<CityGroupTO> readAllByFK(Long companyId){
+		return cityGroupDAO.readAllByFK(companyId);
 	}
 	public void update(CityGroupTO cityGroupTO){
 		cityGroupDAO.update(cityGroupTO);

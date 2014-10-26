@@ -11,7 +11,7 @@
 				%>
 				<li><b><%=companyTO.getCompanyName()%></b><a
 					href="editCompany?companyId=<%=companyTO.getCompanyID()%>" class="companyEdit">Edit</a><a
-					href="adminView" class="companyAdmin">Admin</a></li>
+					href="adminView?companyId=<%=companyTO.getCompanyID()%>" class="companyAdmin">Admin</a></li>
 				<%
 					}
 					}

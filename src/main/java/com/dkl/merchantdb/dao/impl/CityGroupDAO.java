@@ -18,7 +18,7 @@ public class CityGroupDAO implements IcityGroupDAO {
 
 	private static String CREATE_QUERY = "INSERT INTO DKLF.CITY_GROUP VALUES(?,?,?)";
 	private static String READ_QUERY = "SELECT * FROM DKLF.CITY_GROUP WHERE CITY_GROUP_ID = ?";
-	private static String READ_ALL_QUERY = "SELECT * FROM DKLF.CITY_GROUP";
+	private static String READ_ALL_QUERY = "SELECT * FROM DKLF.CITY_GROUP where company_id=?";
 	private static String UPDATE_QUERY = "UPDATE DKLF.CITY_GROUP SET CITY_GROUP_NAME = ? WHERE CITY_GROUP_ID=?";
 	private static String DELETE_QUERY = "DELETE FROM `dklf`.`city_group` WHERE `CITY_GROUP_ID`=? ";
     
@@ -42,8 +42,8 @@ public class CityGroupDAO implements IcityGroupDAO {
 	}
 
 	@Override
-	public List<CityGroupTO> readAll() {
-		return jdbcTemplate.query(READ_ALL_QUERY, new CityGroupRowMapper());
+	public List<CityGroupTO> readAllByFK(Long companyId) {
+		return jdbcTemplate.query(READ_ALL_QUERY, new CityGroupRowMapper(),companyId);
 	}
 
 	@Override

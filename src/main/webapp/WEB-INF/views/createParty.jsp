@@ -39,9 +39,9 @@
 </head>
 <body>
 	<form action="/merchantdb/saveParty" method="post">
-	<input type="hidden" name="companyID" value="<%=request.getParameter("companyID")%>">
 		<center>
 			<h3>Create Party</h3>
+			<p>${partyCreationStatus}</p>
 			<table align="center">
 				<tr>
 					<td>Party Name</td>

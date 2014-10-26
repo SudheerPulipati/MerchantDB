@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dkl.merchantdb.bo.CityGroupBO;
 import com.dkl.merchantdb.to.CityGroupTO;
@@ -16,6 +18,7 @@ import com.dkl.merchantdb.to.JsonTemplateTO;
 import com.google.gson.Gson;
 
 @Controller
+@SessionAttributes("companyId")
 public class CityGroupController {
 	
 	@Autowired
@@ -27,7 +30,8 @@ public class CityGroupController {
 	}
 	
 	@RequestMapping(value="/saveCityGroup")
-	public String saveCityGroup(CityGroupTO cityGroupTO){
+	public String saveCityGroup(CityGroupTO cityGroupTO,@ModelAttribute("companyId")Long companyId){
+		cityGroupTO.setCompanyID(companyId);
 		cityGroupBO.create(cityGroupTO);
 		return "viewCityGroup";
 	}
@@ -39,13 +43,13 @@ public class CityGroupController {
 	
 	@RequestMapping(value="/viewCityGroupJSON")
 	@ResponseBody
-	public String viewCityGroupJSON(Model model){
+	public String viewCityGroupJSON(Model model,@ModelAttribute("companyId")Long companyId){
 		
 		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
  		jsonTemplateTO.setDraw(1);
  		jsonTemplateTO.setRecordsFiltered(57);
   		jsonTemplateTO.setRecordsTotal(57);
-  		List<CityGroupTO> dataList = cityGroupBO.readAll();
+  		List<CityGroupTO> dataList = cityGroupBO.readAllByFK(companyId);
  		jsonTemplateTO.setData(dataList.toArray(new CityGroupTO[dataList.size()]));
 		return new Gson().toJson(jsonTemplateTO);
 	}

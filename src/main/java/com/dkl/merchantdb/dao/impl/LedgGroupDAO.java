@@ -17,7 +17,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 
 	private static String READ_QUERY = "SELECT * FROM DKLF.LEDGER_GROUP WHERE LEDGER_GRP_ID = ?";
 
-	private static String READ_ALL_QUERY = "SELECT * FROM DKLF.LEDGER_GROUP";
+	private static String READ_ALL_QUERY = "SELECT * FROM DKLF.LEDGER_GROUP where company_id=?";
 
 	private static String UPDATE_QUERY = "UPDATE DKLF.LEDGER_GROUP SET LEDGER_GRP_NAME = ?,"
 			+ "LEDGER_GRP_TYPE = ?,"
@@ -51,8 +51,8 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 	}
 
 	@Override
-	public List<LedgGroupTO> readAll() {
-		return jdbcTemplate.query(READ_ALL_QUERY, new LedgGroupRowMapper());
+	public List<LedgGroupTO> readAll(Long companyId) {
+		return jdbcTemplate.query(READ_ALL_QUERY, new LedgGroupRowMapper(),companyId);
 	}
 
 	@Override

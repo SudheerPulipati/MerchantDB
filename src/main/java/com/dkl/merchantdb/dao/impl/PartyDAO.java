@@ -15,7 +15,7 @@ public class PartyDAO implements IPartyDAO {
 
 	private static final String CREATE_QUERY = "insert into party values(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String READ_QUERY = "select * from party where party_id=?";
-	private static final String READ_ALL_QUERY = "select * from party";
+	private static final String READ_ALL_QUERY = "select * from party where company_id=?";
 	private static final String UPDATE_QUERY = "update party set party_name=?,party_type=?"
 			+ "party_street_name=?,party_city=?,"
 			+ "party_phone=?,party_mod_date=?" + " where party_id=?";
@@ -42,8 +42,8 @@ public class PartyDAO implements IPartyDAO {
 	}
 
 	@Override
-	public List<PartyTO> readAllParty() {
-		return jdbcTemplate.query(READ_ALL_QUERY, new PartyMapper());
+	public List<PartyTO> readAllParty(Long companyId) {
+		return jdbcTemplate.query(READ_ALL_QUERY, new PartyMapper(),companyId);
 	}
 
 	@Override

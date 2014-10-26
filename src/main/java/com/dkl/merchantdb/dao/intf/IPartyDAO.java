@@ -9,7 +9,7 @@ public interface IPartyDAO {
 
 	PartyTO readParty(String partyID);
 
-	List<PartyTO> readAllParty();
+	List<PartyTO> readAllParty(Long companyId);
 
 	void updateParty(PartyTO partyTO);
 

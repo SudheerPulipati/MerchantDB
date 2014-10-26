@@ -8,7 +8,6 @@
 </head>
 <body>
 <form action="/merchantdb/saveCityGroup" method="post">
-<input type="hidden" name="companyID" value="<%=request.getParameter("companyID")%>">
 	<table align="center">
 		<tr>
 			<td>City Group Name</td>

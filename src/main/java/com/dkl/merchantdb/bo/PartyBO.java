@@ -30,8 +30,8 @@ public class PartyBO {
 		return partyDAO.readParty(partyID);
 	}
 
-	public List<PartyTO> readAllParty() {
-		return partyDAO.readAllParty();
+	public List<PartyTO> readAllParty(Long companyId) {
+		return partyDAO.readAllParty(companyId);
 	}
 
 	public void update(PartyTO partyTO) {
