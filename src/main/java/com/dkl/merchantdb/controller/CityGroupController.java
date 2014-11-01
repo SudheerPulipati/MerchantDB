@@ -46,10 +46,11 @@ public class CityGroupController {
 	public String viewCityGroupJSON(Model model,@ModelAttribute("companyId")Long companyId){
 		
 		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
+		List<CityGroupTO> dataList = cityGroupBO.readAllByFK(companyId);
  		jsonTemplateTO.setDraw(1);
- 		jsonTemplateTO.setRecordsFiltered(57);
-  		jsonTemplateTO.setRecordsTotal(57);
-  		List<CityGroupTO> dataList = cityGroupBO.readAllByFK(companyId);
+ 		jsonTemplateTO.setRecordsFiltered(1);
+  		jsonTemplateTO.setRecordsTotal(dataList.size());
+  		
  		jsonTemplateTO.setData(dataList.toArray(new CityGroupTO[dataList.size()]));
 		return new Gson().toJson(jsonTemplateTO);
 	}

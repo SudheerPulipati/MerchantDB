@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./css/jquery.dataTables.css">
 <style type="text/css">
@@ -22,6 +23,9 @@
 	$(document).ready(function() {
 		$('#viewCityGroup').dataTable({
 			"processing" : true,
+			"pagingType": "simple",
+			"bFilter": false,
+		    "bSearchable":false,
 			"serverSide" : true,
 			"ajax" : {
 				"url" : "/merchantdb/viewCityGroupJSON",
@@ -43,7 +47,7 @@
 			}, {
 				"data" : "cityGroupName"
 			} ]
-		}).makeEditable();
+		});
 		var table = $('#viewCityGroup').DataTable();
 		$('#viewCityGroup tbody').on('click', 'tr', function() {
 			var rowData = table.row(this).data();

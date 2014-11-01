@@ -53,4 +53,10 @@ public class PartyController {
 		jsonTemplateTO.setData(dataList.toArray(new PartyTO[dataList.size()]));
 		return new Gson().toJson(jsonTemplateTO);
 	}
+	
+	@RequestMapping(value = "/updateParty")
+	public String updateParty(PartyTO partyTO){
+		partyBO.update(partyTO);
+		return "viewParty";
+	}
 }

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ledger Group</title>
 <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./css/jquery.dataTables.css">
 <style type="text/css">

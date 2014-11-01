@@ -30,7 +30,7 @@
 			<div class="cell">
 				<p class="background boldfont">Stock Point</p>
 				<div class="background">
-					<a class="lineBorder" href="">Create</a> <a href="#"
+					<a class="lineBorder" href="createStockPoint">Create</a> <a href="viewStockPoint"
 						class="companyEdit">Edit/View</a>
 				</div>
 			</div>

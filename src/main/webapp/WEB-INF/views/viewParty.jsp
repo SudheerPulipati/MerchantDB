@@ -6,14 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View Company</title>
-<script type="text/javascript"
-	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+	href="./css/jquery.dataTables.css">
+<style type="text/css">
+.ui-dialog .ui-dialog-content {
+	background: none repeat scroll 0 0 transparent;
+	border: 0 none;
+	overflow: auto;
+	padding: 0.5em 1em;
+	position: relative;
+	font-size: 0.7em;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#viewParty').dataTable({
 			"processing" : true,
+			"pagingType" : "full_numbers",
 			"serverSide" : true,
 			"ajax" : {
 				"url" : "http://localhost:8080/merchantdb/viewPartyJSON",
@@ -39,7 +50,7 @@
 				"targets" : [ 8 ],
 				"visible" : false,
 				"searchable" : false
-			}],
+			} ],
 			"columns" : [ {
 				"data" : "partyID"
 			}, {
@@ -58,7 +69,18 @@
 				"data" : "city"
 			}, {
 				"data" : "telephone"
-			}]
+			} ]
+		});
+		var table = $('#viewParty').DataTable();
+		$('#viewParty tbody').on('click', 'tr', function() {
+			var rowData = table.row(this).data();
+			$("[name = partyName]").val(rowData.partyName);
+			$("[name = partyType]").val(rowData.partyType);
+			$("[name = streetName]").val(rowData.streetName);
+			$("[name = city]").val(rowData.city);
+			$("[name = telephone]").val(rowData.telephone);
+			$("[name = partyID]").val(rowData.partyID);
+			$("#dialog").dialog();
 		});
 	});
 </script>
@@ -83,5 +105,50 @@
 			</tr>
 		</thead>
 	</table>
+	<div id="dialog" title="Update Ledger Group" style="display: none">
+		<form action="/merchantdb/updateParty" method="post">
+			<input type="hidden" name="partyID" value="">
+			<center>
+				<h3>Create Party</h3>
+				<p>${partyUpdationStatus}</p>
+				<table align="center">
+					<tr>
+						<td>Party Name</td>
+						<td><input type="text" name="partyName" /></td>
+					</tr>
+					<tr>
+						<td>Party Type</td>
+						<td><select name="partyType">
+								<option value="select">Select</option>
+								<option value="Trade Creditor">Trade Creditor</option>
+								<option value="Trade Debtor">Trade Debtor</option>
+								<option value="Owner">Owner</option>
+								<option value="Employee">Employee</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Street Name</td>
+						<td><input type="text" name="streetName" /></td>
+					</tr>
+					<tr>
+						<td>City</td>
+						<td><input type="text" name="city" /></td>
+					</tr>
+					<tr>
+						<td>Telephone#</td>
+						<td><input type="text" name="telephone" /></td>
+					</tr>
+					<tr>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="Submit" value="Update">
+							<input type="reset" value="Clear"><input type="button"
+							value="Close"></td>
+					</tr>
+				</table>
+			</center>
+		</form>
+	</div>
 </body>
 </html>

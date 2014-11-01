@@ -91,7 +91,6 @@ public class CompanyController {
 	@RequestMapping(value = "/adminView")
 	public String adminView(Model model, @RequestParam("companyId") String companyId) {
 		model.addAttribute("companyId", Long.parseLong(companyId));
-		System.out.println("AdminView");
 		return "companyAdminView";
 	}
 	// @RequestMapping(value = "/deleteCompany")
