@@ -25,37 +25,11 @@
 		$('#viewParty').dataTable({
 			"processing" : true,
 			"pagingType" : "full_numbers",
-			"serverSide" : true,
 			"ajax" : {
 				"url" : "http://localhost:8080/merchantdb/viewPartyJSON",
 				"type" : "POST"
 			},
-			"columnDefs" : [ {
-				"targets" : [ 0 ],
-				"visible" : false,
-				"searchable" : false
-			}, {
-				"targets" : [ 1 ],
-				"visible" : false,
-				"searchable" : false
-			}, {
-				"targets" : [ 6 ],
-				"visible" : false,
-				"searchable" : false
-			}, {
-				"targets" : [ 7 ],
-				"visible" : false,
-				"searchable" : false
-			}, {
-				"targets" : [ 8 ],
-				"visible" : false,
-				"searchable" : false
-			} ],
 			"columns" : [ {
-				"data" : "partyID"
-			}, {
-				"data" : "companyID"
-			}, {
 				"data" : "partyName"
 			}, {
 				"data" : "partyType"
@@ -72,7 +46,8 @@
 			} ]
 		});
 		var table = $('#viewParty').DataTable();
-		$('#viewParty tbody').on('click', 'tr', function() {
+
+		$('#viewParty tbody').on('dblclick', 'tr', function() {
 			var rowData = table.row(this).data();
 			$("[name = partyName]").val(rowData.partyName);
 			$("[name = partyType]").val(rowData.partyType);
@@ -81,6 +56,7 @@
 			$("[name = telephone]").val(rowData.telephone);
 			$("[name = partyID]").val(rowData.partyID);
 			$("#dialog").dialog();
+			count = 0;
 		});
 	});
 </script>
@@ -93,8 +69,6 @@
 	<table id="viewParty">
 		<thead>
 			<tr>
-				<th>PartyID</th>
-				<th>CompanyID</th>
 				<th>PartyName</th>
 				<th>PartyType</th>
 				<th>LedgerGroupName</th>
@@ -142,9 +116,7 @@
 						<td><br></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="Submit" value="Update">
-							<input type="reset" value="Clear"><input type="button"
-							value="Close"></td>
+						<td><input type="Submit" value="Update"></td>
 					</tr>
 				</table>
 			</center>

@@ -23,7 +23,7 @@
 			<div class="cell">
 				<p class="background boldfont">Item Unit</p>
 				<div class="background">
-					<a class="lineBorder" href="#">Create</a> <a href="#"
+					<a class="lineBorder" href="createItemUnit">Create</a> <a href="viewItemUnit"
 						class="companyEdit">Edit/View</a>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 			<div class="cell">
 				<p class="background boldfont">Item</p>
 				<div class="background">
-					<a class="lineBorder" href="">Create</a> <a href="#"
+					<a class="lineBorder" href="createItem">Create</a> <a href="#"
 						class="companyEdit">Edit/View</a>
 				</div>
 			</div>

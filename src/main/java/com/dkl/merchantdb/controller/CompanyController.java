@@ -45,10 +45,11 @@ public class CompanyController {
 		return "updateCompany";
 	}
 
-	// @RequestMapping(value = "/viewCompany")
-	// public String viewCompany(@RequestParam("companyID") String companyID) {
-	// return "viewCompany";
-	// }
+	@RequestMapping(value = "/viewCompany")
+	public String viewCompany() {
+		return "viewCompany";
+	}
+
 	// @RequestMapping(value = "/viewCompanyJSON")
 	// @ResponseBody
 	// public String viewCompanyJSON(@RequestParam("companyID") String
@@ -79,7 +80,7 @@ public class CompanyController {
 
 	@RequestMapping(value = "/updateCompany")
 	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId, Model model) {
-		
+
 		companyTO.setCompanyID(companyId);
 		int noOfRowsUpdated = companyBO.updateCompany(companyTO);
 		if (noOfRowsUpdated > 0) {

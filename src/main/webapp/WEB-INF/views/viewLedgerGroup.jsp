@@ -18,26 +18,12 @@
 	$(document).ready(function() {
 		$('#viewLedgerGroup').dataTable({
 			"processing" : true,
-			"serverSide" : true,
+			"pagingType": "full_numbers",
 			"ajax" : {
 				"url" : "/merchantdb/viewLedgerGroupJSON",
 				"type" : "POST",
 			},
-			"columnDefs" : [ {
-				"targets" : [ 0 ],
-				"visible" : false,
-				"searchable" : false
-			} ,
-		     {
-				"targets" : [ 1 ],
-				"visible" : false,
-				"searchable" : false
-			} ],
 			"columns" : [ {
-				"data" : "ledgGroupID"
-			}, {
-				"data" : "companyID"
-			}, {
 				"data" : "ledgGroupName"
 			}, {
 				"data" : "ledgGroupType"
@@ -63,8 +49,6 @@
 		width="100%">
 		<thead>
 			<tr>
-				<th>Ledger ID</th>
-				<th>Company ID</th>
 				<th>Group Name</th>
 				<th>Group Type</th>
 			</tr>

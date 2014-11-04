@@ -12,7 +12,6 @@
 	$(document).ready(function() {
 		$('#viewStockPoint').dataTable({
 			"processing" : true,
-			"serverSide" : true,
 			"ajax" : {
 				"url" : "/merchantdb/viewStockPointJSON",
 				"type" : "POST",

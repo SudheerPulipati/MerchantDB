@@ -36,7 +36,7 @@ CREATE TABLE `city_group` (
 
 LOCK TABLES `city_group` WRITE;
 /*!40000 ALTER TABLE `city_group` DISABLE KEYS */;
-INSERT INTO `city_group` VALUES ('1000001','1000001','City Group 1'),('1000002','1000001','City Group 2'),('1000003','1000001','Group2');
+INSERT INTO `city_group` VALUES ('1000002','1000001','Group3'),('1000003','1000001','Group2');
 /*!40000 ALTER TABLE `city_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,12 +108,12 @@ DROP TABLE IF EXISTS `item_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item_group` (
-  `ITEM_GROUP_ID` varchar(45) NOT NULL,
+  `item_group_id` int(10) NOT NULL DEFAULT '0',
   `COMPANY_ID` varchar(45) DEFAULT NULL,
   `ITEM_GROUP_NAME` varchar(45) DEFAULT NULL,
   `ITEM_GROUP_CRT_DATE` varchar(45) DEFAULT NULL,
   `ITEM_GROUP_MOD_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ITEM_GROUP_ID`)
+  PRIMARY KEY (`item_group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,6 +123,7 @@ CREATE TABLE `item_group` (
 
 LOCK TABLES `item_group` WRITE;
 /*!40000 ALTER TABLE `item_group` DISABLE KEYS */;
+INSERT INTO `item_group` VALUES (10001,'100001','Jaggery','2014-11-02 23:33:12','2014-11-02 23:33:12');
 /*!40000 ALTER TABLE `item_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,6 +473,7 @@ CREATE TABLE `stock_point` (
 
 LOCK TABLES `stock_point` WRITE;
 /*!40000 ALTER TABLE `stock_point` DISABLE KEYS */;
+INSERT INTO `stock_point` VALUES ('1000001','1000001','XYZ','MGBS','Hyderabad','Telangana','040-223344');
 /*!40000 ALTER TABLE `stock_point` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,6 +523,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` VALUES (1000001,1000001,'SopaNuts',3.00,'2014-11-01 07:48:55','2014-11-01 07:48:55'),(1000002,1000001,'Tamarind',10.00,'2014-11-02 14:43:35','2014-11-01 07:49:12'),(1000003,1000002,'Tamarind',5.00,'2014-11-02 14:46:45','2014-11-02 14:46:45'),(1000004,1000002,'SopaNuts',10.00,'2014-11-02 14:47:47','2014-11-02 14:47:47');
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -582,4 +585,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-27  0:29:48
+-- Dump completed on 2014-11-04 22:33:50

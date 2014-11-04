@@ -23,38 +23,30 @@
 	$(document).ready(function() {
 		$('#viewCityGroup').dataTable({
 			"processing" : true,
-			"pagingType": "simple",
-			"bFilter": false,
-		    "bSearchable":false,
-			"serverSide" : true,
+			"pagingType": "full_numbers",
 			"ajax" : {
 				"url" : "/merchantdb/viewCityGroupJSON",
 				"type" : "POST"
 			},
-			"columnDefs" : [ {
-				"targets" : [ 0 ],
-				"visible" : false,
-				"searchable" : false
-			}, {
-				"targets" : [ 1 ],
-				"visible" : false,
-				"searchable" : false
-			} ],
 			"columns" : [ {
-				"data" : "companyID"
-			}, {
-				"data" : "cityGroupID"
-			}, {
 				"data" : "cityGroupName"
 			} ]
 		});
 		var table = $('#viewCityGroup').DataTable();
-		$('#viewCityGroup tbody').on('click', 'tr', function() {
+		$('#viewCityGroup tbody').on('dblclick', 'tr', function() {
 			var rowData = table.row(this).data();
 			$("[name = companyID]").val(rowData.companyID);
 			$("[name = cityGroupID]").val(rowData.cityGroupID);
 			$("[name = cityGroupName]").val(rowData.cityGroupName);
 			$("#dialog").dialog();
+		});
+		$('#viewCityGroup tbody').on('click', 'tr', function() {
+			table.row(this).css({"background-color":"blue"});
+			var rowData = table.row(this).data();
+			$("[name = companyID]").val(rowData.companyID);
+			$("[name = cityGroupID]").val(rowData.cityGroupID);
+			//$("[name = cityGroupName]").val(rowData.cityGroupName);
+			//$("#dialog").dialog();
 		});
 	});
 </script>
@@ -66,14 +58,20 @@
 		value="Create CityGroup"></a>
 	<table id="viewCityGroup" class="display" cellspacing="0" width="100%">
 		<thead>
-			<tr>
-				<th>Company ID</th>
-				<th>City Group ID</th>
+			<tr id="row">
 				<th>City Group Name</th>
 			</tr>
 		</thead>
 
 	</table>
+	<form method="post" action="/merchantdb/deleteCityGroup">
+			<input type="hidden" name="cityGroupID" />
+			<table>
+			 <tr>
+			  <td><input type="submit" value="Remove City Group"></td>
+			 </tr>
+			</table>
+		</form>
 	<div id="dialog" title="Update City Group"
 		style="display: none; text-size: 10px">
 		<form method="post" action="/merchantdb/updateCityGroup">
@@ -85,16 +83,8 @@
 					<td><input type="text" name="cityGroupName" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Update"></td>
+					<td><input type="submit" value="Update"></td>
 				</tr>
-			</table>
-		</form>
-		<form method="post" action="/merchantdb/deleteCityGroup">
-			<input type="hidden" name="cityGroupID" />
-			<table>
-			 <tr>
-			  <td><input type="submit" value="Remove City Group"></td>
-			 </tr>
 			</table>
 		</form>
 	</div>

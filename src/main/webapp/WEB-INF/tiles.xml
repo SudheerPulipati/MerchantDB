@@ -37,6 +37,10 @@
 	<definition name="companyAdminView" extends="base">
 		<put-attribute name="title" value="Admin View" />
 	</definition>
+	<definition name="viewCompany" extends="base">
+		<put-attribute name="title" value="View City Group" />
+		<put-attribute name="body" value="/WEB-INF/views/viewCompany.jsp" />
+	</definition>
 	<!-- -->
 	<definition name="createCityGroup" extends="base">
 		<put-attribute name="title" value="Create City Group" />
@@ -77,7 +81,26 @@
 		<put-attribute name="title" value="View Party" />
 		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" />
 	</definition>
-	<!-- -->
+	
+	<!-- Item Unit -->
+	<definition name="createItemUnit" extends="base">
+		<put-attribute name="title" value="Create Item Unit" />
+		<put-attribute name="body" value="/WEB-INF/views/createItemUnit.jsp" />
+	</definition>
+	<definition name="viewItemUnit" extends="base">
+		<put-attribute name="title" value="View Item Unit" />
+		<put-attribute name="body" value="/WEB-INF/views/viewItemUnit.jsp" />
+	</definition>
+	
+	<!-- Item -->
+	<definition name="createItem" extends="base">
+		<put-attribute name="title" value="Create Item" />
+		<put-attribute name="body" value="/WEB-INF/views/createItem.jsp" />
+	</definition>
+<!-- 	<definition name="viewItemUnit" extends="base"> -->
+<!-- 		<put-attribute name="title" value="View Item Unit" /> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/viewItemUnit.jsp" /> -->
+<!-- 	</definition> -->
 	
 	<!-- Stock Point -->
 	<definition name="createStockPoint" extends="base">

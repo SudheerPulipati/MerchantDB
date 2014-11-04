@@ -11,4 +11,8 @@ public interface IItemUnitDAO {
 	List<ItemUnitTO> readAllByFk(Long companyId);
 	
 	int updateItemUnit(ItemUnitTO itemUnitTO);
+
+	int deleteItemUnit(String itemUnitId);
+
+	Double getWeight(String unitName, Long companyId);
 }

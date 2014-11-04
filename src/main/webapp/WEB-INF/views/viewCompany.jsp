@@ -16,90 +16,56 @@
 	font-size: 0.7em;
 }
 </style>
+<script type="text/javascript" src=".js/js/complete.js"></script>
+<script src=".js/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src=".js/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script type="text/javascript"
+	src=".js/js/jquery.dataTables.editable.js"></script>
+<script src=".js/js/jquery.jeditable.js" type="text/javascript"></script>
+<script src=".js/js/jquery-ui.js" type="text/javascript"></script>
+<script src=".js/js/jquery.validate.js" type="text/javascript"></script>
 <script>
- $(document).ready(function(){
-	 $.ajax({
-		 url : 'viewCompanyJSON?companyID=<%=session.getAttribute("companyID")%>',
-									type : "POST",
-									success : function(json) {
-										var company = jQuery.parseJSON(json);
-										$("input[name='companyID']").val(
-												company.companyID);
-										$("input[name='companyName']").val(
-												company.companyName);
-										$("input[name='streetName']").val(
-												company.streetName);
-										$("input[name='city']").val(
-												company.city);
-										$("input[name='state']").val(
-												company.state);
-										$("input[name='pinCode']").val(
-												company.pinCode);
-										$("input[name='email']").val(
-												company.email);
-										$("input[name='phoneNumber']").val(
-												company.phoneNumber);
-										$("input[name='tinNumber']").val(
-												company.tinNumber);
-										$(
-												"input[name='slipsIndicator'][value='"
-														+ company.slipsIndicator
-														+ "']").prop("checked",
-												true);
-									}
-								});
-					});
+	$(document).ready(function() {
+		$("#company").datatable({
+			bJQueryUI : true,
+			"sPaginationType" : "full_numbers",
+		}).makeEditable({
+			"sUpdateURL" : "/Company/UpdateCompanyData",
+			"aoColumns" : [ {
+			//Empty object is used for the default editable settings
+			}, null,//null for read-only columns
+			{
+				indicator : 'Saving...',
+				tooltip : 'Click to select town',
+				loadtext : 'loading...',
+				type : 'select',
+				onblur : 'submit',
+				data : "{'London':'London','Liverpool':'Liverpool'}"
+			} ]
+		});
+	});
 </script>
 </head>
 <body>
-	<form action="/merchantdb/updateCompany" method="post">
-		<input type="hidden" name="companyID">
-		<center>
-			<h3>Update Company</h3>
-			<table align="center">
+	<center>
+		<h3>Update Company</h3>
+		<table align="center" id="company">
+			<thead>
 				<tr>
-					<td>Company Name</td>
-					<td><input type="text" name="companyName" /></td>
+					<th>Company ID</th>
+					<th>City Group ID</th>
+					<th>City Group Name</th>
 				</tr>
-				<tr>
-					<td>Street Name</td>
-					<td><input type="text" name="streetName" /></td>
-				</tr>
-				<tr>
-					<td>City</td>
-					<td><input type="text" name="city" /></td>
-				</tr>
-				<tr>
-					<td>State</td>
-					<td><input type="text" name="state" /></td>
-				</tr>
-				<tr>
-					<td>Pincode</td>
-					<td><input type="text" name="pinCode" /></td>
-				</tr>
-				<tr>
-					<td>E-Mail</td>
-					<td><input type="text" name="email" /></td>
-				</tr>
-				<tr>
-					<td>Phone</td>
-					<td><input type="text" name="phoneNumber" /></td>
-				</tr>
-				<tr>
-					<td>TIN Number</td>
-					<td><input type="text" name="tinNumber" /></td>
-				</tr>
-				<tr>
-					<td>Ship System</td>
-					<td><input type="radio" name="slipsIndicator" value="Yes">Yes
-						<input type="radio" name="slipsIndicator" value="No">No</td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="Submit" value="Update"></td>
-				</tr>
-			</table>
-		</center>
-	</form>
+			</thead>
+			<tbody>
+		<tr class="odd_gradeX" id="2">
+			<td class="read_only"> A Trident(read only cell)</td>
+			<td>Internet Explorer 4.0</td>
+			<td>Win 95+</td>
+		</tr>
+		</tbody>
+		</table>
+	</center>
 	<form method="post" action="/merchantdb/deleteCompany">
 		<input type="hidden" name="companyID">
 		<table align="center">
