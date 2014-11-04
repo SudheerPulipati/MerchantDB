@@ -1,7 +1,8 @@
 package com.dkl.merchantdb.to;
 
-
 public class ItemTO {
+	private Long companyId;
+
 	private Long itemGroupId;
 
 	private Long itemId;
@@ -10,15 +11,19 @@ public class ItemTO {
 
 	private String unitName;
 
-	private String salesTaxException;
+	private String salesTaxExcemption;
 
 	private String townCoolie;
 
 	private String outOfTownCoolie;
 
 	private String unloadingCoolie;
+	
+	private String eetaCoolie;
 
 	private String pricePer;
+	
+	private Double weight;
 
 	public Long getItemGroupId() {
 		return itemGroupId;
@@ -52,14 +57,6 @@ public class ItemTO {
 		this.unitName = unitName;
 	}
 
-	public String getSalesTaxException() {
-		return salesTaxException;
-	}
-
-	public void setSalesTaxException(String salesTaxException) {
-		this.salesTaxException = salesTaxException;
-	}
-
 	public String getTownCoolie() {
 		return townCoolie;
 	}
@@ -90,5 +87,37 @@ public class ItemTO {
 
 	public void setPricePer(String pricePer) {
 		this.pricePer = pricePer;
+	}
+
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getEetaCoolie() {
+		return eetaCoolie;
+	}
+
+	public void setEetaCoolie(String eetaCoolie) {
+		this.eetaCoolie = eetaCoolie;
+	}
+
+	public String getSalesTaxExcemption() {
+		return salesTaxExcemption;
+	}
+
+	public void setSalesTaxExcemption(String salesTaxExcemption) {
+		this.salesTaxExcemption = salesTaxExcemption;
+	}
+
+	public Double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 }

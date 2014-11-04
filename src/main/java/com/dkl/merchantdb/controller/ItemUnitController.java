@@ -54,8 +54,7 @@ public class ItemUnitController {
 		jsonTemplateTO.setDraw(1);
 		jsonTemplateTO.setRecordsFiltered(dataList.size() % 10);
 		jsonTemplateTO.setRecordsTotal(dataList.size());
-
-		jsonTemplateTO.setData(dataList.toArray(new ItemUnitTO[dataList.size()]));
+		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 

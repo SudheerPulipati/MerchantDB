@@ -97,10 +97,10 @@
 		<put-attribute name="title" value="Create Item" />
 		<put-attribute name="body" value="/WEB-INF/views/createItem.jsp" />
 	</definition>
-<!-- 	<definition name="viewItemUnit" extends="base"> -->
-<!-- 		<put-attribute name="title" value="View Item Unit" /> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/views/viewItemUnit.jsp" /> -->
-<!-- 	</definition> -->
+	<definition name="viewItem" extends="base">
+		<put-attribute name="title" value="View Item" />
+		<put-attribute name="body" value="/WEB-INF/views/viewItem.jsp" />
+	</definition>
 	
 	<!-- Stock Point -->
 	<definition name="createStockPoint" extends="base">

@@ -50,7 +50,7 @@ public class PartyController {
 		jsonTemplateTO.setRecordsFiltered(10);
 		jsonTemplateTO.setRecordsTotal(10);
 		List<PartyTO> dataList = partyBO.readAllParty(companyId);
-		jsonTemplateTO.setData(dataList.toArray(new PartyTO[dataList.size()]));
+		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 	

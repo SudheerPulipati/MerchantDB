@@ -49,8 +49,7 @@ public class StockPointController {
 		jsonTemplateTO.setDraw(1);
 		jsonTemplateTO.setRecordsTotal(dataList.size());
 		jsonTemplateTO.setRecordsFiltered(10);
-		jsonTemplateTO.setData(dataList.toArray(new StockPointTO[dataList
-				.size()]));
+		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 

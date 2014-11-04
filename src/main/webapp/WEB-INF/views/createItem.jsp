@@ -20,14 +20,14 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="/merchantdb/saveItem" method="post">
-	<p style="color:blue">${success}</p>
+	<p style="color:blue">${itemCreationStatus}</p>
 	<table align="center">
 		<tr>
 			<td>Item Group Name</td>
-			<td><input type="radio" name="itemGroup">Jaggery</td>
-			<td><input type="radio" name="itemGroup">Tamarind</td>
-			<td><input type="radio" name="itemGroup">Red Chillies</td>
-			<td><input type="radio" name="itemGroup">Soap Nuts</td>
+			<td><input type="radio" name="itemGroupId" value="1">Jaggery</td>
+			<td><input type="radio" name="itemGroupId" value = "2">Tamarind</td>
+			<td><input type="radio" name="itemGroupId" value="3">Red Chillies</td>
+			<td><input type="radio" name="itemGroupId" value="4">Soap Nuts</td>
 		</tr>
 		<tr>
 			<td>Item Name</td>
@@ -41,31 +41,31 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<td>Price per</td>
-			<td><input type="radio" name="pricePer">10Kg</td>
-			<td><input type="radio" name="pricePer">Unit Name</td>
+			<td><input type="radio" name="pricePer" value="10Kg">10Kg</td>
+			<td><input type="radio" name="pricePer" value="Unit Name">Unit Name</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="button" value="Town"></td>
-			<td><input type="button" value="OutOfTown"></td>
-			<td><input type="button" value="Sale"></td>
+			<td><input type="button" name="" value="Town"></td>
+			<td><input type="button" name="" value="OutOfTown"></td>
+			<td><input type="button" name="" value="Sale"></td>
 		</tr>
 		<tr>
 			<td>Coolie</td>
 			<td><input type="text" name="townCoolie"></td>
 			<td><input type="text" name="outOfTownCoolie"></td>
-			<td><input type="text" name="saleCoolie"></td>
+			<td><input type="text" name="unloadingCoolie"></td>
 		</tr>
 		<tr>
 			<td>Sales Tax</td>
-			<td><input type="radio" name="salesTax">Yes</td>
-			<td><input type="radio" name="salesTax">No</td>
+			<td><input type="radio" name="salesTaxExcemption" value="Yes">Yes</td>
+			<td><input type="radio" name="salesTaxExcemption" value="No">No</td>
 		</tr>
 		
 		<tr>
 			<td>Display Ind</td>
-			<td><input type="radio" name="displayInd">Yes</td>
-			<td><input type="radio" name="displayInd">No</td>
+			<td><input type="radio" name="displayInd" value="Yes">Yes</td>
+			<td><input type="radio" name="displayInd" value="No">No</td>
 		</tr>
 		
 		<tr>

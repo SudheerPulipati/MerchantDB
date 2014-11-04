@@ -37,7 +37,7 @@
 			<div class="cell">
 				<p class="background boldfont">Item</p>
 				<div class="background">
-					<a class="lineBorder" href="createItem">Create</a> <a href="#"
+					<a class="lineBorder" href="createItem">Create</a> <a href="viewItem"
 						class="companyEdit">Edit/View</a>
 				</div>
 			</div>

@@ -51,7 +51,7 @@ public class CityGroupController {
  		jsonTemplateTO.setRecordsFiltered(1);
   		jsonTemplateTO.setRecordsTotal(dataList.size());
   		
- 		jsonTemplateTO.setData(dataList.toArray(new CityGroupTO[dataList.size()]));
+ 		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 	

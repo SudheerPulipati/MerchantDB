@@ -50,7 +50,7 @@ public class LedgeGroupController {
 		jsonTemplateTO.setRecordsTotal(10);
 		jsonTemplateTO.setRecordsFiltered(10);
 		List<LedgGroupTO> dataList = ledgGroupBO.readAllByFK(companyId);
-		jsonTemplateTO.setData(dataList.toArray(new LedgGroupTO[dataList.size()]));
+		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 	

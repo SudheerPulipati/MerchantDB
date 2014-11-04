@@ -1,77 +1,101 @@
 package com.dkl.merchantdb.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dkl.merchantdb.bo.ItemBO;
 import com.dkl.merchantdb.bo.ItemUnitBO;
+import com.dkl.merchantdb.to.ItemTO;
+import com.dkl.merchantdb.to.JsonTemplateTO;
+import com.google.gson.Gson;
 
 @Controller
 @SessionAttributes("companyId")
 public class ItemController {
 
 	@Autowired
+	private ItemBO itemBO;
+	
+	@Autowired
 	private ItemUnitBO itemUnitBO;
 
 	@RequestMapping("/createItem")
 	public String createItem() {
-		System.out.println("createItem");
+		return "createItem";
+	}
+
+	@RequestMapping("/saveItem")
+	public String saveItem(ItemTO itemTO, @ModelAttribute("companyId") Long companyId, Model model) {
+		itemTO.setCompanyId(companyId);
+		int noOfRows = itemBO.createItem(itemTO);
+		if (noOfRows > 0) {
+			model.addAttribute("itemCreationStatus", "Item has been inserted successfully");
+		}
 		return "createItem";
 	}
 
 	@RequestMapping("/getWeight")
 	@ResponseBody
-	public String getWeight(String unitName,@ModelAttribute("companyId")Long companyId) {
-		return itemUnitBO.getWeight(unitName,companyId).toString();
+	public String getWeight(String unitName, @ModelAttribute("companyId") Long companyId) {
+		return itemUnitBO.getWeight(unitName, companyId).toString();
 	}
+
+	// @RequestMapping("/saveItemUnit")
+	// public String saveItemUnit(ItemUnitTO itemUnitTO,
+	// @ModelAttribute("companyId") Long companyId, Model model) {
+	// itemUnitTO.setCompanyId(companyId);
+	// int noOfRows = itemUnitBO.createItemUnit(itemUnitTO);
+	// if (noOfRows > 0) {
+	// model.addAttribute("success", "Item Unit has been created successfully");
+	// }
+	// return "createItemUnit";
+	// }
+	//
+	 @RequestMapping("/viewItem")
+	 public String viewItemUnit() {
+	 System.out.println("viewItemUnit");
+	 return "viewItem";
+	 }
 	
-//	@RequestMapping("/saveItemUnit")
-//	public String saveItemUnit(ItemUnitTO itemUnitTO, @ModelAttribute("companyId") Long companyId, Model model) {
-//		itemUnitTO.setCompanyId(companyId);
-//		int noOfRows = itemUnitBO.createItemUnit(itemUnitTO);
-//		if (noOfRows > 0) {
-//			model.addAttribute("success", "Item Unit has been created successfully");
-//		}
-//		return "createItemUnit";
-//	}
-//
-//	@RequestMapping("/viewItemUnit")
-//	public String viewItemUnit() {
-//		System.out.println("viewItemUnit");
-//		return "viewItemUnit";
-//	}
-//
-//	@RequestMapping("/viewItemUnitJson")
-//	@ResponseBody
-//	public String viewItemUnitJSON(@ModelAttribute("companyId") Long companyId) {
-//		System.out.println("viewItemUnitJSON");
-//		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
-//		List<ItemUnitTO> dataList = itemUnitBO.readAllByFK(companyId);
-//		System.out.println(dataList);
-//		jsonTemplateTO.setDraw(1);
-//		jsonTemplateTO.setRecordsFiltered(dataList.size() % 10);
-//		jsonTemplateTO.setRecordsTotal(dataList.size());
-//
-//		jsonTemplateTO.setData(dataList.toArray(new ItemUnitTO[dataList.size()]));
-//		return new Gson().toJson(jsonTemplateTO);
-//	}
-//
-//	@RequestMapping("/updateItemUnit")
-//	public String updateCityGroup(ItemUnitTO itemUnitTO, @ModelAttribute("companyId") Long companyId) {
-//		System.out.println("updateItemUnit:itemUnitTO:"+itemUnitTO.getUnitId());
-//		itemUnitTO.setCompanyId(companyId);
-//		int row = itemUnitBO.update(itemUnitTO);
-//		System.out.println("No of rows updated:"+row);
-//		return "viewItemUnit";
-//	}
-//
-//	@RequestMapping("/deleteItemUnit")
-//	public String deleteCityGroup(@RequestParam("unitId") String itemUnitId) {
-//		System.out.println("deleteItemUnit");
-//		itemUnitBO.delete(itemUnitId);
-//		return "viewItemUnit";
-//	}
+	 @RequestMapping("/viewItemJSON")
+	 @ResponseBody
+	 public String viewItemUnitJSON(@ModelAttribute("companyId") Long
+	 companyId) {
+	 System.out.println("viewItemJSON"+companyId);
+	 JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
+	 List<ItemTO> dataList = itemBO.readAllByFk(companyId);
+	 System.out.println(dataList);
+	 jsonTemplateTO.setDraw(1);
+	 jsonTemplateTO.setRecordsFiltered(dataList.size() % 10);
+	 jsonTemplateTO.setRecordsTotal(dataList.size());
+	
+	 jsonTemplateTO.setData(dataList);
+	 return new Gson().toJson(jsonTemplateTO);
+	 }
+	
+	 @RequestMapping("/updateItem")
+	 public String updateCityGroup(ItemTO itemTO,
+	 @ModelAttribute("companyId") Long companyId) {
+	 System.out.println("updateItemUnit:itemUnitTO:"+itemTO.getItemId());
+	 itemTO.setCompanyId(companyId);
+	 int row = itemBO.update(itemTO);
+	 System.out.println("No of rows updated:"+row);
+	 return "viewItem";
+	 }
+	
+	 @RequestMapping("/deleteItem")
+	 public String deleteCityGroup(@RequestParam("itemId") String itemId)
+	 {
+	 System.out.println("deleteItemUnit");
+	 itemBO.delete(Long.parseLong(itemId));
+	 return "viewItem";
+	 }
 }
