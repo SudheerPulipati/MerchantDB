@@ -14,7 +14,7 @@ public class RemarksMapper implements RowMapper<RemarksTO> {
 		RemarksTO remarksTO = new RemarksTO();
 		remarksTO.setRemarksID(rs.getLong("REMARKS_ID"));
 		remarksTO.setCompanyID(rs.getLong("COMPANY_ID"));
-		remarksTO.setRemarks(rs.getString("REMARKS"));
+		remarksTO.setRemarks(rs.getString("REMARK"));
 		return remarksTO;
 	}
 

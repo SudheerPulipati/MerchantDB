@@ -24,7 +24,6 @@
 		 <h1>Dintakurthi's</h1>
 		 <h4>DKL Firms</h4>
 		 <span class="tagline">Trusted Quality</span>
-		 <span class="home">Home</span>
 		 <span>
 		 <form action = "processLogin" method="post">
 		 <span class="username textField">User id <input type="text" id="username" class="username" name="username"></span>

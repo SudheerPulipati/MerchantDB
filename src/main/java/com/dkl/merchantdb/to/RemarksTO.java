@@ -1,9 +1,13 @@
 package com.dkl.merchantdb.to;
 
 public class RemarksTO extends MerchantBaseTO {
+
 	private static final long serialVersionUID = 7756644968513892221L;
+
 	private Long remarksID;
+
 	private Long companyID;
+
 	private String remarks;
 
 	public Long getRemarksID() {

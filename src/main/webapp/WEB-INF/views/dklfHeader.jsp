@@ -14,16 +14,16 @@
 		 <h1>Dintakurthi's</h1>
 		 <h4>DKL Firms</h4>
 		 <span class="tagline">Trusted Quality</span>
-		 <span class="home">Home</span>
+		 <span class="home"><a href="/merchantdb/" style = "color:white">Home</a></span>
 		 <span>Welcome</span>
 		 <span class ="loggedInUser"><%=(String)session.getAttribute("username") %></span>
 		 <span class="logon"><a href="logout">Logout</a></span>
 		 <span class="contactus">Contact Us</span>
 		</div>
 	</div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+<!--     jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+<!--     Include all compiled plugins (below), or include individual files as needed -->
+<!--     <script src="js/bootstrap.min.js"></script> -->
   </body>
 </html>

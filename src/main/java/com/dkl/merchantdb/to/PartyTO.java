@@ -1,17 +1,29 @@
 package com.dkl.merchantdb.to;
 
-public class PartyTO extends MerchantBaseTO{
+public class PartyTO extends MerchantBaseTO {
+
+	private static final long serialVersionUID = 5284035728644911605L;
 
 	long partyID;
+
 	long companyID;
+
 	String partyName;
+
 	String partyType;
+
 	String streetName;
+
 	String city;
+
 	String telephone;
+
 	String ledgerGroupName;
+
 	String cityGroup;
+
 	String creationDate;
+
 	String modifiedDate;
 
 	public String getCreationDate() {

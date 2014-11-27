@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.dkl.merchantdb.dao.intf.IRemarksDAO;
+import com.dkl.merchantdb.dao.mapper.RemarksMapper;
 import com.dkl.merchantdb.to.RemarksTO;
 
 @Component
@@ -14,41 +15,33 @@ public class RemarksDAO implements IRemarksDAO {
 	
 	private static final String CREATE_QUERY = "INSERT INTO remarks VALUES(?,?,?)";
 	
-	private static final String READ_QUERY = "SELECT * FROM remarks WHERE REMARKS_ID = ?";
+	private static final String READ_ALL_QUERY = "SELECT * FROM remarks where company_id = ?";
 	
-	private static final String READ_ALL_QUERY = "SELECT * FROM ";
+	private static final String UPDATE_QUERY = "update remarks set remark = ? where remarks_id = ? and company_id = ?";
+	
+	private static final String DELETE_QUERY = "delete from remarks where remarks_id = ?";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
 	public int create(RemarksTO remarksTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.update(CREATE_QUERY, remarksTO.getCompanyID(),remarksTO.getRemarksID(),remarksTO.getRemarks());
 	}
 
 	@Override
-	public RemarksTO read(Long remarksID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<RemarksTO> readAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RemarksTO> readAllByFK(Long companyId) {
+		return jdbcTemplate.query(READ_ALL_QUERY, new RemarksMapper(),companyId);
 	}
 
 	@Override
 	public int update(RemarksTO remarksTO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.update(UPDATE_QUERY, remarksTO.getRemarks(),remarksTO.getRemarksID(),remarksTO.getCompanyID());
 	}
 
 	@Override
 	public int delete(Long remarksID) {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.update(DELETE_QUERY, remarksID);
 	}
 
 }

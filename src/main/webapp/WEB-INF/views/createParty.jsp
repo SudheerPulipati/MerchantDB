@@ -1,48 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create Party</title>
-<script>
-	$(document).ready(
-			function() {
-				$.ajax({
-					url : "viewLedgerGroupJSON",
-					type : "POST",
-					success : function(html) {
-						var ledgerGrpList = jQuery.parseJSON(html).data;
-						for (var i = 0; i < ledgerGrpList.length; i++) {
-							$("#ledgerGroupName").append(
-									'<option value='+ledgerGrpList[i].ledgGroupName+'>'
-											+ ledgerGrpList[i].ledgGroupName
-											+ '</option>');
-						}
-					}
-				});
-				$.ajax({
-					url : "viewCityGroupJSON",
-					type : "POST",
-					success : function(html) {
-						var cityGrpList = jQuery.parseJSON(html).data;
-						for (var i = 0; i < cityGrpList.length; i++) {
-							$("#cityGroup").append(
-									'<option value='+cityGrpList[i].cityGroupName+'>'
-											+ cityGrpList[i].cityGroupName
-											+ '</option>');
-						}
-					}
-				});
-			});
-</script>
-</head>
-<body>
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" --%>
+<%-- 	pageEncoding="ISO-8859-1"%> --%>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
+<!-- <title>Create Party</title> -->
+<!-- <script> -->
+
+<!-- </script> -->
+<!-- </head> -->
+<!-- <body> -->
+<div class="adminMenuTitle">
+	Create Party
+	<hr
+		style="border: none; height: 1px; width: 40%; background-color: #505050"
+		align="left" />
+</div>
 	<form action="/merchantdb/saveParty" method="post">
-		<center>
-			<h3>Create Party</h3>
 			<p>${partyCreationStatus}</p>
-			<table align="center">
+			<table>
 				<tr>
 					<td>Party Name</td>
 					<td><input type="text" name="partyName" /></td>
@@ -86,11 +62,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="Submit" value="Save"> <input
-						type="reset" value="Clear"><input type="Button"
-						value="Close"></td>
+						type="reset" value="Clear"></td>
 				</tr>
 			</table>
-		</center>
 	</form>
-</body>
-</html>

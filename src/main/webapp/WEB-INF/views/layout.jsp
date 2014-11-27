@@ -6,14 +6,19 @@
 <head>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 <script type="text/javascript" src="./js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="./css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.css">
 <script src="./js/jquery-ui.js"></script>
 </head>
 <body>
 	<div class="body">
 		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="menu" />
+		<div class="leftMenu">
+			<tiles:insertAttribute name="companiesMenu" />
+			<tiles:insertAttribute name="finYearsMenu" />
+		</div>
 		<tiles:insertAttribute name="beforeBody" />
 		<tiles:insertAttribute name="body" />
 	</div>

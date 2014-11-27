@@ -9,21 +9,11 @@
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./css/jquery.dataTables.css">
-<style type="text/css">
-.ui-dialog .ui-dialog-content {
-	background: none repeat scroll 0 0 transparent;
-	border: 0 none;
-	overflow: auto;
-	padding: 0.5em 1em;
-	position: relative;
-	font-size: 0.7em;
-}
-</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#viewItem').dataTable({
 			"processing" : true,
-			"pagingType": "full_numbers",
 			"ajax" : {
 				"url" : "/merchantdb/viewItemJSON",
 				"type" : "POST"
@@ -39,56 +29,85 @@
 		var table = $('#viewItem').DataTable();
 		$('#viewItem tbody').on('click', 'tr', function() {
 			var rowData = table.row(this).data();
+			
+			$("#itemModal").dialog({
+				height : 450,
+				width : 600,
+				draggable : false,
+				modal : true,
+				autoOpen: false,
+				buttons: {
+			        "Close": function () {
+			            $(this).dialog("close");
+			        }
+				}
+			});
+			$("#itemModal").dialog("open");
+			$(".ui-dialog-titlebar").hide();
 			$("[name = itemId]").val(rowData.itemId);
 			$("[name = itemGroupId]").val(rowData.itemGroupId);
 			$("[name = itemName]").val(rowData.itemName);
 			$("[name = weight]").val(rowData.weight);
-			$("#dialog").dialog();
 		});
 	});
 </script>
 </head>
 <body>
-	<table id="viewItem" class="display" cellspacing="0" width="100%">
-		<thead>
-			<tr>
-				<th>Item Group Name</th>
-				<th>Item Name</th>
-				<th>Weight</th>
-			</tr>
-		</thead>
+	<div class="adminMenuTitle">
+		View Item
+		<hr
+			style="border: none; height: 1px; width: 40%; background-color: #505050"
+			align="left" />
+	</div>
+	<div class="dataTableDiv">
+		<table id="viewItem" class="display datatable" cellspacing="0"
+		border=1 role="grid" style="border: 0px solid #C0C0C0">
+			<thead>
+				<tr>
+					<th>Item Group Name</th>
+					<th>Item Name</th>
+					<th>Weight</th>
+				</tr>
+			</thead>
 
-	</table>
-	<div id="dialog" title="Update Item Unit"
-		style="display: none; text-size: 10px">
-		<form method="post" action="/merchantdb/updateItem">
-			<input type="hidden" name="itemId" />
-			<table id="UpdateCGTable">
-				<tr>
-					<td>Item Group Name</td>
-					<td><input type="text" name="itemGroupId" /></td>
-				</tr>
-				<tr>
-					<td>Item Name</td>
-					<td><input type="text" name="itemName" /></td>
-				</tr>
-				<tr>
-					<td>Weight</td>
-					<td><input type="text" name="weight" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Update"></td>
-				</tr>
-			</table>
-		</form>
-		<form method="post" action="/merchantdb/deleteItem">
-			<input type="hidden" name="itemId" />
-			<table>
-				<tr>
-					<td><input type="submit" value="Remove"></td>
-				</tr>
-			</table>
-		</form>
+		</table>
+		<div id="itemModal" title="Update Item Unit"
+			style="display: none; text-size: 10px">
+			<span style="font-size: 22px;">Item Form</span>
+		<hr
+			style="border: none; height: 1px; width: 70%; background-color: #505050"
+			align="left" />
+			<br/><br/>
+			<form method="post" action="/merchantdb/updateItem" style = "margin-left:25%">
+				<input type="hidden" name="itemId" />
+				<table id="UpdateCGTable" style="border:1px solid #8080B2; padding:10px">
+					<tr>
+						<td>Item Group Name</td>
+						<td><input type="text" name="itemGroupId" /></td>
+					</tr>
+					<tr>
+						<td>Item Name</td>
+						<td><input type="text" name="itemName" /></td>
+					</tr>
+					<tr>
+						<td>Weight</td>
+						<td><input type="text" name="weight" /></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Update"></td>
+						<td><input type="reset" value="Clear"></td>
+					</tr>
+				</table>
+			</form>
+			<form method="post" action="/merchantdb/deleteItem">
+				<input type="hidden" name="itemId" />
+				<table>
+					<tr>
+						<td><input type="submit" value="Remove"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

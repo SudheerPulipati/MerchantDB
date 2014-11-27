@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company` (
-  `COMPANY_ID` varchar(30) NOT NULL DEFAULT '',
+  `company_id` int(10) NOT NULL DEFAULT '0',
   `COMPANY_NAME` varchar(45) DEFAULT NULL,
   `COMPANY_STREET_NAME` varchar(45) DEFAULT NULL,
   `COMPANY_CITY` varchar(45) DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `company` (
   `COMPANY_SLIPS_IND` varchar(45) DEFAULT NULL,
   `COMPANY_CREATION_DATE` varchar(45) DEFAULT NULL,
   `COMPANY_MOD_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`COMPANY_ID`)
+  PRIMARY KEY (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +70,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES ('1000001','Infosys','Gachibowli','Hyderabad','Andhra Pradesh','500032','1234567788888','9966833088','mailtopsudheer@gmail.com','Yes','2014-10-17','2014-10-26'),('1000002','TCS','PJR NAGAR','Hyderabad','Andhra Pradesh','500032','112232','919642013773','sujitmajumdar42@gmail.com','Yes','2014-10-17','2014-10-17'),('1000003','Wipro','','','','','','','',NULL,'2014-10-25','2014-10-26');
+INSERT INTO `company` VALUES (1000001,'Infosys','Gachibowli','Hyderabad','Andhra Pradesh','500032','1234567788888','9966833088','mailtopsudheer@gmail.com','Yes','2014-10-17','2014-10-26'),(1000002,'TCS','PJR NAGAR','Hyderabad','Andhra Pradesh','500032','112232','919642013773','sujitmajumdar42@gmail.com','Yes','2014-10-17','2014-10-17'),(1000003,'Wipro','','','','','','','',NULL,'2014-10-25','2014-10-26');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,12 +82,12 @@ DROP TABLE IF EXISTS `fin_book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fin_book` (
-  `FIB_ID` varchar(30) NOT NULL,
-  `COMPANY_ID` varchar(30) DEFAULT NULL,
-  `FIB_FINANCIAL_YR` varchar(45) DEFAULT NULL,
-  `FIB_CREATION_DATE` varchar(45) DEFAULT NULL,
-  `FIB_MOD_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`FIB_ID`)
+  `fib_id` varchar(10) NOT NULL DEFAULT '',
+  `company_id` int(10) DEFAULT NULL,
+  `fib_financial_yr` varchar(10) DEFAULT NULL,
+  `fib_creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fib_mod_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`fib_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,6 +97,7 @@ CREATE TABLE `fin_book` (
 
 LOCK TABLES `fin_book` WRITE;
 /*!40000 ALTER TABLE `fin_book` DISABLE KEYS */;
+INSERT INTO `fin_book` VALUES ('FY2013-14',1000001,'2013-2014','2014-11-09 12:13:51','2014-11-09 12:13:51');
 /*!40000 ALTER TABLE `fin_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,6 +148,8 @@ CREATE TABLE `item_master` (
   `ITEM_PRICE_PER` varchar(45) DEFAULT NULL,
   `ITEM_CRT_DATE` varchar(45) DEFAULT NULL,
   `ITEM_MOD_DATE` varchar(45) DEFAULT NULL,
+  `company_id` int(10) DEFAULT NULL,
+  `weight` double(5,2) DEFAULT NULL,
   PRIMARY KEY (`ITEM_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -157,6 +160,7 @@ CREATE TABLE `item_master` (
 
 LOCK TABLES `item_master` WRITE;
 /*!40000 ALTER TABLE `item_master` DISABLE KEYS */;
+INSERT INTO `item_master` VALUES ('1000001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-11-05 00:28:43','2014-11-05 00:28:43',NULL,NULL),('1000003','3','Bags','SopaNuts','Yes','4','34',NULL,'3','Unit Name','2014-11-05 01:03:03','2014-11-05 01:03:03',1000001,3.00);
 /*!40000 ALTER TABLE `item_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,6 +200,42 @@ LOCK TABLES `item_stock_point` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `item_stock_register`
+--
+
+DROP TABLE IF EXISTS `item_stock_register`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item_stock_register` (
+  `book_id` varchar(10) DEFAULT NULL,
+  `stock_point_id` varchar(10) DEFAULT NULL,
+  `stock_point_name` varchar(30) DEFAULT NULL,
+  `item_id` varchar(10) DEFAULT NULL,
+  `item_name` varchar(30) DEFAULT NULL,
+  `item_batch_id` varchar(10) DEFAULT NULL,
+  `item_batch_name` varchar(30) DEFAULT NULL,
+  `open_quantity` int(10) DEFAULT NULL,
+  `purchase_quantity` int(10) DEFAULT NULL,
+  `sale_quantity` int(10) DEFAULT NULL,
+  `transfer_in` int(10) DEFAULT NULL,
+  `transfer_out` int(10) DEFAULT NULL,
+  `stock_on_hand` int(10) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item_stock_register`
+--
+
+LOCK TABLES `item_stock_register` WRITE;
+/*!40000 ALTER TABLE `item_stock_register` DISABLE KEYS */;
+INSERT INTO `item_stock_register` VALUES ('FY2013-14','SP1','ELR MAIN SHOP','IT1','10KG Karipuli','IB1','360/1030',0,10,0,0,0,10,'2014-11-24 18:05:03','2014-11-24 18:05:03');
+/*!40000 ALTER TABLE `item_stock_register` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `item_transaction`
 --
 
@@ -203,28 +243,27 @@ DROP TABLE IF EXISTS `item_transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item_transaction` (
-  `ITEM_TRANSACTION_ID` varchar(45) NOT NULL,
-  `LEDGER_TRANS_ID` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_SEQ_NO` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_TYPE` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_DATE` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_ACC_ID` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_ACC_NAME` varchar(45) DEFAULT NULL,
-  `ITEM_ID` varchar(45) DEFAULT NULL,
-  `ITEM_NAME` varchar(45) DEFAULT NULL,
-  `ITEM_BATCH_ID` varchar(45) DEFAULT NULL,
-  `ITEM_BATCH_NAME` varchar(45) DEFAULT NULL,
-  `ITEM_BATCH_MARK` varchar(45) DEFAULT NULL,
-  `ITEM_QTY` varchar(45) DEFAULT NULL,
-  `ITEM_WEIGHT` varchar(45) DEFAULT NULL,
-  `ITEM_BILL_PRICE` varchar(45) DEFAULT NULL,
-  `ITEM_UNBILLED_PRICE` varchar(45) DEFAULT NULL,
-  `ITEM_BILL_AMOUNT` varchar(45) DEFAULT NULL,
-  `ITEM_UNBILLED_AMOUNT` varchar(45) DEFAULT NULL,
-  `ITEM_TOTAL_AMOUNT` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_CRT_DATE` varchar(45) DEFAULT NULL,
-  `ITEM_TRANS_MOD_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ITEM_TRANSACTION_ID`)
+  `book_id` varchar(10) DEFAULT NULL,
+  `transaction_id` varchar(10) NOT NULL,
+  `transaction_seq_no` int(5) DEFAULT NULL,
+  `item_id` varchar(10) DEFAULT NULL,
+  `item_name` varchar(30) DEFAULT NULL,
+  `item_batch_id` varchar(10) DEFAULT NULL,
+  `item_batch_name` varchar(30) DEFAULT NULL,
+  `quantity` int(10) DEFAULT NULL,
+  `weight` double(10,2) DEFAULT NULL,
+  `weight_difference` double(6,2) DEFAULT NULL,
+  `price_per` int(10) DEFAULT NULL,
+  `price1` double(10,2) DEFAULT NULL,
+  `price2` double(10,2) DEFAULT NULL,
+  `amount1` double(10,2) DEFAULT NULL,
+  `amount2` double(10,2) DEFAULT NULL,
+  `total_amount` double(10,2) DEFAULT NULL,
+  `firm_id` int(10) DEFAULT NULL,
+  `firm_name` varchar(30) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -234,7 +273,45 @@ CREATE TABLE `item_transaction` (
 
 LOCK TABLES `item_transaction` WRITE;
 /*!40000 ALTER TABLE `item_transaction` DISABLE KEYS */;
+INSERT INTO `item_transaction` VALUES ('FY2013-14','PUR1',1,'IT2','10KG Karipuli','IB4','1040/1050',100,1000.00,0.00,10,450.00,400.00,45000.00,40000.00,85000.00,1,'DVR','2014-11-24 17:48:13','2014-11-24 17:48:13');
 /*!40000 ALTER TABLE `item_transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ledger`
+--
+
+DROP TABLE IF EXISTS `ledger`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ledger` (
+  `ledgerid` varchar(10) DEFAULT NULL,
+  `bookid` varchar(10) DEFAULT NULL,
+  `transactionType` varchar(20) DEFAULT NULL,
+  `transactionDate` timestamp NULL DEFAULT NULL,
+  `ledger_seq_no` int(10) DEFAULT NULL,
+  `transactionId` varchar(10) DEFAULT NULL,
+  `ledger_name` varchar(45) DEFAULT NULL,
+  `firmId` int(10) DEFAULT NULL,
+  `firmName` varchar(30) DEFAULT NULL,
+  `depositType` varchar(2) DEFAULT NULL,
+  `amount` double(10,2) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `modified_date` timestamp NULL DEFAULT NULL,
+  `narration` varchar(45) DEFAULT NULL,
+  KEY `bookid` (`bookid`),
+  CONSTRAINT `ledger_ibfk_1` FOREIGN KEY (`bookid`) REFERENCES `fin_book` (`fib_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ledger`
+--
+
+LOCK TABLES `ledger` WRITE;
+/*!40000 ALTER TABLE `ledger` DISABLE KEYS */;
+INSERT INTO `ledger` VALUES ('PY7','FY2013-14','PURCHASE','2014-11-10 17:56:18',1,'PUR1','BASAVAPPA',1,'DVR','Dr',45000.00,'2014-11-10 17:56:18','2014-11-10 17:56:18','remarks'),('IT1LG1','FY2013-14','SALE','2014-11-11 19:31:52',2,'PUR1','10KG Karipuli Purchase',1,'DVR','CR',35000.00,'2014-11-11 19:31:52','2014-11-11 19:31:52','Pulihora Purchased'),('leger1','FY2013-14','payment','2014-11-13 18:25:02',2,'trans1','legerName',232,'DKLF','cr',34323.00,'2014-11-13 18:25:02','2014-11-13 18:25:02','NOTHING');
+/*!40000 ALTER TABLE `ledger` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -420,8 +497,33 @@ CREATE TABLE `party` (
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES ('1000002','1000001','party2','Owner','1000001','1000002','pune','pune City','919642013773','2014-10-19','2014-10-19'),('1000003','1000002','party2','Trade Creditor','City','Ledg1','house no-2-85/9/1,PJR Nagar','Hyderabad','919642013773','2014-10-19','2014-10-19'),('1000004','1000001','Party2','Owner','Group2','pqr','Gachibowli','Hyderabad','9966833088','2014-10-26','2014-10-26');
+INSERT INTO `party` VALUES ('1000002','1000001','party2','Owner','1000001','1000002','pune','pune City','919642013773','2014-10-19','2014-10-19'),('1000003','1000002','party2','Trade Creditor','City','Ledg1','house no-2-85/9/1,PJR Nagar','Hyderabad','919642013773','2014-10-19','2014-10-19'),('1000004','1000001','Party2','Employee','Group2','pqr','Gachibowli','Hyderabad','9966833088','2014-10-26',NULL);
 /*!40000 ALTER TABLE `party` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `remarks`
+--
+
+DROP TABLE IF EXISTS `remarks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `remarks` (
+  `company_id` varchar(30) DEFAULT NULL,
+  `remarks_id` varchar(10) NOT NULL,
+  `remark` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`remarks_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `remarks`
+--
+
+LOCK TABLES `remarks` WRITE;
+/*!40000 ALTER TABLE `remarks` DISABLE KEYS */;
+INSERT INTO `remarks` VALUES ('1000001','1000002','Remark1');
+/*!40000 ALTER TABLE `remarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -585,4 +687,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-04 22:33:50
+-- Dump completed on 2014-11-27  9:20:57

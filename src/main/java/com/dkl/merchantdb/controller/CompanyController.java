@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dkl.merchantdb.bo.CompanyBO;
+import com.dkl.merchantdb.bo.FinancialBookBO;
 import com.dkl.merchantdb.to.CompanyTO;
 
 @Controller
-@SessionAttributes("companyId")
+@SessionAttributes({"companyId","financialYears"})
 public class CompanyController {
 
 	@Autowired
 	private CompanyBO companyBO;
+	
+	@Autowired
+	private FinancialBookBO financialBookBO;
 
 	HttpSession session = null;
 
@@ -92,6 +96,7 @@ public class CompanyController {
 	@RequestMapping(value = "/adminView")
 	public String adminView(Model model, @RequestParam("companyId") String companyId) {
 		model.addAttribute("companyId", Long.parseLong(companyId));
+		model.addAttribute("financialYears", financialBookBO.readAllByFK(Long.parseLong(companyId)));
 		return "companyAdminView";
 	}
 	// @RequestMapping(value = "/deleteCompany")

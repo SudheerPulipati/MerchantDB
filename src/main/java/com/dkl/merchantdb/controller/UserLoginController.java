@@ -24,14 +24,10 @@ public class UserLoginController {
 
 	@Autowired
 	private CompanyBO companyBO;
-
+	
 	@RequestMapping(value = "/processLogin")
 	public String processLogin(UserLoginTO userLoginTO, Model model) {
 		System.out.println("userLoginController" + userLoginTO.getUsername());
-//		HttpSession session = request.getSession();
-//		if(session.getId()==null){
-//			return "home";
-//		}
 		String viewName = null;
 		UserLoginTO userLoginResponse = userLoginBO.getUserInfo(userLoginTO.getUsername(), userLoginTO.getPassword());
 		if (userLoginResponse != null) {

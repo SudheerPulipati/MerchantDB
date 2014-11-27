@@ -6,7 +6,8 @@
 	<definition name="base" template="/WEB-INF/views/layout.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/dklfHeader.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/dklfMenu.jsp" />
+		<put-attribute name="companiesMenu" value="/WEB-INF/views/dklfCompaniesMenu.jsp" />
+		<put-attribute name="finYearsMenu" value="/WEB-INF/views/dklfFinYearsMenu.jsp" />
 		<put-attribute name="beforeBody" value="/WEB-INF/views/dklfBeforeBody.jsp"/>
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
@@ -14,7 +15,8 @@
 	<definition name="login" extends="base">
 		<put-attribute name="header" value="/WEB-INF/views/loginHeader.jsp" />
 		<put-attribute name="title" value="Login" />
-		<put-attribute name="menu" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
 		<put-attribute name="beforeBody" value=""/>
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>
@@ -81,6 +83,16 @@
 		<put-attribute name="title" value="View Party" />
 		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" />
 	</definition>
+<!-- 	<definition name="viewParty" extends="base"> -->
+<!-- 		<put-attribute name="title" value="View Party" /> -->
+<!-- 		<put-attribute name="header" value="" /> -->
+<!-- 		<put-attribute name="companiesMenu" value="" /> -->
+<!-- 		<put-attribute name="finYearsMenu" value="" /> -->
+<!-- 		<put-attribute name="beforeBody" value=""/> -->
+ <!-- 		<put-attribute name="body" value="" /> --> 
+<!-- 		<put-attribute name="footer" value="" /> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" /> -->
+<!-- 	</definition> -->
 	
 	<!-- Item Unit -->
 	<definition name="createItemUnit" extends="base">
@@ -111,5 +123,47 @@
 		<put-attribute name="title" value="View StockPoint" />
 		<put-attribute name="body" value="/WEB-INF/views/viewStockPoint.jsp" />
 	</definition>
-	<!--  -->
+	<!--Reports  -->
+	<definition name="reports" extends="base">
+		<put-attribute name="title" value="View Reports" />
+		<put-attribute name="beforeBody" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/reports.jsp" />
+	</definition>
+	<definition name="cashbookReport" extends="base">
+		<put-attribute name="title" value="View Cashbook Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/cashReport.jsp" />
+	</definition>
+	<definition name="purchaseReport" extends="base">
+		<put-attribute name="title" value="View Purchase Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/purchaseReport.jsp" />
+	</definition>
+	<definition name="salesReport" extends="base">
+		<put-attribute name="title" value="View Purchase Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/salesReport.jsp" />
+	</definition>
+	
+	<!-- Remarks -->
+	<definition name="createRemark" extends="base">
+		<put-attribute name="title" value="Create Remark" />
+		<put-attribute name="body" value="/WEB-INF/views/createRemarks.jsp" />
+	</definition>
+	<definition name="viewRemarks" extends="base">
+		<put-attribute name="title" value="View Remarks" />
+		<put-attribute name="body" value="/WEB-INF/views/viewRemarks.jsp" />
+	</definition>
 </tiles-definitions>

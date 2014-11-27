@@ -1,0 +1,49 @@
+package com.dkl.merchantdb.controller;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.dkl.merchantdb.bo.SalesReportsBO;
+import com.dkl.merchantdb.to.JsonTemplateTO;
+import com.dkl.merchantdb.to.SalesReportTO;
+import com.google.gson.Gson;
+
+@Controller
+@SessionAttributes("fbid")
+public class SalesReportsController {
+
+	@Autowired
+	private SalesReportsBO reportsBO;
+
+	@RequestMapping("/salesReport")
+	public String viewSalesReport() {
+		System.out.println("/salesReport");
+		return "salesReport";
+	}
+
+	@RequestMapping("/salesReportJSON")
+	@ResponseBody
+	public String viewSalesReportJSON(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
+			@ModelAttribute("fbid") String bookId) {
+		System.out.println("startDate:" + startDate + "," + "endDate:" + endDate);
+		if (StringUtils.isEmpty(endDate)) {
+			endDate = startDate;
+		}
+		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
+		jsonTemplateTO.setRecordsFiltered(10);
+		jsonTemplateTO.setRecordsTotal(10);
+		List<SalesReportTO> dataList = reportsBO.readAllSalesEntries(bookId, startDate, endDate);
+		jsonTemplateTO.setData(dataList);
+		System.out.println(new Gson().toJson(jsonTemplateTO));
+		return new Gson().toJson(jsonTemplateTO);
+	}
+
+}

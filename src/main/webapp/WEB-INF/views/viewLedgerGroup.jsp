@@ -1,24 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ledger Group</title>
-<script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="./js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./css/jquery.dataTables.css">
-<style type="text/css">
-#dialog {
-	font-size: 12px;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function() {
+
 		$('#viewLedgerGroup').dataTable({
 			"processing" : true,
-			"pagingType": "full_numbers",
 			"ajax" : {
 				"url" : "/merchantdb/viewLedgerGroupJSON",
 				"type" : "POST",
@@ -27,26 +11,42 @@
 				"data" : "ledgGroupName"
 			}, {
 				"data" : "ledgGroupType"
-			}]
+			} ]
 		});
 		var table = $('#viewLedgerGroup').DataTable();
 
 		$('#viewLedgerGroup tbody').on('click', 'tr', function() {
 			var rowData = table.row(this).data();
-			$("#updateLedgerTable").show();
+			$("#LedgerGroupModal").dialog({
+				height : 350,
+				width : 600,
+				draggable : false,
+				modal : true,
+				autoOpen: false,
+				buttons: {
+			        "Close": function () {
+			            $(this).dialog("close");
+			        }
+				}
+			});
+			$("#LedgerGroupModal").dialog("open");
+			$(".ui-dialog-titlebar").hide();
 			$("[name = ledgGroupID]").val(rowData.ledgGroupID);
 			$("[name = companyID]").val(rowData.companyID);
 			$("[name = ledgGroupName]").val(rowData.ledgGroupName);
 			$("[name= ledgGroupType]").val(rowData.ledgGroupType);
-			$("#dialog").dialog();
 		});
 	});
 </script>
-</head>
-<body>
-    <a href="/merchantdb/createLedgerGroup?companyID=<%=request.getParameter("companyID")%>" style="text-decoration: none"><input type="button" value="Create Ledger Group"></a>
-	<table id="viewLedgerGroup" class="display" cellspacing="0"
-		width="100%">
+<div class="adminMenuTitle">
+	View Ledger Group
+	<hr
+		style="border: none; height: 1px; width: 40%; background-color: #505050"
+		align="left" />
+</div>
+<div class="dataTableDiv">
+	<table id="viewLedgerGroup" class="display dataTable" cellspacing="0"
+		border=1 role="grid" style="border: 0px solid #C0C0C0">
 		<thead>
 			<tr>
 				<th>Group Name</th>
@@ -54,11 +54,17 @@
 			</tr>
 		</thead>
 	</table>
-	<div id="dialog" title="Update Ledger Group" style="display: none">
-		<form action="/merchantdb/updateLedgerGroup" method="post">
-			<input type="hidden" name="companyID"> <input
-				type="hidden" name="ledgGroupID">
-			<table id="updateLedgerTable" >
+
+	<div id="LedgerGroupModal" style="display:none">
+		<span style="font-size: 22px;">Ledger Group Form</span>
+		<hr
+			style="border: none; height: 1px; width: 70%; background-color: #505050"
+			align="left" />
+		<form action="/merchantdb/updateLedgerGroup" method="post" style = "margin-left:25%;margin-bottom:auto">
+			<input type="hidden" name="companyID"> <input type="hidden"
+				name="ledgGroupID">
+				<br/><br/>
+			<table id="updateLedgerTable" style="border:1px solid #8080B2; padding:10px">
 				<tr>
 					<td>Group Name :</td>
 					<td><input type="text" name="ledgGroupName"></td>
@@ -74,8 +80,9 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Save"><input
-						type="reset" value="Clear"></td>
+					<td><input type="submit" value="Save"
+						class="button"></td>
+					<td><input type="reset" value="Clear" class="button"></td>
 				</tr>
 			</table>
 		</form>
@@ -84,5 +91,5 @@
 				value="Remove" />
 		</form>
 	</div>
-</body>
-</html>
+</div>
+</div>

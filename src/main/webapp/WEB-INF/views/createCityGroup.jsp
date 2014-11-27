@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create City Group</title>
-</head>
-<body>
+<div class="adminMenuTitle">
+	Create City Group
+	<hr
+		style="border: none; height: 1px; width: 40%; background-color: #505050"
+		align="left" />
+</div>
 <form action="/merchantdb/saveCityGroup" method="post">
-	<table align="center">
+	<table>
+		<tr>
+			<td><br></td>
+		</tr>
 		<tr>
 			<td>City Group Name</td>
 			<td><input type="text" name="cityGroupName"></td>
@@ -17,9 +17,9 @@
 			<td colspan="2">&nbsp;</td>
 		</tr>
 		<tr>
-		<td><input type="submit" value="Create"></td>
+			<td><input type="submit" value="Save"></td>
+			<td><input type="reset" value="Clear"></td>
 		</tr>
+		
 	</table>
-	</form>
-</body>
-</html>
+</form>

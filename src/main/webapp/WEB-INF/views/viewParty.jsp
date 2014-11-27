@@ -1,25 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Company</title>
-<script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="./js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./css/jquery.dataTables.css">
-<style type="text/css">
-.ui-dialog .ui-dialog-content {
-	background: none repeat scroll 0 0 transparent;
-	border: 0 none;
-	overflow: auto;
-	padding: 0.5em 1em;
-	position: relative;
-	font-size: 0.7em;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#viewParty').dataTable({
@@ -47,45 +25,63 @@
 		});
 		var table = $('#viewParty').DataTable();
 
-		$('#viewParty tbody').on('dblclick', 'tr', function() {
+		$('#viewParty tbody').on('click', 'tr', function() {
 			var rowData = table.row(this).data();
+			$("#partyGroupModal").dialog({
+				height : 450,
+				width : 600,
+				draggable : false,
+				modal : true,
+				autoOpen: false,
+				buttons: {
+			        "Close": function () {
+			            $(this).dialog("close");
+			        }
+				}
+			});
+			$("#partyGroupModal").dialog("open");
+			$(".ui-dialog-titlebar").hide();
 			$("[name = partyName]").val(rowData.partyName);
 			$("[name = partyType]").val(rowData.partyType);
 			$("[name = streetName]").val(rowData.streetName);
 			$("[name = city]").val(rowData.city);
 			$("[name = telephone]").val(rowData.telephone);
 			$("[name = partyID]").val(rowData.partyID);
-			$("#dialog").dialog();
+			
 			count = 0;
 		});
 	});
 </script>
-</head>
-<body>
-	<a
-		href="/merchantdb/createParty?companyID=<%=request.getParameter("companyID")%>"
-		style="text-decoration: none"><input type="button"
-		value="Create Party"></a>
-	<table id="viewParty">
-		<thead>
+  <div class="adminMenuTitle">
+	View Party
+	<hr
+		style="border: none; height: 1px; width: 40%; background-color: #505050"
+		align="left" />
+</div>
+<div class="dataTableDiv" style="width: 72%;">
+	<table id="viewParty"class="display dataTable" cellspacing="0"
+		border=1 role="grid" style="border: 0px solid #C0C0C0">
+		<thead style="background-color: #00365B; color: white; font-family: "Arial Black", Gadget, sans-serif">
 			<tr>
-				<th>PartyName</th>
-				<th>PartyType</th>
-				<th>LedgerGroupName</th>
-				<th>CityGroup</th>
-				<th>StreetName</th>
+				<th>Party Name</th>
+				<th>Party Type</th>
+				<th>LedgerGroup Name</th>
+				<th>City Group</th>
+				<th>Street Name</th>
 				<th>City</th>
-				<th>Telephone#</th>
+				<th>Telephone</th>
 			</tr>
 		</thead>
 	</table>
-	<div id="dialog" title="Update Ledger Group" style="display: none">
-		<form action="/merchantdb/updateParty" method="post">
+	<div id="partyGroupModal" style="display:none">
+		<span style="font-size: 22px;">Party Form</span>
+		<hr
+			style="border: none; height: 1px; width: 70%; background-color: #505050"
+			align="left" />
+			<br/><br/>
+		<form action="/merchantdb/updateParty" method="post" style="margin-left: 25%">
 			<input type="hidden" name="partyID" value="">
-			<center>
-				<h3>Create Party</h3>
-				<p>${partyUpdationStatus}</p>
-				<table align="center">
+				<table style="border:1px solid #8080B2; padding:10px">
 					<tr>
 						<td>Party Name</td>
 						<td><input type="text" name="partyName" /></td>
@@ -116,11 +112,11 @@
 						<td><br></td>
 					</tr>
 					<tr>
-						<td><input type="Submit" value="Update"></td>
+						<td colspan="2"><input type="Submit" value="Update"><input type="reset" value="Clear"></td>
 					</tr>
 				</table>
-			</center>
+				<input type="button" value="Remove">				 
 		</form>
 	</div>
-</body>
-</html>
+	</div>
+</div>
