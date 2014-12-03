@@ -37,6 +37,9 @@ h2 {
 			<li><a href="http://localhost:8080/merchantdb/stockReport">Stock</a></li>
 			<li><a href="http://localhost:8080/merchantdb/purchaseReport">Purchase</a></li>
 			<li><a href="http://localhost:8080/merchantdb/salesReport">Sales</a></li>
+			<li><a href="http://localhost:8080/merchantdb/trailBalanceReport">Trail Balance</a></li>
+			<li><a href="http://localhost:8080/merchantdb/balanceSheetReport">Balance Sheet</a></li>
+			<li><a href="http://localhost:8080/merchantdb/profitLossReport">Profit & Loss</a></li>
 		</ul>
 	</div>
 </body>

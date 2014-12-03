@@ -156,6 +156,33 @@
 		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/salesReport.jsp" />
 	</definition>
+	<definition name="trailBalanceReport" extends="base">
+		<put-attribute name="title" value="View Trail Balance Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/trailBalanceReport.jsp" />
+	</definition>
+	<definition name="balanceSheetReport" extends="base">
+		<put-attribute name="title" value="View Balance Sheet Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/balanceSheetReport.jsp" />
+	</definition>
+	<definition name="profitLossReport" extends="base">
+		<put-attribute name="title" value="View Profit Loss Report" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="companiesMenu" value="" />
+		<put-attribute name="finYearsMenu" value="" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/profitLossReport.jsp" />
+	</definition>
 	
 	<!-- Remarks -->
 	<definition name="createRemark" extends="base">
