@@ -33,13 +33,14 @@ h2 {
 <body>
 	<div class="tabs">
 		<ul class="tab-menu">
-			<li><a href="http://localhost:8080/merchantdb/cashbookReport">Cash Book</a></li>
-			<li><a href="http://localhost:8080/merchantdb/stockReport">Stock</a></li>
-			<li><a href="http://localhost:8080/merchantdb/purchaseReport">Purchase</a></li>
-			<li><a href="http://localhost:8080/merchantdb/salesReport">Sales</a></li>
-			<li><a href="http://localhost:8080/merchantdb/trailBalanceReport">Trail Balance</a></li>
-			<li><a href="http://localhost:8080/merchantdb/balanceSheetReport">Balance Sheet</a></li>
-			<li><a href="http://localhost:8080/merchantdb/profitLossReport">Profit & Loss</a></li>
+			<li><a href="/merchantdb/cashbookReport">Cash Book</a></li>
+			<li><a href="/merchantdb/stockReport">Stock</a></li>
+			<li><a href="/merchantdb/ledgerReport">Ledger</a></li>
+			<li><a href="/merchantdb/purchaseReport">Purchase</a></li>
+			<li><a href="/merchantdb/salesReport">Sales</a></li>
+			<li><a href="/merchantdb/trailBalanceReport">Trail Balance</a></li>
+			<li><a href="/merchantdb/balanceSheetReport">Balance Sheet</a></li>
+			<li><a href="/merchantdb/profitLossReport">Profit & Loss</a></li>
 		</ul>
 	</div>
 </body>
