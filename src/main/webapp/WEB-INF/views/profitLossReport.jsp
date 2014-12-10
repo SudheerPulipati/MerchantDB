@@ -1,41 +1,41 @@
 
 <style type="text/css">
-#datatableContainer {
+#profitLossReportContainer {
 	padding: 2%;
 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-			$("input[name='dateSelect']").click(function(){
-				if($('input:radio[name=dateSelect]:checked').val()=="onDate"){
-					$("#dateLabel1").html("Date ");
-					$("#dateLabel2").hide();
-					$("#datepicker2").val("");
-					$("#datepicker2").hide();
-				}else if($('input:radio[name=dateSelect]:checked').val()=="betweenDate"){
-					$("#dateLabel1").html("From ");
-					$("#dateLabel2").html("To ");
-					$("#dateLabel2").show();
-					$("#datepicker2").show();
-					$("#datepicker1").val("");
+			$("input[name='profitLossDate']").click(function(){
+				if($('input:radio[name=profitLossDate]:checked').val()=="onDate"){
+					$("#plFromDateLbl").html("Date ");
+					$("#plToDateLbl").hide();
+					$("#profitLossToDate").val("");
+					$("#profitLossToDate").hide();
+				}else if($('input:radio[name=profitLossDate]:checked').val()=="betweenDate"){
+					$("#plFromDateLbl").html("From ");
+					$("#plToDateLbl").html("To ");
+					$("#plToDateLbl").show();
+					$("#profitLossToDate").show();
+					$("#profitLossFromDate").val("");
 				}
 			});
-			$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
-			$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
-			$("#datatableContainer").hide();
-		$("#showbtn").click(function(){
-			$("#datatableContainer").show();
+			$("#profitLossFromDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			$("#profitLossToDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			$("#profitLossReportContainer").hide();
+		$("#showProfitLoss").click(function(){
+			$("#profitLossReportContainer").show();
 		$('#profitLossReport').dataTable({
 			"destroy":true,
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "http://localhost:8080/merchantdb/profitLossReportJSON",
+				"url" : "/merchantdb/profitLossReportJSON",
 				"type" : "POST",
 				"data" : {
-					startDate: $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val(),
-					endDate:$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val()
+					startDate: $("#profitLossFromDate").val(),
+					endDate:$("#profitLossToDate").val()
 					}
 			},
 			"columns" : [ {
@@ -53,19 +53,19 @@
 </script>
 	<table style="width: 100%">
 		<tr>
-			<td><input type="radio" name="dateSelect" value="onDate"
-				id="dateSelect">On Date &nbsp; <input type="radio"
-				name="dateSelect" value="betweenDate" id="dateSelect">Between
+			<td><input type="radio" name="profitLossDate" value="onDate"
+				id="profitLossDate">On Date &nbsp; <input type="radio"
+				name="profitLossDate" value="betweenDate" id="profitLossDate">Between
 				Date</td>
-			<td><span id="dateLabel1">Date:</span><input type="text"
-				id="datepicker1">&nbsp; <span id="dateLabel2"
-				style="display: none">To:</span><input type="text" id="datepicker2"
+			<td><span id="plFromDateLbl">Date:</span><input type="text"
+				id="profitLossFromDate">&nbsp; <span id="plToDateLbl"
+				style="display: none">To:</span><input type="text" id="profitLossToDate"
 				style="display: none"></td>
-			<td><input type="button" value="Show" id="showbtn">
+			<td><input type="button" value="Show" id="showProfitLoss">
 			</td>
 		</tr>
 	</table>
-	<div id="datatableContainer">
+	<div id="profitLossReportContainer">
 		<table id="profitLossReport">
 			<thead>
 				<tr>

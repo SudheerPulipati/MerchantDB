@@ -27,7 +27,7 @@
 		 <span>
 		 <form action = "processLogin" method="post">
 		 <span class="username textField">User id <input type="text" id="username" class="username" name="username"></span>
-		 <span class="password textField">Password <input type="text" id="password" class="password" name="password"></span>
+		 <span class="password textField">Password <input type="password" id="password" class="password" name="password"></span>
 		 <span class="logon"><input type="submit" value="Login"></span>
 		 </form>
 		 </span>

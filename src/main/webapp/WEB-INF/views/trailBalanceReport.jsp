@@ -1,41 +1,41 @@
 
 <style type="text/css">
-#datatableContainer {
+#trailBalReportContainer {
 	padding: 2%;
 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-			$("input[name='dateSelect']").click(function(){
-				if($('input:radio[name=dateSelect]:checked').val()=="onDate"){
-					$("#dateLabel1").html("Date ");
-					$("#dateLabel2").hide();
-					$("#datepicker2").val("");
-					$("#datepicker2").hide();
-				}else if($('input:radio[name=dateSelect]:checked').val()=="betweenDate"){
-					$("#dateLabel1").html("From ");
-					$("#dateLabel2").html("To ");
-					$("#dateLabel2").show();
-					$("#datepicker2").show();
-					$("#datepicker1").val("");
+			$("input[name='trailBalDate']").click(function(){
+				if($('input:radio[name=trailBalDate]:checked').val()=="onDate"){
+					$("#tbFromDateLbl").html("Date ");
+					$("#tbToDateLbl").hide();
+					$("#trailBalToDate").val("");
+					$("#trailBalToDate").hide();
+				}else if($('input:radio[name=trailBalDate]:checked').val()=="betweenDate"){
+					$("#tbFromDateLbl").html("From ");
+					$("#tbToDateLbl").html("To ");
+					$("#tbToDateLbl").show();
+					$("#trailBalToDate").show();
+					$("#trailBalFromDate").val("");
 				}
 			});
-			$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
-			$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
-			$("#datatableContainer").hide();
-		$("#showbtn").click(function(){
-			$("#datatableContainer").show();
+			$("#trailBalFromDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			$("#trailBalToDate").datepicker({ dateFormat: 'yy-mm-dd' });
+			$("#trailBalReportContainer").hide();
+		$("#showTrailBal").click(function(){
+			$("#trailBalReportContainer").show();
 		$('#trailBalanceReport').dataTable({
 			"destroy":true,
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "http://localhost:8080/merchantdb/trailBalanceReportJSON",
+				"url" : "/merchantdb/trailBalanceReportJSON",
 				"type" : "POST",
 				"data" : {
-					startDate: $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val(),
-					endDate:$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val()
+					startDate: $("#trailBalFromDate").val(),
+					endDate:$("#trailBalToDate").val()
 					}
 			},
 			"columns" : [ {
@@ -53,19 +53,19 @@
 </script>
 	<table style="width: 100%">
 		<tr>
-			<td><input type="radio" name="dateSelect" value="onDate"
-				id="dateSelect">On Date &nbsp; <input type="radio"
-				name="dateSelect" value="betweenDate" id="dateSelect">Between
+			<td><input type="radio" name="trailBalDate" value="onDate"
+				id="trailBalDate">On Date &nbsp; <input type="radio"
+				name="trailBalDate" value="betweenDate" id="trailBalDate">Between
 				Date</td>
-			<td><span id="dateLabel1">Date:</span><input type="text"
-				id="datepicker1">&nbsp; <span id="dateLabel2"
-				style="display: none">To:</span><input type="text" id="datepicker2"
+			<td><span id="tbFromDateLbl">Date:</span><input type="text"
+				id="trailBalFromDate">&nbsp; <span id="tbToDateLbl"
+				style="display: none">To:</span><input type="text" id="trailBalToDate"
 				style="display: none"></td>
-			<td><input type="button" value="Show" id="showbtn">
+			<td><input type="button" value="Show" id="showTrailBal">
 			</td>
 		</tr>
 	</table>
-	<div id="datatableContainer">
+	<div id="trailBalReportContainer">
 		<table id="trailBalanceReport" border="1">
 			<thead>
 				<tr>

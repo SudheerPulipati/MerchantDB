@@ -17,8 +17,7 @@ h2 {
 }
 </style>
 <link href="./css/styles.css" rel="stylesheet" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="./js/jquery-1.11.1.min.js"></script>
 <script src="./js/jquery.fwd_tabs.js"></script>
 <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
@@ -33,14 +32,14 @@ h2 {
 <body>
 	<div class="tabs">
 		<ul class="tab-menu">
-			<li><a href="/merchantdb/cashbookReport">Cash Book</a></li>
-			<li><a href="/merchantdb/stockReport">Stock</a></li>
-			<li><a href="/merchantdb/ledgerReport">Ledger</a></li>
-			<li><a href="/merchantdb/purchaseReport">Purchase</a></li>
-			<li><a href="/merchantdb/salesReport">Sales</a></li>
-			<li><a href="/merchantdb/trailBalanceReport">Trail Balance</a></li>
-			<li><a href="/merchantdb/balanceSheetReport">Balance Sheet</a></li>
-			<li><a href="/merchantdb/profitLossReport">Profit & Loss</a></li>
+			<li><a href="cashbookReport">Cash Book</a></li>
+			<li><a href="stockReport">Stock</a></li>
+			<li><a href="ledgerReport">Ledger</a></li>
+			<li><a href="purchaseReport">Purchase</a></li>
+			<li><a href="salesReport">Sales</a></li>
+			<li><a href="trailBalanceReport">Trail Balance</a></li>
+			<li><a href="balanceSheetReport">Balance Sheet</a></li>
+			<li><a href="profitLossReport">Profit & Loss</a></li>
 		</ul>
 	</div>
 </body>

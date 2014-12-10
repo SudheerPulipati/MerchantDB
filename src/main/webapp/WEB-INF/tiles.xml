@@ -12,6 +12,10 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
+	<definition name="reportLayout" template="/WEB-INF/views/reportLayout.jsp">
+	<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
 	<definition name="login" extends="base">
 		<put-attribute name="header" value="/WEB-INF/views/loginHeader.jsp" />
 		<put-attribute name="title" value="Login" />
@@ -129,70 +133,34 @@
 		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/reports.jsp" />
 	</definition>
-	<definition name="cashbookReport" extends="base">
+	<definition name="cashbookReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Cashbook Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/cashReport.jsp" />
 	</definition>
-	<definition name="purchaseReport" extends="base">
+	<definition name="purchaseReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Purchase Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/purchaseReport.jsp" />
 	</definition>
-	<definition name="salesReport" extends="base">
+	<definition name="salesReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Purchase Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/salesReport.jsp" />
 	</definition>
-	<definition name="ledgerReport" extends="base">
-		<put-attribute name="title" value="View Purchase Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
-		<put-attribute name="body" value="/WEB-INF/views/ledgerReport.jsp" />
-	</definition>
-	<definition name="trailBalanceReport" extends="base">
+	<definition name="trailBalanceReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Trail Balance Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/trailBalanceReport.jsp" />
 	</definition>
-	<definition name="balanceSheetReport" extends="base">
+	<definition name="balanceSheetReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Balance Sheet Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/balanceSheetReport.jsp" />
 	</definition>
-	<definition name="profitLossReport" extends="base">
+	<definition name="profitLossReport" extends= "reportLayout">
 		<put-attribute name="title" value="View Profit Loss Report" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="companiesMenu" value="" />
-		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
-		<put-attribute name="footer" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/profitLossReport.jsp" />
 	</definition>
-	
+	<definition name="ledgerReport" extends= "reportLayout">
+		<put-attribute name="title" value="View ledger Report" />
+		<put-attribute name="body" value="/WEB-INF/views/ledgerReport.jsp" />
+	</definition>
 	<!-- Remarks -->
 	<definition name="createRemark" extends="base">
 		<put-attribute name="title" value="Create Remark" />

@@ -4,7 +4,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "http://localhost:8080/merchantdb/viewPartyJSON",
+				"url" : "/merchantdb/viewPartyJSON",
 				"type" : "POST"
 			},
 			"columns" : [ {
