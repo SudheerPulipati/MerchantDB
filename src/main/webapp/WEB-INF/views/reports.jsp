@@ -28,11 +28,16 @@ h2 {
 		$(".tabs").fwd_tabs();
 	});
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#cashBook").click();
+});
+</script>
 </head>
 <body>
 	<div class="tabs">
 		<ul class="tab-menu">
-			<li><a href="cashbookReport">Cash Book</a></li>
+			<li><a href="cashbookReport" id="cashBook">Cash Book</a></li>
 			<li><a href="stockReport">Stock</a></li>
 			<li><a href="ledgerReport">Ledger</a></li>
 			<li><a href="purchaseReport">Purchase</a></li>

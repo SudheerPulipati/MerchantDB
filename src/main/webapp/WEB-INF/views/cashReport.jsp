@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "/merchantdb/cashbookReportJSON",
+				"url" : "cashbookReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#cashBookFromDate").val(),

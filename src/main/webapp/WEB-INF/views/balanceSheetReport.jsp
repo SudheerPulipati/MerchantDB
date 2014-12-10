@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "/merchantdb/balanceSheetReportJSON",
+				"url" : "balanceSheetReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#balSheetFromDate").val(),

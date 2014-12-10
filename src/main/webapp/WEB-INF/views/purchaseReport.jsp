@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "/merchantdb/purchaseReportJSON",
+				"url" : "purchaseReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#purchaseFromDate").val(),

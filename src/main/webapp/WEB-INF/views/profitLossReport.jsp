@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "/merchantdb/profitLossReportJSON",
+				"url" : "profitLossReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#profitLossFromDate").val(),

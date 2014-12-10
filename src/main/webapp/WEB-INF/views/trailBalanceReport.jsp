@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "/merchantdb/trailBalanceReportJSON",
+				"url" : "trailBalanceReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#trailBalFromDate").val(),

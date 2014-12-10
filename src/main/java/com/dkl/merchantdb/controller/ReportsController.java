@@ -23,8 +23,8 @@ public class ReportsController {
 	}
 	
 
-	@RequestMapping("/ledgerReport")
-	public String ledgerReport() {
-		return "ledgerReport";
-	}
+//	@RequestMapping("/ledgerReport")
+//	public String ledgerReport() {
+//		return "ledgerReport";
+//	}
 }
