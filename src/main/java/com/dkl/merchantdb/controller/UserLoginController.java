@@ -15,6 +15,8 @@ import com.dkl.merchantdb.bo.CompanyBO;
 import com.dkl.merchantdb.bo.UserLoginBO;
 import com.dkl.merchantdb.to.UserLoginTO;
 
+import javax.interceptor.ExcludeClassInterceptors;
+
 @Controller
 @SessionAttributes({ "username", "companyList" })
 public class UserLoginController {
@@ -25,6 +27,7 @@ public class UserLoginController {
 	@Autowired
 	private CompanyBO companyBO;
 	
+	@ExcludeClassInterceptors
 	@RequestMapping(value = "/processLogin")
 	public String processLogin(UserLoginTO userLoginTO, Model model) {
 		System.out.println("userLoginController" + userLoginTO.getUsername());
@@ -53,7 +56,9 @@ public class UserLoginController {
 	public String logout(HttpServletRequest request) {
 		System.out.println("You have been successfully logged out");
 		HttpSession session = request.getSession();
-		session.invalidate();
+	    //session.invalidate();
+		//request.getSession().setAttribute("username", null);
+		request.getSession().removeAttribute("username");
 		return "login";
 	}
 }

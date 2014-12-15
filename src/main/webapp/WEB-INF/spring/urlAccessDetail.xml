@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="checkUserInterceptor" class="com.dkl.merchantdb.interceptor.CheckUserInterceptor">
+		<property name="urlAccessDetailMap">
+			<map>
+				<entry>
+					<key>
+						<value>test</value>
+					</key>
+
+					<list>
+						<value>String</value>
+						<value>String</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
