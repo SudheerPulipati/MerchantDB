@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dkl.merchantdb.to.JsonTemplateTO;
 import com.dkl.merchantdb.to.LedgerReportDetailTO;
 import com.dkl.merchantdb.to.LedgerReportTO;
-import com.dkl.merchantdb.to.SalesReportTO;
 import com.google.gson.Gson;
 
 @Controller

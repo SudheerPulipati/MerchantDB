@@ -5,19 +5,19 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="checkUserInterceptor" class="com.dkl.merchantdb.interceptor.CheckUserInterceptor">
-		<property name="urlAccessDetailMap">
-			<map>
-				<entry>
-					<key>
-						<value>test</value>
-					</key>
+<!-- 		<property name="urlAccessDetailMap"> -->
+<!-- 			<map> -->
+<!-- 				<entry> -->
+<!-- 					<key> -->
+<!-- 						<value>test</value> -->
+<!-- 					</key> -->
 
-					<list>
-						<value>String</value>
-						<value>String</value>
-					</list>
-				</entry>
-			</map>
-		</property>
+<!-- 					<list> -->
+<!-- 						<value>String</value> -->
+<!-- 						<value>String</value> -->
+<!-- 					</list> -->
+<!-- 				</entry> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
 	</bean>
 </beans>

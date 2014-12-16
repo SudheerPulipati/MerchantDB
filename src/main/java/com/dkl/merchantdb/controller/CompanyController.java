@@ -2,8 +2,6 @@ package com.dkl.merchantdb.controller;
 
 import java.util.Locale;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +23,6 @@ public class CompanyController {
 	
 	@Autowired
 	private FinancialBookBO financialBookBO;
-
-	HttpSession session = null;
 
 	@RequestMapping(value = "/createCompany")
 	public String createCompany(Locale locale, Model model) {
@@ -54,33 +50,6 @@ public class CompanyController {
 		return "viewCompany";
 	}
 
-	// @RequestMapping(value = "/viewCompanyJSON")
-	// @ResponseBody
-	// public String viewCompanyJSON(@RequestParam("companyID") String
-	// companyID, Model model) {
-	// CompanyTO company = companyBO.viewCompany(companyID);
-	// String str = new Gson().toJson(company);
-	// return str;
-	// /*JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
-	// jsonTemplateTO.setDraw(1);
-	// jsonTemplateTO.setRecordsFiltered(20);
-	// jsonTemplateTO.setRecordsTotal(20);
-	// List<CompanyTO> dataList = companyBO.viewCompany();
-	// jsonTemplateTO.setData(dataList.toArray(new CompanyTO[dataList.size()]));
-	// return new Gson().toJson(jsonTemplateTO);*/
-	// }
-
-	// @RequestMapping(value = "/viewCompanyListJSON")
-	// @ResponseBody
-	// public String viewCompanyListJSON(Model model){
-	// JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
-	// jsonTemplateTO.setDraw(1);
-	// jsonTemplateTO.setRecordsFiltered(20);
-	// jsonTemplateTO.setRecordsTotal(20);
-	// List<CompanyTO> dataList = companyBO.viewCompanyList();
-	// jsonTemplateTO.setData(dataList.toArray(new CompanyTO[dataList.size()]));
-	// return new Gson().toJson(jsonTemplateTO);
-	// }
 
 	@RequestMapping(value = "/updateCompany")
 	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId, Model model) {
@@ -99,12 +68,5 @@ public class CompanyController {
 		model.addAttribute("financialYears", financialBookBO.readAllByFK(Long.parseLong(companyId)));
 		return "companyAdminView";
 	}
-	// @RequestMapping(value = "/deleteCompany")
-	// public String deleteCompany(@RequestParam("companyID") String companyID)
-	// {
-	// System.out.println("In COntroller");
-	// companyBO.deleteCompany(companyID);
-	// return "viewCompany";
-	// }
 
 }

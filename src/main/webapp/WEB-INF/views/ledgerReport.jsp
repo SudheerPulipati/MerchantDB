@@ -8,12 +8,15 @@ tr.details td.details-control {
 	background: url('images/details_close.png') no-repeat center
 		center;
 }
+#ledgerReportContainer{
+	padding:2%;
+}
 </style>
 <script type="text/javascript">
 var childCount = 0;
 var ledgerReportArray = new Array();
 function format ( d,data ) {
-	childTable_header = '<table border=1 id = "LedgDet_'+childCount+'">'+
+	childTable_header = '<center><table border=1 id = "LedgDet_'+childCount+'">'+
 	 					'<thead>'+
 	 					'<th>Date</th>'+
 	 					'<th>Credit</th>'+
@@ -23,7 +26,7 @@ function format ( d,data ) {
 	 					'<th>Remarks</th>'
 	 					'</thead>'+'<tbody>';
 	childTable_footer =  '</tbody>'+
-	 					 '</table>';					
+	 					 '</table></center>';					
 	 					 
 	childTable_body	= '<tr><td>'+data.date+
 					  '</td><td>'+data.credit+
@@ -62,7 +65,7 @@ function format ( d,data ) {
 		var dt = $('#ledgerReportTable').DataTable({
 			"processing" : true,
 			"serverSide" : false,
-			"ajax" : "http://localhost:8080/merchantdb/ledgerReportJSON",
+			"ajax" : "ledgerReportJSON",
 			"columnDefs": [
 			               {
 			                   "targets": [ 4 ],
@@ -126,7 +129,8 @@ function format ( d,data ) {
 		});
 	});
 </script>
-<table id="ledgerReportTable" class="ledgerReportTable" cellspacing="0" border=1 width="70%" style="border: 0px solid #C0C0C0">
+<div id="ledgerReportContainer">
+<table id="ledgerReportTable" border=1 style="border: 0px solid #C0C0C0">
 	<thead>
 		<tr>
 			<th></th>
@@ -137,3 +141,4 @@ function format ( d,data ) {
 		</tr>
 	</thead>
 </table>
+</div>

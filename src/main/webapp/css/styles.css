@@ -15,16 +15,17 @@
 .tab-menu li a {
 	display: block;
 	padding: 10px 18px;
-	border-top: 1px solid #198219;
-	border-left: 1px solid #198219;
-	border-right: 1px solid #198219;
+	border-top: 1px solid #ccf;
+	border-left: 1px solid #ccf;
+	border-right: 1px solid #ccf;
 	color: #ffffff;
-	background-color: #198219;
+	background-color: #00365B;
 	text-decoration: none;
 }
 
 .tab-menu li a:hover {
-	background-color: #208c20;
+	background-color: #ccf;
+	color:#00365B;
 }
 
 .tab-menu li.active a {
