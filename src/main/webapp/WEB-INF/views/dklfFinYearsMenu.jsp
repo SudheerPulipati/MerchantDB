@@ -1,6 +1,6 @@
 <%@ page import="java.util.List,com.dkl.merchantdb.to.FinancialBookTO"%>
 <p class="background boldfont">Book Menu</p>
-<div class="background yearlist">
+<div class="background yearlist" style="align:center">
 	<ul class="currentYear">
 		<%
 			if (session.getAttribute("financialYears") != null) {

@@ -22,8 +22,12 @@ public class HomeController {
 	 */
 	//@ExcludeClassInterceptors
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String login(Locale locale, Model model) {
 		return "login";
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home() {
+		return "home";
+	}
 }

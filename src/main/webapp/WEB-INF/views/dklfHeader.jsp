@@ -14,7 +14,7 @@
 		 <h1>Dintakurthi's</h1>
 		 <h4>DKL Firms</h4>
 		 <span class="tagline">Trusted Quality</span>
-		 <span class="home"><a href="/merchantdb/" style = "color:white">Home</a></span>
+		 <span class="home"><a href="home" style = "color:white">Home</a></span>
 		 <span class ="loggedInUser">Welcome</span>
 		 <span class ="loggedInUser"><%=(String)session.getAttribute("username") %></span>
 		 <span class="logon"><a href="logout">Logout</a></span>

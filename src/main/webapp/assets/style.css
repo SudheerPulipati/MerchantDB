@@ -139,8 +139,8 @@ body {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	text-align: left;
-	padding-left: 15px;
+	text-align: center;
+	/* padding-left: 15px; */
 }
 
 ul.companies li {
@@ -286,7 +286,7 @@ form {
 }
 
 .cell a.lineBorder {
-	background: url("../images/menuBg.jpg") no-repeat scroll 3px 31px
+	background: url("images/menuBg.jpg") no-repeat scroll 3px 31px
 		#f2f2f2
 }
 
