@@ -53,6 +53,7 @@
 		});
 	});
 </script>
+
 	<table style="width: 100%">
 		<tr>
 			<td><input type="radio" name="cashBookDate" value="onDate"
@@ -68,7 +69,8 @@
 		</tr>
 	</table>
 	<div id="cashReportContainer">
-		<table id="cashbookReport">
+		<table id="cashbookReport" class="display dataTable" cellspacing="0"
+		border=1 role="grid" style="border: 0px solid #C0C0C0">
 			<thead>
 				<tr>
 					<th>Party Name</th>

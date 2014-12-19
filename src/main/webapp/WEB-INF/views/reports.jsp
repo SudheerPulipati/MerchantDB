@@ -15,6 +15,25 @@ h2 {
 	margin: 0;
 	padding: 0;
 }
+
+thead {
+	background-color: #00365B;
+	color: white;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: small;
+}
+
+.dataTableDiv {
+	width: 42%;
+	padding-top: 3%;
+	margin: auto;
+	height: 150px;
+	padding-bottom: 5%;
+}
+
+table {
+	border: 0px solid #C0C0C0;
+}
 </style>
 <link href="./css/styles.css" rel="stylesheet" />
 <script src="./js/jquery-1.11.1.min.js"></script>
@@ -23,15 +42,16 @@ h2 {
 <script type="text/javascript" src="./js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./css/jquery.dataTables.css">
+<link rel="stylesheet" href="assets/style.css">
 <script>
 	$(function() {
 		$(".tabs").fwd_tabs();
 	});
 </script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#cashBook").click();
-});
+	$(document).ready(function() {
+		$("#cashBook").click();
+	});
 </script>
 </head>
 <body>

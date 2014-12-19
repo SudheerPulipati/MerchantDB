@@ -7,6 +7,22 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <context-param>
+    <param-name>DBUSER</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBPWD</param-name>
+    <param-value>password</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBURL</param-name>
+    <param-value>jdbc:mysql://localhost:3306/dklf</param-value>
+  </context-param>
+   <listener>
+    <listener-class>com.dkl.merchantdb.listener.AppContextListener</listener-class>
+  </listener>
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

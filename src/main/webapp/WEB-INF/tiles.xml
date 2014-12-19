@@ -170,4 +170,10 @@
 		<put-attribute name="title" value="View Remarks" />
 		<put-attribute name="body" value="/WEB-INF/views/viewRemarks.jsp" />
 	</definition>
+	<!-- Error -->
+	<definition name="error" extends="base">
+		<put-attribute name="title" value="Error page" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
+	</definition>
 </tiles-definitions>

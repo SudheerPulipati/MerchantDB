@@ -15,7 +15,7 @@ import com.dkl.merchantdb.bo.UserLoginBO;
 import com.dkl.merchantdb.to.UserLoginTO;
 
 @Controller
-@SessionAttributes({ "username", "companyList" })
+@SessionAttributes({ "username", "companyList","userRole" })
 public class UserLoginController {
 
 	@Autowired
@@ -35,6 +35,7 @@ public class UserLoginController {
 //			session.setAttribute("username", userLoginTO.getUsername());
 //			session.setAttribute("companyList", companyBO.viewCompanyList());
 			model.addAttribute("username", userLoginTO.getUsername());
+			model.addAttribute("userRole", userRoles.get(0));
 			if (userRoles.contains("admin")) {
 				model.addAttribute("companyList", companyBO.viewCompanyList());
 				viewName = "home";
