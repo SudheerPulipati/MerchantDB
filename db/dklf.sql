@@ -36,7 +36,7 @@ CREATE TABLE `city_group` (
 
 LOCK TABLES `city_group` WRITE;
 /*!40000 ALTER TABLE `city_group` DISABLE KEYS */;
-INSERT INTO `city_group` VALUES ('1000002','1000001','Group3'),('1000003','1000001','Group2');
+INSERT INTO `city_group` VALUES ('1000002','1000001','Group3');
 /*!40000 ALTER TABLE `city_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,7 +373,7 @@ CREATE TABLE `ledger_group` (
 
 LOCK TABLES `ledger_group` WRITE;
 /*!40000 ALTER TABLE `ledger_group` DISABLE KEYS */;
-INSERT INTO `ledger_group` VALUES ('1000002','1000001','Ledg1','liabilities','2014-10-19','2014-10-19'),('1000003','1000001','xyz','income','2014-10-26','2014-10-26'),('1000004','1000002','abc','liabilities','2014-10-26','2014-10-26'),('1000005','1000002','abc','liabilities','2014-10-26','2014-10-26'),('1000006','1000001','pqr','expenditure','2014-10-26','2014-10-26'),('1000007','1000001','anyGroup','assets','2014-10-26','2014-10-26');
+INSERT INTO `ledger_group` VALUES ('1000002','1000001','Ledg1','liabilities','2014-10-19','2014-10-19'),('1000005','1000002','abc','liabilities','2014-10-26','2014-10-26'),('1000007','1000001','Group1','assets','2014-10-26','2014-12-15');
 /*!40000 ALTER TABLE `ledger_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -522,7 +522,7 @@ CREATE TABLE `remarks` (
 
 LOCK TABLES `remarks` WRITE;
 /*!40000 ALTER TABLE `remarks` DISABLE KEYS */;
-INSERT INTO `remarks` VALUES ('1000001','1000002','Remark1');
+INSERT INTO `remarks` VALUES ('1000001','1000002','Remark1'),('1000001','1000003','Remark_1'),('1000001','1000004','Remark_2'),('1000001','1000005','Remark_3'),('1000001','1000006','Remark_4'),('1000001','1000007','Remark_5'),('1000001','1000008','Remark_6'),('1000001','1000009','Remark_7'),('1000001','1000010','Remark_8'),('1000001','1000011','Remark_9'),('1000001','1000012','Remark_10'),('1000001','1000013','Remark_11'),('1000001','1000014','Remark_12');
 /*!40000 ALTER TABLE `remarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -575,7 +575,7 @@ CREATE TABLE `stock_point` (
 
 LOCK TABLES `stock_point` WRITE;
 /*!40000 ALTER TABLE `stock_point` DISABLE KEYS */;
-INSERT INTO `stock_point` VALUES ('1000001','1000001','XYZ','MGBS','Hyderabad','Telangana','040-223344');
+INSERT INTO `stock_point` VALUES ('1000001','1000001','ABC','MGBS','Hyderabad','Telangana','040-223355');
 /*!40000 ALTER TABLE `stock_point` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -677,6 +677,31 @@ LOCK TABLES `user_role` WRITE;
 INSERT INTO `user_role` VALUES (10001,1),(10002,2);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user_url_mappings`
+--
+
+DROP TABLE IF EXISTS `user_url_mappings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_url_mappings` (
+  `role_id` int(10) NOT NULL DEFAULT '0',
+  `url_pattern` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`role_id`,`url_pattern`),
+  CONSTRAINT `user_url_mappings_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_url_mappings`
+--
+
+LOCK TABLES `user_url_mappings` WRITE;
+/*!40000 ALTER TABLE `user_url_mappings` DISABLE KEYS */;
+INSERT INTO `user_url_mappings` VALUES (1,'/merchantdb'),(1,'/merchantdb/createLedgerGroup'),(1,'/merchantdb/viewLedgerGroup'),(1,'/processLogin'),(2,'/purchaseOrder'),(2,'/sales');
+/*!40000 ALTER TABLE `user_url_mappings` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -687,4 +712,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-27  9:20:57
+-- Dump completed on 2014-12-20  1:42:52
