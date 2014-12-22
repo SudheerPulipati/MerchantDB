@@ -1,5 +1,7 @@
 package com.dkl.merchantdb.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dkl.merchantdb.bo.CompanyBO;
 import com.dkl.merchantdb.bo.FinancialBookBO;
 import com.dkl.merchantdb.to.CompanyTO;
+import com.dkl.merchantdb.to.JsonTemplateTO;
+import com.google.gson.Gson;
 
 @Controller
-@SessionAttributes({"companyId","financialYears"})
+@SessionAttributes({ "companyId", "financialYears" })
 public class CompanyController {
 
 	@Autowired
 	private CompanyBO companyBO;
-	
+
 	@Autowired
 	private FinancialBookBO financialBookBO;
 
@@ -50,6 +55,17 @@ public class CompanyController {
 		return "viewCompany";
 	}
 
+	@RequestMapping("/viewCompanyJSON")
+	@ResponseBody
+	public String viewReportJSON(@ModelAttribute("companyId") Long companyId) {
+//		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
+//		jsonTemplateTO.setRecordsFiltered(10);
+//		jsonTemplateTO.setRecordsTotal(10);
+//		List<CompanyTO> dataList = new ArrayList<CompanyTO>();
+//		dataList.add(companyBO.viewCompany(companyId));
+//		jsonTemplateTO.setData(dataList);
+		return new Gson().toJson(companyBO.viewCompany(companyId));
+	}
 
 	@RequestMapping(value = "/updateCompany")
 	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId, Model model) {

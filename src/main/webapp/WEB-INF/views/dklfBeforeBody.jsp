@@ -5,12 +5,12 @@
 /*  */
 .rightPanel {
 	float: left;
-	width: 79.8%;
-	border: 1px solid #00365B;
+	width: 79.65%;
+	border: 2px solid darkgrey;
 }
 
 .adminMenu {
-	border-bottom: 1px solid #00365B;
+	border-bottom: 2px solid darkgrey;
 	width: 100%;
 }
 
