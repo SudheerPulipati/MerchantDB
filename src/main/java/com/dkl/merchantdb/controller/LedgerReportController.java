@@ -26,7 +26,7 @@ public class LedgerReportController {
 	@RequestMapping("/ledgerReportJSON")
 	@ResponseBody
 	public String viewLedgerReportJSON(){
-		LedgerReportDetailTO ledgerReportDetailTO = new LedgerReportDetailTO();
+		/*LedgerReportDetailTO ledgerReportDetailTO = new LedgerReportDetailTO();
 		
 		LedgerReportTO ledgerReportTO = new LedgerReportTO();
 		ledgerReportDetailTO.setBalance("$100");
@@ -48,14 +48,42 @@ public class LedgerReportController {
 			ledgerReportDetailTO2.setMode("NET BANKING");
 			ledgerReportDetailTO2.setRemarks("GOOD");
 			LedgerReportDetailTOList.add(ledgerReportDetailTO2);
-		ledgerReportTO.setLedgerReportDetailTOList(LedgerReportDetailTOList);
-		
-		JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
-		jsonTemplateTO.setRecordsFiltered(10);
-		jsonTemplateTO.setRecordsTotal(10);
-		List<LedgerReportTO> dataList = new ArrayList<LedgerReportTO>();
-		dataList.add(ledgerReportTO);
-		jsonTemplateTO.setData(dataList);
-		return new Gson().toJson(jsonTemplateTO);
+		ledgerReportTO.setLedgerReportDetailTOList(LedgerReportDetailTOList);*/
+		return new Gson().toJson(populateLedgerReportTO());
+	}
+	
+	private List<LedgerReportTO> populateLedgerReportTO(){
+	    List<LedgerReportTO> ledgerReportToList = new ArrayList<LedgerReportTO>();
+	    
+	    for(int i=0;i<5;i++){
+		LedgerReportTO ledgerReportTO = new LedgerReportTO();
+		ledgerReportTO.setCityGroup("CITY"+i);
+		ledgerReportTO.setLedgerGroup("LG"+i);
+		ledgerReportTO.setLedgerName("LN"+i);
+		ledgerReportTO.setLedgerReportDetailTOList(populateLedgerReportDetailTO());
+		ledgerReportToList.add(ledgerReportTO);
+	    }
+	    LedgerReportTO ledgerReportTO = new LedgerReportTO();
+	    ledgerReportTO.setCityGroup("CITY15");
+	    ledgerReportTO.setLedgerGroup("LG15");
+	    ledgerReportTO.setLedgerName("LN1");
+	    ledgerReportTO.setLedgerReportDetailTOList(populateLedgerReportDetailTO());
+	    ledgerReportToList.add(ledgerReportTO);
+	    return ledgerReportToList;
+	}
+	
+	private List<LedgerReportDetailTO> populateLedgerReportDetailTO(){
+	    List<LedgerReportDetailTO> ledgerReportDetailTOList = new ArrayList<LedgerReportDetailTO>();
+	    for(int i=0;i<5;i++){
+		LedgerReportDetailTO ledgerReportDetailTO = new LedgerReportDetailTO();
+		ledgerReportDetailTO.setBalance("BAL"+1);
+		ledgerReportDetailTO.setCredit("CR"+i);
+		ledgerReportDetailTO.setDate("DATE"+i);
+		ledgerReportDetailTO.setDebit("DEBIT"+i);
+		ledgerReportDetailTO.setMode("MODE"+i);
+		ledgerReportDetailTO.setRemarks("Remarks"+i);
+		ledgerReportDetailTOList.add(ledgerReportDetailTO);
+	    }
+	    return ledgerReportDetailTOList;
 	}
 }
