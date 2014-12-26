@@ -31,8 +31,8 @@ public class CheckUserInterceptor implements HandlerInterceptor {
 			if (session.getAttribute("username") != null) {
 				String role = (String) session.getAttribute("userRole");
 				System.out.println("UserRole::" + role);
-				if ("clerk".equals(role) && !clerkUrlList.contains(requestUri)) {
-					response.getWriter().write("you dont have enough previliges to view this page");
+				if ("clerk".equals(role) && !clerkUrlList.contains(requestUri.trim())) {
+					response.getWriter().write("<h1>You dont have enough previliges to view this page</h1>");
 					response.sendRedirect("error");
 				}
 			} else {

@@ -1,14 +1,24 @@
 <%@ page import="java.util.List,com.dkl.merchantdb.to.FinancialBookTO"%>
 <p class="background boldfont">Book Menu</p>
-<div class="background yearlist" style="align:center">
+<div class="background yearlist" style="align: left">
 	<ul class="currentYear">
+	<li><b>2014-2015</b>
+			<ul>
+				<li><a href="purchaseOrder">Purchase</a></li>
+				<li><a href="sales">Sales</a></li>
+				<li><a href="#">Cash Receipt</a></li>
+				<li><a href="#">Cash Payment</a></li>
+				<li><a href="#">Cash Journal</a></li>
+				<li><a href="#">Stock Journol</a></li>
 		<%
 			if (session.getAttribute("financialYears") != null) {
 				List<FinancialBookTO> financialBookTOs = (List<FinancialBookTO>) session.getAttribute("financialYears");
 				for (FinancialBookTO financialBookTO : financialBookTOs) {
 		%>
-		<li><a
-			href="viewReports?fbid=<%=financialBookTO.getFinBookId()%>"><b><%=financialBookTO.getFinancialYear()%></b></a></li>
+		
+				<li><a href="viewReports?fbid=<%=financialBookTO.getFinBookId()%>">Reports</a></li>
+			</ul> 
+		</li>
 		<%
 			}
 			}

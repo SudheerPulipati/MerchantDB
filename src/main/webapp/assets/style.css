@@ -216,7 +216,7 @@ form {
 
 .leftForm {
 	float: left;
-	width: 50%;
+	width: 60%;
 }
 
 .rightForm {
@@ -231,7 +231,7 @@ form {
 
 .rightContent input {
 	margin: 10px;
-	width: 250px;
+	width:45%;
 	line-height: 25px;
 }
 
@@ -335,10 +335,10 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	font-weight: lighter;
 }
 
-.error {
-	color: red;
-	text-decoration: bold;
-}
+/* .error { */
+/* 	color: red; */
+/* 	text-decoration: bold; */
+/* } */
 
 .loggedInUser {
 	font-weight: bold;

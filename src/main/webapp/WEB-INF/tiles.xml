@@ -176,4 +176,16 @@
 		<put-attribute name="beforeBody" value=""/>
 		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
 	</definition>
+	
+	<!-- Sales -->
+	<definition name="sales" extends="base">
+		<put-attribute name="title" value="Under Construction" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/sales.jsp" />
+	</definition>
+	<definition name="purchaseOrder" extends="base">
+		<put-attribute name="title" value="Under Construction" />
+		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="body" value="/WEB-INF/views/purchaseOrder.jsp" />
+	</definition>
 </tiles-definitions>

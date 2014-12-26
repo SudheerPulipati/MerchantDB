@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<font color="red" size="24" face="Times New Roman">You dont have enough previliges to view this page</font>
+<font color="green" size="24" face="Times New Roman">This page is under construction. We will get back to you soon.</font>
 </body>
 </html>
