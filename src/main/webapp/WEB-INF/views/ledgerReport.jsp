@@ -142,7 +142,15 @@ Ledger Name <select id="ledgerNameFilter"><option value="select">Select</option>
 Ledger Group <select id="ledgerGroupFilter"><option value="select">Select</option></select><br/>
 City Group <select id="cityGroupFilter"><option value="select">Select</option></select><br/>
 </div>
-<table id="ledgerReportTable" style="width:900px" border=1>
+<style type="text/css">
+#ledgerReportTable tbody tr:nth-child(even) {background: #CCC}
+#ledgerReportTable tbody tr:nth-child(odd) {background: #FFF}
+#ledgerReportTable td {
+border-right:1px solid;
+border-bottom:1px solid
+}
+</style>
+<table id="ledgerReportTable" style="width:900px;border:1px solid" border=1>
 	<thead>
 		<th>Ledger Name</th>
 		<th>Ledger Group</th>
