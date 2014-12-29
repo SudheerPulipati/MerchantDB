@@ -1,169 +1,323 @@
+<script type="text/javascript" src="./js/dklfPagination.js"></script>
+<script type="text/javascript" src="./js/jquery.tablesorter.pager.js"></script>
+<link rel="stylesheet" href="./css/jquery.tablesorter.pager.css" />
 <script>
-$(document).ready(function() {
-	var response;
-	var rowContent="";
-	$.ajax({
-		"url" : "ledgerReportJSON",
-		"type" : "POST",
-		"success" : function(responseJson){
-			 
-			response = jQuery.parseJSON(responseJson);
-			for(i=0;i<response.length;i++){
-				$('#ledgerNameFilter').append($('<option></option>')
-									  .val(response[i].ledgerName)
-									  .html(response[i].ledgerName));
+    $(document)
+	    .ready(
+		    function() {
+			var totRows = 0;
+			var response;
+			var rowContent = "";
+			var ledgerNames;
+			var ledgerGroups;
+			$('input[type=radio][name=filterType]').change(
+				function() {
+				    if ("ledgerName" === this.value) {
+					$("#filterByLedgerGroup").hide();
+					$("#filterByLedgerName").show();
+				    } else if ("ledgerGroup" === this.value) {
+					$("#filterByLedgerGroup").show();
+					$("#filterByLedgerName").hide();
+				    }
+				});
+			$
+				.ajax({
+				    "url" : "ledgerReportJSON",
+				    "type" : "POST",
+				    "success" : function(responseJson) {
+
+					response = jQuery
+						.parseJSON(responseJson);
+					for (i = 0; i < response.length; i++) {
+					    if ($("#ledgerNameFilter option[value='"
+						    + response[i].ledgerName
+						    + "']").length == 0) {
+						$('#ledgerNameFilter')
+							.append(
+								$(
+									'<option></option>')
+									.val(
+										response[i].ledgerName)
+									.html(
+										response[i].ledgerName));
+					    }
+					}
+					for (i = 0; i < response.length; i++) {
+					    if ($("#ledgerGroupFilter option[value='"
+						    + response[i].ledgerGroup
+						    + "']").length == 0) {
+						$('#ledgerGroupFilter')
+							.append(
+								$(
+									'<option></option>')
+									.val(
+										response[i].ledgerGroup)
+									.html(
+										response[i].ledgerGroup));
+					    }
+					}
+					initTable(response, null, null, null);
+				    }
+				});
+			$("#ledgerNameFilter").change(function(e) {
+			    ledgerNames = $(e.target).val();
+			    if (ledgerNames != null) {
+				filterByLedgerName(response, ledgerNames);
+			    } else {
+				initTable(response, null, null, null);
+			    }
+			});
+			$("#ledgerGroupFilter").change(function(e) {
+			    ledgerGroups = $(e.target).val();
+			    if (ledgerGroups != null) {
+				filterByLedgerGroup(response, ledgerGroups);
+			    } else {
+				initTable(response, null, null, null);
+			    }
+			});
+
+			/* $("#ledgerGroupFilter").change(function(){
+				var ledgerName = $('#ledgerNameFilter :selected').val();
+				var ledgerGroup = $('#ledgerGroupFilter :selected').val();
+				
+				if(ledgerGroup === "select"){
+					filterByLedgerName(response, ledgerName);
+				}
+				else{
+					//populateLedgGrpFilter(ledgerName);
+					filterByLedgerGroup(response,ledgerName,ledgerGroup);	
+				}
+			}); */
+
+			function populateLedgGrpFilter(ledgerName) {
+			    $('#ledgerGroupFilter').empty();
+			    /* $('#ledgerGroupFilter').append($('<option></option>')
+			    		  .val("select")
+			    		  .html("Select")); */
+			    for (var ledgerIndex = 0; ledgerIndex < response.length; ledgerIndex++) {
+				if (ledgerName === response[ledgerIndex].ledgerName) {
+				    $('#ledgerGroupFilter')
+					    .append(
+						    $('<option></option>')
+							    .val(
+								    response[ledgerIndex].ledgerGroup)
+							    .html(
+								    response[ledgerIndex].ledgerGroup));
+				}
+			    }
 			}
-			initTable(response,null,null,null);
-		}
-	});
-	$("#ledgerNameFilter").change(function(){
-		var ledgerName = $('#ledgerNameFilter :selected').val();
-		if(ledgerName === "select"){
-			initTable(response, null, null, null);
-		}
-		else{
-			populateLedgGrpFilter(ledgerName);
-			filterByLedgerName(response,ledgerName);	
-		}
-	});
-	
-	$("#ledgerGroupFilter").change(function(){
-		var ledgerName = $('#ledgerNameFilter :selected').val();
-		var ledgerGroup = $('#ledgerGroupFilter :selected').val();
-		
-		if(ledgerGroup === "select"){
-			filterByLedgerName(response, ledgerName);
-		}
-		else{
-			//populateLedgGrpFilter(ledgerName);
-			filterByLedgerGroup(response,ledgerName,ledgerGroup);	
-		}
-	});
-	
-	function populateLedgGrpFilter(ledgerName){
-		$('#ledgerGroupFilter').empty();
-		$('#ledgerGroupFilter').append($('<option></option>')
-				  .val("select")
-				  .html("Select"));
-		for(var ledgerIndex = 0;ledgerIndex< response.length;ledgerIndex++){
-			if(ledgerName === response[ledgerIndex].ledgerName){
-				$('#ledgerGroupFilter').append($('<option></option>')
-						  .val(response[ledgerIndex].ledgerGroup)
-						  .html(response[ledgerIndex].ledgerGroup));
-			}			
-		}
-	}
-	function filterByLedgerName(response,ledgerName){
-		$("#ledgerReportTable tbody").empty();
-		for(var index =0;index<response.length;index++){
-			if(ledgerName === response[index].ledgerName){
+			function filterByLedgerName(response, ledgerNames) {
+			    $("#ledgerReportTable tbody").empty();
+			    for (var index = 0; index < response.length; index++) {
+				if ($.inArray(response[index].ledgerName,
+					ledgerNames) > -1) {
+				    rowContent = "";
+				    var newRow = true;
+				    var rowSpan = response[index].ledgerReportDetailTOList.length;
+				    for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
+					rowContent += '<tr>';
+					if (newRow == true) {
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].ledgerName
+						    + '</td>';
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].ledgerGroup
+						    + '</td>';
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].cityGroup
+						    + '</td>';
+					    newRow = false;
+					}
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].date
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].credit
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].debit
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].balance
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].mode
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].remarks
+						+ '</td>';
+					rowContent += '</tr>';
+				    }
+				    $("#ledgerReportTable tbody").append(
+					    rowContent);
+				}
+			    }
+			}
+			function filterByLedgerGroup(response, ledgerGroups) {
+			    $("#ledgerReportTable tbody").empty();
+			    for (var index = 0; index < response.length; index++) {
+				if ($.inArray(response[index].ledgerGroup,
+					ledgerGroups) > -1) {
+				    rowContent = "";
+				    var newRow = true;
+				    var rowSpan = response[index].ledgerReportDetailTOList.length;
+				    for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
+					rowContent += '<tr>';
+					if (newRow == true) {
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].ledgerName
+						    + '</td>';
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].ledgerGroup
+						    + '</td>';
+					    rowContent += '<td rowspan = "'+rowSpan+'">'
+						    + response[index].cityGroup
+						    + '</td>';
+					    newRow = false;
+					}
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].date
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].credit
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].debit
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].balance
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].mode
+						+ '</td>';
+					rowContent += '<td>'
+						+ response[index].ledgerReportDetailTOList[innerIndex].remarks
+						+ '</td>';
+					rowContent += '</tr>';
+				    }
+				    $("#ledgerReportTable tbody").append(
+					    rowContent);
+				}
+			    }
+			}
+
+			function initTable(response, ledgerName, ledgerGroup,
+				CityGroup) {
+			    $("#ledgerReportTable tbody").empty();
+			    for (var index = 0; index < response.length; index++) {
 				rowContent = "";
 				var newRow = true;
 				var rowSpan = response[index].ledgerReportDetailTOList.length;
-				for(var innerIndex=0;innerIndex<rowSpan;innerIndex++){
-					rowContent += '<tr>';
-					if(newRow == true){
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerName+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerGroup+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].cityGroup+'</td>';
-						newRow = false;
-					} 
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].date+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].credit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].debit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].balance+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].mode+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].remarks+'</td>';
-					 rowContent += '</tr>';
+				for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
+
+				    rowContent += '<tr>';
+				    if (newRow == true) {
+					rowContent += '<td rowspan = "'+rowSpan+'" class="rowNum'+totRows+'">'
+						+ response[index].ledgerName
+						+ '</td>';
+					rowContent += '<td rowspan = "'+rowSpan+'">'
+						+ response[index].ledgerGroup
+						+ '</td>';
+					rowContent += '<td rowspan = "'+rowSpan+'">'
+						+ response[index].cityGroup
+						+ '</td>';
+					newRow = false;
+					totRows++;
+				    }
+				    rowContent += '<td class="rowNum'+totRows+'">'
+					    + response[index].ledgerReportDetailTOList[innerIndex].date
+					    + '</td>';
+				    rowContent += '<td>'
+					    + response[index].ledgerReportDetailTOList[innerIndex].credit
+					    + '</td>';
+				    rowContent += '<td>'
+					    + response[index].ledgerReportDetailTOList[innerIndex].debit
+					    + '</td>';
+				    rowContent += '<td>'
+					    + response[index].ledgerReportDetailTOList[innerIndex].balance
+					    + '</td>';
+				    rowContent += '<td>'
+					    + response[index].ledgerReportDetailTOList[innerIndex].mode
+					    + '</td>';
+				    rowContent += '<td>'
+					    + response[index].ledgerReportDetailTOList[innerIndex].remarks
+					    + '</td>';
+				    rowContent += '</tr>';
 				}
-				$("#ledgerReportTable tbody").append(rowContent);
+				$("#ledgerReportTable tbody")
+					.append(rowContent);
+			    }
+			   loadPagination(totRows);
+			    //testPaginate(totRows);
 			}
-			}
-		}
-	function filterByLedgerGroup(response,ledgerName,ledgerGroup){
-		$("#ledgerReportTable tbody").empty();
-		for(var index =0;index<response.length;index++){
-			if(ledgerName === response[index].ledgerName && ledgerGroup == response[index].ledgerGroup){
-				rowContent = "";
-				var newRow = true;
-				var rowSpan = response[index].ledgerReportDetailTOList.length;
-				for(var innerIndex=0;innerIndex<rowSpan;innerIndex++){
-					rowContent += '<tr>';
-					if(newRow == true){
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerName+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerGroup+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].cityGroup+'</td>';
-						newRow = false;
-					} 
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].date+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].credit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].debit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].balance+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].mode+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].remarks+'</td>';
-					 rowContent += '</tr>';
-				}
-				$("#ledgerReportTable tbody").append(rowContent);
-			}
-			}
-		}
-	
-	function initTable(response,ledgerName,ledgerGroup,CityGroup){
-		$("#ledgerReportTable tbody").empty();
-		for(var index =0;index<response.length;index++){
-				rowContent = "";
-				var newRow = true;
-				var rowSpan = response[index].ledgerReportDetailTOList.length;
-				for(var innerIndex=0;innerIndex<rowSpan;innerIndex++){
-					
-					rowContent += '<tr>';
-					if(newRow == true){
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerName+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].ledgerGroup+'</td>';
-						rowContent += '<td rowspan = "'+rowSpan+'">'+response[index].cityGroup+'</td>';
-						newRow = false;
-					} 
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].date+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].credit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].debit+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].balance+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].mode+'</td>';
-					 rowContent += '<td>'+response[index].ledgerReportDetailTOList[innerIndex].remarks+'</td>';
-					 rowContent += '</tr>';
-				}
-				$("#ledgerReportTable tbody").append(rowContent);
-			}	
-	}
-});
+			$("#pagination_next").click(function(){
+			    onNext(totRows);
+			});
+			$("#pagination_prev").click(function(){
+			    onPrev(totRows);
+			});
+		    });
 </script>
 <div id="ledgerReportContainer">
-<div id="ledgerReportFilter">
-Ledger Name <select id="ledgerNameFilter"><option value="select">Select</option></select><br/>
-Ledger Group <select id="ledgerGroupFilter"><option value="select">Select</option></select><br/>
-City Group <select id="cityGroupFilter"><option value="select">Select</option></select><br/>
-</div>
-<style type="text/css">
-#ledgerReportTable tbody tr:nth-child(even) {background: #CCC}
-#ledgerReportTable tbody tr:nth-child(odd) {background: #FFF}
+	<table>
+		<tr>
+			<td style="border: 1px solid gray"><input type="radio"
+				name="filterType" id="filterType" value="ledgerName" />Filter By
+				LedgerName</td>
+			<td style="border: 1px solid gray"><input type="radio"
+				name="filterType" id="filterType" value="ledgerGroup" />Filter By
+				LedgerGroup</td>
+		</tr>
+		<tr id="filterByLedgerName" style="display: none">
+			<td colspan="2"><select id="ledgerNameFilter" multiple
+				style="width: 100%"></select></td>
+		</tr>
+		<tr id="filterByLedgerGroup" style="display: none">
+			<td colspan="2"><select id="ledgerGroupFilter" multiple
+				style="width: 100%"></select></td>
+		</tr>
+	</table>
+	<div id="ledgerReportFilter"></div>
+	<style type="text/css">
+#ledgerReportTable tbody tr:nth-child(even) {
+	background: #CCC
+}
+
+#ledgerReportTable tbody tr:nth-child(odd) {
+	background: #FFF
+}
+
 #ledgerReportTable td {
-border-right:1px solid;
-border-bottom:1px solid
+	border-right: 1px solid;
+	border-bottom: 1px solid
 }
 </style>
-<table id="ledgerReportTable" style="width:900px;border:1px solid" border=1>
-	<thead>
-		<th>Ledger Name</th>
-		<th>Ledger Group</th>
-		<th>City Group</th>
-		<th>Date</th>
-		<th>Credit</th>
-		<th>Debit</th>
-		<th>Balanace</th>
-		<th>Mode</th>
-		<th>Remarks</th>
-	</thead>
-	<tbody>
+<div id="ledgerPagination" style="float:right">
+		<table>
+			<tr>
+				<td><input type="button" id="pagination_prev" class="pagination_button" value="Previous"></td>
+				<td id="pagination_detail" class="pagination_text"></td>
+				<td><input type="button" id="pagination_next" class="pagination_button" value="Next"></td>
+			</tr>
+		</table>
+	</div>
+	 
 	
-	</tbody>
-</table>
+	<table id="ledgerReportTable" style="width: 100%; border: 1px solid"
+		border=1>
+		<thead>
+			<th>Ledger Name</th>
+			<th>Ledger Group</th>
+			<th>City Group</th>
+			<th>Date</th>
+			<th>Credit</th>
+			<th>Debit</th>
+			<th>Balanace</th>
+			<th>Mode</th>
+			<th style="width: 400px">Remarks</th>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	
 </div>

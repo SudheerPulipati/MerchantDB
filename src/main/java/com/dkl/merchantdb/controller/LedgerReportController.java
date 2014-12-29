@@ -55,7 +55,7 @@ public class LedgerReportController {
 	private List<LedgerReportTO> populateLedgerReportTO(){
 	    List<LedgerReportTO> ledgerReportToList = new ArrayList<LedgerReportTO>();
 	    
-	    for(int i=0;i<5;i++){
+	    for(int i=0;i<60;i++){
 		LedgerReportTO ledgerReportTO = new LedgerReportTO();
 		ledgerReportTO.setCityGroup("CITY"+i);
 		ledgerReportTO.setLedgerGroup("LG"+i);
