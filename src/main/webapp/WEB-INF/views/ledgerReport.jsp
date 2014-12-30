@@ -1,6 +1,4 @@
 <script type="text/javascript" src="./js/dklfPagination.js"></script>
-<script type="text/javascript" src="./js/jquery.tablesorter.pager.js"></script>
-<link rel="stylesheet" href="./css/jquery.tablesorter.pager.css" />
 <script>
     $(document)
 	    .ready(
