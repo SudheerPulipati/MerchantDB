@@ -18,8 +18,8 @@ public class LedgGroupRowMapper implements RowMapper<LedgGroupTO> {
 		ledgGroupTO.setLedgGroupName(resultSet.getString("LEDGER_GRP_NAME"));
 		ledgGroupTO.setLedgGroupType(resultSet.getString("LEDGER_GRP_TYPE"));
 		ledgGroupTO.setLedgCreateDate(resultSet
-				.getString("LEDGER_GRP_CRT_DATE"));
-		ledgGroupTO.setLedgModDate(resultSet.getString("LEDGER_GRP_MOD_DATE"));
+				.getString("created_date"));
+		ledgGroupTO.setLedgModDate(resultSet.getString("modified_date"));
 		return ledgGroupTO;
 	}
 }

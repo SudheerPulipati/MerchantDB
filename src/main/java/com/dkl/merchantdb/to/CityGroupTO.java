@@ -6,7 +6,7 @@ public class CityGroupTO extends MerchantBaseTO {
 
 	private Long companyID;
 
-	private Long cityGroupID;
+	private String cityGroupID;
 
 	private String cityGroupName;
 
@@ -26,12 +26,13 @@ public class CityGroupTO extends MerchantBaseTO {
 		this.companyID = companyID;
 	}
 
-	public Long getCityGroupID() {
+	public String getCityGroupID() {
 		return cityGroupID;
 	}
 
-	public void setCityGroupID(Long cityGroupID) {
+	public void setCityGroupID(String cityGroupID) {
 		this.cityGroupID = cityGroupID;
 	}
 
+	
 }

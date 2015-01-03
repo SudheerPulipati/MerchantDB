@@ -19,7 +19,7 @@ public class StockPointBO {
 	private SequenseGenDAO sequenseGenDAO;
 	
 	public int create(StockPointTO stockPointTO) {
-		stockPointTO.setStockID(sequenseGenDAO.getSequenceID("STOCK_POINT_ID", "STOCK_POINT"));
+		stockPointTO.setStockID(sequenseGenDAO.getSequenceID("STOCK_POINT_ID", "STOCK_POINT","SP"));
 		return stockpointDAO.create(stockPointTO);
 	}
 

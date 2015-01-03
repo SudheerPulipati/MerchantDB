@@ -15,8 +15,8 @@ public class FinancialBookMapper implements RowMapper<FinancialBookTO> {
 		financialBookTO.setCompanyId(resultSet.getLong("company_id"));
 		financialBookTO.setFinBookId(resultSet.getString("fib_id"));
 		financialBookTO.setFinancialYear(resultSet.getString("fib_financial_yr"));
-		financialBookTO.setCreationDate(resultSet.getTimestamp("fib_creation_date"));
-		financialBookTO.setModifiedDate(resultSet.getTimestamp("fib_mod_date"));
+		financialBookTO.setCreationDate(resultSet.getTimestamp("created_date"));
+		financialBookTO.setModifiedDate(resultSet.getTimestamp("modified_date"));
 		return financialBookTO;
 	}
 

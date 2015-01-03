@@ -21,8 +21,8 @@ public class CompanyMapper implements RowMapper<CompanyTO> {
 		companyTO.setStreetName(resultSet.getString("company_street_Name"));
 		companyTO.setSlipsIndicator(resultSet.getString("company_slips_ind"));
 		companyTO
-				.setCreationDate(resultSet.getString("company_creation_Date"));
-		companyTO.setModifiedDate(resultSet.getString("company_mod_Date"));
+				.setCreationDate(resultSet.getString("created_date"));
+		companyTO.setModifiedDate(resultSet.getString("modified_date"));
 		companyTO.setEmail(resultSet.getString("company_email"));
 		companyTO.setPhoneNumber(Long.toString(resultSet
 				.getLong("company_phone")));

@@ -1,8 +1,6 @@
 package com.dkl.merchantdb.to;
 
-public class CompanyTO extends MerchantBaseTO {
-
-	private static final long serialVersionUID = -801728705692238686L;
+public class CompanyTO {
 
 	Long companyID;
 

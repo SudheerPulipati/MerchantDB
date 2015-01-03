@@ -3,13 +3,13 @@ package com.dkl.merchantdb.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.IUserLoginDAO;
 import com.dkl.merchantdb.dao.mapper.UserLoginMapper;
 import com.dkl.merchantdb.to.UserLoginTO;
 
-@Component
+@Repository
 public class UserLoginDAO implements IUserLoginDAO {
 
 	@Autowired

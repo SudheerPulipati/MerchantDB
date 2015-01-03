@@ -14,5 +14,5 @@ public interface IItemUnitDAO {
 
 	int deleteItemUnit(String itemUnitId);
 
-	Double getWeight(String unitName, Long companyId);
+	ItemUnitTO getWeight(String unitName, Long companyId);
 }

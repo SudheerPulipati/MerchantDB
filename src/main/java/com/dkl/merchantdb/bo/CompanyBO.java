@@ -23,11 +23,12 @@ public class CompanyBO {
 		companyTO.setCompanyID(sequenseGenDAO.getSequenceID("company_id", "company"));
 		companyTO.setCreationDate(DklUtil.getTodayDate());
 		companyTO.setModifiedDate(DklUtil.getTodayDate());
+		System.out.println(companyTO.getSlipsIndicator()+"==========");
 		return companyDAO.createCompany(companyTO);
 	}
 	
-	public CompanyTO viewCompany(Long companyId){
-		return companyDAO.viewCompany(companyId);
+	public CompanyTO viewCompany(String companyID){
+		return companyDAO.viewCompany(companyID);
 	}
 	
 	public List<CompanyTO> viewCompanyList() {

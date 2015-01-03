@@ -19,7 +19,7 @@ public class ItemBO {
 	private SequenseGenDAO sequenseGenDAO;
 
 	public int createItem(ItemTO itemTO) {
-		itemTO.setItemId(sequenseGenDAO.getSequenceID("ITEM_ID", "ITEM_MASTER"));
+		itemTO.setItemId(sequenseGenDAO.getSequenceID("ITEM_ID", "ITEM_MASTER","IT"));
 		return itemDAO.createItem(itemTO);
 	}
 

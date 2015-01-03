@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.IPartyDAO;
 import com.dkl.merchantdb.dao.mapper.PartyMapper;
 import com.dkl.merchantdb.to.PartyTO;
 
-@Component
+@Repository
 public class PartyDAO implements IPartyDAO {
 
 	private static final String CREATE_QUERY = "insert into party values(?,?,?,?,?,?,?,?,?,?,?)";
@@ -18,7 +18,7 @@ public class PartyDAO implements IPartyDAO {
 	private static final String READ_ALL_QUERY = "select * from party where company_id=?";
 	private static final String UPDATE_QUERY = "update party set party_name=?,party_type=?,"
 			+ "party_street_name=?,party_city=?,"
-			+ "party_phone=?,party_mod_date=?" + " where party_id=?";
+			+ "party_phone=?,modified_date=sysdate()" + " where party_id=?";
 	private static final String DELETE_QUERY = "delete from party where party_id=?";
 
 	@Autowired
@@ -56,7 +56,7 @@ public class PartyDAO implements IPartyDAO {
 				UPDATE_QUERY,
 				new Object[] { partyTO.getPartyName(), partyTO.getPartyType(),
 						partyTO.getStreetName(), partyTO.getCity(),
-						partyTO.getTelephone(), partyTO.getModifiedDate(),
+						partyTO.getTelephone(),
 						partyTO.getPartyID() });
 		System.out.println("AFTER UPDATE...");
 

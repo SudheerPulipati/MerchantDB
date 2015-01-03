@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.IPurchaseReportDAO;
 import com.dkl.merchantdb.dao.mapper.PurchaseReportMapper;
 import com.dkl.merchantdb.to.PurchaseReportTO;
 
-@Component
+@Repository
 public class PurchaseReportDAO implements IPurchaseReportDAO {
 	
 	/*

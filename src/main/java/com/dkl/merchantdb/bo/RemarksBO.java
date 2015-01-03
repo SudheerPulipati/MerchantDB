@@ -19,7 +19,7 @@ public class RemarksBO {
 	private SequenseGenDAO sequenseGenDAO;
 
 	public int createRemark(RemarksTO remarksTO) {
-		remarksTO.setRemarksID(sequenseGenDAO.getSequenceID("REMARKS_ID", "REMARKS"));
+		remarksTO.setRemarksID(sequenseGenDAO.getSequenceID("REMARKS_ID", "REMARKS","RM"));
 		return remarksDAO.create(remarksTO);
 	}
 

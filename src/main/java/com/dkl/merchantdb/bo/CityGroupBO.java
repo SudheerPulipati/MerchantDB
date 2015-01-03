@@ -19,7 +19,7 @@ public class CityGroupBO {
 	private SequenseGenDAO sequenseGenDAO;
 	
 	public void create(CityGroupTO cityGroupTO){
-		cityGroupTO.setCityGroupID(sequenseGenDAO.getSequenceID("CITY_GROUP_ID", "CITY_GROUP"));
+		cityGroupTO.setCityGroupID(sequenseGenDAO.getSequenceID("CITY_GROUP_ID", "CITY_GROUP","CG"));
 		cityGroupDAO.create(cityGroupTO);
 	}
 	

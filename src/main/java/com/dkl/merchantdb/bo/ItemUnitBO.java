@@ -19,7 +19,7 @@ public class ItemUnitBO {
 	private SequenseGenDAO sequenseGenDAO;
 
 	public int createItemUnit(ItemUnitTO itemUnitTO) {
-		itemUnitTO.setUnitId(sequenseGenDAO.getSequenceID("UNIT_ID", "UNIT"));
+		itemUnitTO.setUnitId(sequenseGenDAO.getSequenceID("UNIT_ID", "UNIT","UT"));
 		return itemUnitDAO.createItemUnit(itemUnitTO);
 	}
 
@@ -35,7 +35,7 @@ public class ItemUnitBO {
 		return itemUnitDAO.deleteItemUnit(itemUnitId);
 	}
 
-	public Double getWeight(String unitName, Long companyId) {
+	public ItemUnitTO getWeight(String unitName, Long companyId) {
 		return itemUnitDAO.getWeight(unitName,companyId);
 	}
 	

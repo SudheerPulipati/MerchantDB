@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dkl.merchantdb.bo.ItemBO;
 import com.dkl.merchantdb.bo.ItemUnitBO;
 import com.dkl.merchantdb.to.ItemTO;
+import com.dkl.merchantdb.to.ItemUnitTO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
-import com.google.gson.Gson;
 
 @Controller
 @SessionAttributes("companyId")
@@ -42,10 +42,14 @@ public class ItemController {
 		return "createItem";
 	}
 
-	@RequestMapping("/getWeight")
+	@RequestMapping(value="/getWeight")
 	@ResponseBody
-	public String getWeight(String unitName, @ModelAttribute("companyId") Long companyId) {
-		return itemUnitBO.getWeight(unitName, companyId).toString();
+	public ItemUnitTO  getWeight(@RequestParam String unitName, @ModelAttribute("companyId") Long companyId) {
+		System.out.println(unitName+"==============="+companyId);
+		ItemUnitTO itemUnitTO = itemUnitBO.getWeight(unitName, companyId);
+		System.out.println(itemUnitTO.getUnitId()+"===============");
+		//ResponseEntity<String> return new ResponseEntity<String>(headers, HttpStatus.OK);
+		return itemUnitTO;
 	}
 
 	// @RequestMapping("/saveItemUnit")
@@ -61,15 +65,14 @@ public class ItemController {
 	//
 	 @RequestMapping("/viewItem")
 	 public String viewItemUnit() {
-	 System.out.println("viewItemUnit");
+	 System.out.println("viewItemUnit........");
 	 return "viewItem";
 	 }
 	
 	 @RequestMapping("/viewItemJSON")
 	 @ResponseBody
-	 public String viewItemUnitJSON(@ModelAttribute("companyId") Long
-	 companyId) {
-	 System.out.println("viewItemJSON"+companyId);
+	 public JsonTemplateTO viewItemUnitJSON(@ModelAttribute("companyId") Long companyId) {
+	 System.out.println("viewItemJSON..."+companyId);
 	 JsonTemplateTO jsonTemplateTO = new JsonTemplateTO();
 	 List<ItemTO> dataList = itemBO.readAllByFk(companyId);
 	 System.out.println(dataList);
@@ -78,17 +81,16 @@ public class ItemController {
 	 jsonTemplateTO.setRecordsTotal(dataList.size());
 	
 	 jsonTemplateTO.setData(dataList);
-	 return new Gson().toJson(jsonTemplateTO);
+	 return jsonTemplateTO;
 	 }
 	
 	 @RequestMapping("/updateItem")
-	 public String updateCityGroup(ItemTO itemTO,
-	 @ModelAttribute("companyId") Long companyId) {
-	 System.out.println("updateItemUnit:itemUnitTO:"+itemTO.getItemId());
-	 itemTO.setCompanyId(companyId);
-	 int row = itemBO.update(itemTO);
-	 System.out.println("No of rows updated:"+row);
-	 return "viewItem";
+	 public String updateCityGroup(ItemTO itemTO,@ModelAttribute("companyId") Long companyId) {
+		 System.out.println("updateItemUnit:itemUnitTO:"+itemTO.getItemId());
+		 itemTO.setCompanyId(companyId);
+		 int row = itemBO.update(itemTO);
+		 System.out.println("No of rows updated:"+row);
+		 return "viewItem";
 	 }
 	
 	 @RequestMapping("/deleteItem")

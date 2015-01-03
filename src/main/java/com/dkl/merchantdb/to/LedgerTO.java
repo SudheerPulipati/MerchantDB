@@ -1,146 +1,98 @@
 package com.dkl.merchantdb.to;
 
-import java.sql.Timestamp;
-
 public class LedgerTO {
-	
-	private String legerId;
 
-	private String bookId;
-
-	private String transactionId;
-
+	private String bookID;
+	private String transactionID;
 	private String transactionType;
-
-	private Timestamp transactionDate;
-
 	private Long ledgerSeqNo;
-
+	private String transactionDate;
+	private String ledgerID;
 	private String ledgerName;
-
-	private Long firmId;
-
+	private String firmID;
 	private String firmName;
-
-	private String depositType;
-
-	private Double amount;
-
-	private String narration;
-
-	private Timestamp creationDate;
-
-	private Timestamp modifiedDate;
-
-	public String getLegerId() {
-		return legerId;
+	private String Cr_Dr;
+	private double amount;
+	private String creationDate;
+	private String modifiedDate;
+	public String getBookID() {
+		return bookID;
 	}
-
-	public void setLegerId(String legerId) {
-		this.legerId = legerId;
+	public void setBookID(String bookID) {
+		this.bookID = bookID;
 	}
-
-	public String getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
-	}
-
-	public String getTransactionId() {
-		return transactionId;
-	}
-
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
-
+	
 	public String getTransactionType() {
 		return transactionType;
 	}
-
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
 	}
-
-	public Timestamp getTransactionDate() {
-		return transactionDate;
-	}
-
-	public void setTransactionDate(Timestamp transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-
 	public Long getLedgerSeqNo() {
 		return ledgerSeqNo;
 	}
-
 	public void setLedgerSeqNo(Long ledgerSeqNo) {
 		this.ledgerSeqNo = ledgerSeqNo;
 	}
-
+	public String getTransactionDate() {
+		return transactionDate;
+	}
+	public void setTransactionDate(String transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+	public String getLedgerID() {
+		return ledgerID;
+	}
+	public void setLedgerID(String ledgerID) {
+		this.ledgerID = ledgerID;
+	}
 	public String getLedgerName() {
 		return ledgerName;
 	}
-
 	public void setLedgerName(String ledgerName) {
 		this.ledgerName = ledgerName;
 	}
-
-	public Long getFirmId() {
-		return firmId;
+	public String getFirmID() {
+		return firmID;
 	}
-
-	public void setFirmId(Long firmId) {
-		this.firmId = firmId;
+	public void setFirmID(String firmID) {
+		this.firmID = firmID;
 	}
-
 	public String getFirmName() {
 		return firmName;
 	}
-
 	public void setFirmName(String firmName) {
 		this.firmName = firmName;
 	}
-
-	public String getDepositType() {
-		return depositType;
+	public String getCr_Dr() {
+		return Cr_Dr;
 	}
-
-	public void setDepositType(String depositType) {
-		this.depositType = depositType;
+	public void setCr_Dr(String cr_Dr) {
+		Cr_Dr = cr_Dr;
 	}
-
-	public Double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-
-	public void setAmount(Double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
-	public String getNarration() {
-		return narration;
-	}
-
-	public void setNarration(String narration) {
-		this.narration = narration;
-	}
-
-	public Timestamp getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
-
-	public void setCreationDate(Timestamp creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
-
-	public Timestamp getModifiedDate() {
+	public String getModifiedDate() {
 		return modifiedDate;
 	}
-
-	public void setModifiedDate(Timestamp modifiedDate) {
+	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+	public String getTransactionID() {
+		return transactionID;
+	}
+	public void setTransactionID(String transactionID) {
+		this.transactionID = transactionID;
+	}
+
 }

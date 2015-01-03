@@ -13,7 +13,7 @@ public class StockPointMapper implements RowMapper<StockPointTO> {
 	public StockPointTO mapRow(ResultSet resultSet, int rowNum)
 			throws SQLException {
 		StockPointTO stockPointTO = new StockPointTO();
-		stockPointTO.setStockID(resultSet.getLong("STOCK_POINT_ID"));
+		stockPointTO.setStockID(resultSet.getString("STOCK_POINT_ID"));
 		stockPointTO.setCompanyID(resultSet.getLong("COMPANY_ID"));
 		stockPointTO.setStockPointName(resultSet.getString("STOCK_POINT_NAME"));
 		stockPointTO.setStockPointAddress(resultSet

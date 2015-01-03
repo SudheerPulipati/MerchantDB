@@ -1,43 +1,46 @@
 package com.dkl.merchantdb.to;
 
-public class ItemTO {
+public class ItemTO
+{
 	private Long companyId;
 
-	private Long itemGroupId;
-
-	private Long itemId;
+	private String itemId;
 
 	private String itemName;
+	
+	private String unitId;
 
 	private String unitName;
-
+	
+	private double itemNoOfKgs;
+	
+	private String vat;
+	
 	private String salesTaxExcemption;
-
+	
 	private String townCoolie;
 
-	private String outOfTownCoolie;
+	private double outOfTownCoolie;
 
-	private String unloadingCoolie;
-	
-	private String eetaCoolie;
+	private double unloadingCoolie;
+
+	private double eetaCoolie;
 
 	private String pricePer;
-	
-	private Double weight;
 
-	public Long getItemGroupId() {
-		return itemGroupId;
+	public Long getCompanyId() {
+		return companyId;
 	}
 
-	public void setItemGroupId(Long itemGroupId) {
-		this.itemGroupId = itemGroupId;
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 
-	public Long getItemId() {
+	public String getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(Long itemId) {
+	public void setItemId(String itemId) {
 		this.itemId = itemId;
 	}
 
@@ -49,6 +52,14 @@ public class ItemTO {
 		this.itemName = itemName;
 	}
 
+	public String getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
+	}
+
 	public String getUnitName() {
 		return unitName;
 	}
@@ -57,52 +68,20 @@ public class ItemTO {
 		this.unitName = unitName;
 	}
 
-	public String getTownCoolie() {
-		return townCoolie;
+	public double getItemNoOfKgs() {
+		return itemNoOfKgs;
 	}
 
-	public void setTownCoolie(String townCoolie) {
-		this.townCoolie = townCoolie;
+	public void setItemNoOfKgs(double itemNoOfKgs) {
+		this.itemNoOfKgs = itemNoOfKgs;
 	}
 
-	public String getOutOfTownCoolie() {
-		return outOfTownCoolie;
+	public String getVat() {
+		return vat;
 	}
 
-	public void setOutOfTownCoolie(String outOfTownCoolie) {
-		this.outOfTownCoolie = outOfTownCoolie;
-	}
-
-	public String getUnloadingCoolie() {
-		return unloadingCoolie;
-	}
-
-	public void setUnloadingCoolie(String unloadingCoolie) {
-		this.unloadingCoolie = unloadingCoolie;
-	}
-
-	public String getPricePer() {
-		return pricePer;
-	}
-
-	public void setPricePer(String pricePer) {
-		this.pricePer = pricePer;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
-	public String getEetaCoolie() {
-		return eetaCoolie;
-	}
-
-	public void setEetaCoolie(String eetaCoolie) {
-		this.eetaCoolie = eetaCoolie;
+	public void setVat(String vat) {
+		this.vat = vat;
 	}
 
 	public String getSalesTaxExcemption() {
@@ -113,11 +92,46 @@ public class ItemTO {
 		this.salesTaxExcemption = salesTaxExcemption;
 	}
 
-	public Double getWeight() {
-		return weight;
+	public String getTownCoolie() {
+		return townCoolie;
 	}
 
-	public void setWeight(Double weight) {
-		this.weight = weight;
+	public void setTownCoolie(String townCoolie) {
+		this.townCoolie = townCoolie;
 	}
+
+	public double getOutOfTownCoolie() {
+		return outOfTownCoolie;
+	}
+
+	public void setOutOfTownCoolie(double outOfTownCoolie) {
+		this.outOfTownCoolie = outOfTownCoolie;
+	}
+
+	public double getUnloadingCoolie() {
+		return unloadingCoolie;
+	}
+
+	public void setUnloadingCoolie(double unloadingCoolie) {
+		this.unloadingCoolie = unloadingCoolie;
+	}
+
+	public double getEetaCoolie() {
+		return eetaCoolie;
+	}
+
+	public void setEetaCoolie(double eetaCoolie) {
+		this.eetaCoolie = eetaCoolie;
+	}
+
+	public String getPricePer() {
+		return pricePer;
+	}
+
+	public void setPricePer(String pricePer) {
+		this.pricePer = pricePer;
+	}
+	
+	
+
 }

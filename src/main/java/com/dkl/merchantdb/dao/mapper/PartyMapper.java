@@ -22,8 +22,8 @@ public class PartyMapper implements RowMapper<PartyTO> {
 		partyTO.setStreetName(resultSet.getString("PARTY_STREET_NAME"));
 		partyTO.setCity(resultSet.getString("PARTY_CITY"));
 		partyTO.setTelephone(resultSet.getString("PARTY_PHONE"));
-		partyTO.setCreationDate(resultSet.getString("PARTY_CRT_DATE"));
-		partyTO.setModifiedDate(resultSet.getString("PARTY_MOD_DATE"));
+		partyTO.setCreationDate(resultSet.getString("created_date"));
+		partyTO.setModifiedDate(resultSet.getString("modified_date"));
 		return partyTO;
 	}
 

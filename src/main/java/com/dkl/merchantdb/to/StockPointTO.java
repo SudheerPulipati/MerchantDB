@@ -2,7 +2,7 @@ package com.dkl.merchantdb.to;
 
 public class StockPointTO extends MerchantBaseTO {
 	private static final long serialVersionUID = -4030764215054744316L;
-	private Long stockID;
+	private String stockID;
 	private Long companyID;
 	private String stockPointName;
 	private String stockPointAddress;
@@ -10,13 +10,7 @@ public class StockPointTO extends MerchantBaseTO {
 	private String stockPointState;
 	private String stockPointPhone;
 
-	public Long getStockID() {
-		return stockID;
-	}
-
-	public void setStockID(Long stockID) {
-		this.stockID = stockID;
-	}
+	
 
 	public Long getCompanyID() {
 		return companyID;
@@ -64,6 +58,14 @@ public class StockPointTO extends MerchantBaseTO {
 
 	public void setStockPointPhone(String stockPointPhone) {
 		this.stockPointPhone = stockPointPhone;
+	}
+
+	public String getStockID() {
+		return stockID;
+	}
+
+	public void setStockID(String stockID) {
+		this.stockID = stockID;
 	}
 
 }

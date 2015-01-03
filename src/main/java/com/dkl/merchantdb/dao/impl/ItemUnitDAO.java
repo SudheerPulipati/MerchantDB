@@ -3,14 +3,15 @@ package com.dkl.merchantdb.dao.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.IItemUnitDAO;
 import com.dkl.merchantdb.dao.mapper.ItemUnitMapper;
 import com.dkl.merchantdb.to.ItemUnitTO;
 
-@Component
+@Repository
 public class ItemUnitDAO implements IItemUnitDAO {
 
 	@Autowired
@@ -24,7 +25,7 @@ public class ItemUnitDAO implements IItemUnitDAO {
 	
 	private static final String DELETE_ITEM_UNIT = "DELETE FROM UNIT WHERE UNIT_ID=?";
 
-	private static final String GET_WEIGHT = "SELECT UNIT_NO_OF_KG FROM UNIT WHERE UNIT_NAME=? AND COMPANY_ID=?";
+	private static final String GET_WEIGHT = "SELECT * FROM UNIT WHERE UNIT_NAME=? AND COMPANY_ID=?";
 
 	@Override
 	public int createItemUnit(ItemUnitTO itemUnitTO) {
@@ -49,8 +50,13 @@ public class ItemUnitDAO implements IItemUnitDAO {
 	}
 
 	@Override
-	public Double getWeight(String unitName, Long companyId) {
-		return jdbcTemplate.queryForObject(GET_WEIGHT, Double.class, unitName,companyId);
+	public ItemUnitTO getWeight(String unitName, Long companyId) {
+		try{
+			return jdbcTemplate.queryForObject(GET_WEIGHT, new Object[] {unitName,companyId},new ItemUnitMapper());
+		}catch (EmptyResultDataAccessException e) {
+			System.out.println("No Such Unit Available..."+unitName+"...for company id..."+companyId);
+			return new ItemUnitTO();
+		}
 	}
 
 }

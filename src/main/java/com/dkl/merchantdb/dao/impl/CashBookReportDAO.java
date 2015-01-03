@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ICashBookReportDAO;
 import com.dkl.merchantdb.dao.mapper.ReportsMapper;
 import com.dkl.merchantdb.to.CashBookTO;
 
-@Component
+@Repository
 public class CashBookReportDAO implements ICashBookReportDAO {
 
 	@Autowired

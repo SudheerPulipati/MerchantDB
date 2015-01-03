@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dkl.merchantdb.bo.CityGroupBO;
+import com.dkl.merchantdb.bo.LedgGroupBO;
 import com.dkl.merchantdb.bo.PartyBO;
+import com.dkl.merchantdb.to.CityGroupTO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
+import com.dkl.merchantdb.to.LedgGroupTO;
 import com.dkl.merchantdb.to.PartyTO;
 import com.google.gson.Gson;
 
@@ -20,10 +24,20 @@ import com.google.gson.Gson;
 public class PartyController {
 
 	@Autowired
-	PartyBO partyBO;
+	private PartyBO partyBO;
+	
+	@Autowired
+	private LedgGroupBO ledgGroupBO;
+	
+	@Autowired
+	private CityGroupBO cityGroupBO;
 
 	@RequestMapping(value = "/createParty")
-	public String createParty() {
+	public String createParty(Model model,@ModelAttribute("companyId")Long companyId) {
+		List<LedgGroupTO> ledgerGrpList = ledgGroupBO.readAllByFK(companyId);
+		List<CityGroupTO> cityGrpList = cityGroupBO.readAllByFK(companyId);
+		model.addAttribute("ledgerGroupList",ledgerGrpList);
+		model.addAttribute("cityGroupList",cityGrpList);
 		return "createParty";
 	}
 
@@ -32,7 +46,11 @@ public class PartyController {
 		partyTO.setCompanyID(companyId);
 		int rowCount = partyBO.createParty(partyTO);
 		if (rowCount > 0) {
-			model.addAttribute("partyCreationStatus", "Company " + partyTO.getPartyName() + "has created successfully.");
+			model.addAttribute("partyCreationStatus", "Company " + partyTO.getPartyName() + " has created successfully.");
+			List<LedgGroupTO> ledgerGrpList = ledgGroupBO.readAllByFK(companyId);
+			List<CityGroupTO> cityGrpList = cityGroupBO.readAllByFK(companyId);
+			model.addAttribute("ledgerGroupList",ledgerGrpList);
+			model.addAttribute("cityGroupList",cityGrpList);
 		}
 		return "createParty";
 	}

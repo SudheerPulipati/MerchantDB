@@ -4,16 +4,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
 
-	@RequestMapping
-	public String logout(SessionStatus sessionStatus,HttpSession session) {
-		sessionStatus.setComplete();
-		session.invalidate();
-		return "login";
-	}
+  @RequestMapping(method=RequestMethod.GET)
+  public String logout(HttpSession session) {
+	System.out.println("You have been successfully logged out");
+    session.invalidate();
+    return "login";
+  }
 }

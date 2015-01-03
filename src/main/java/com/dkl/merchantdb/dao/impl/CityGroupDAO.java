@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ICityGroupDAO;
 import com.dkl.merchantdb.dao.mapper.CityGroupRowMapper;
 import com.dkl.merchantdb.to.CityGroupTO;
 
-@Component
+@Repository
 public class CityGroupDAO implements ICityGroupDAO {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	private static String CREATE_QUERY = "INSERT INTO DKLF.CITY_GROUP VALUES(?,?,?)";
+	private static String CREATE_QUERY = "INSERT INTO DKLF.CITY_GROUP VALUES(?,?,?,sysdate(),null)";
 	private static String READ_QUERY = "SELECT * FROM DKLF.CITY_GROUP WHERE CITY_GROUP_ID = ?";
 	private static String READ_ALL_QUERY = "SELECT * FROM DKLF.CITY_GROUP where company_id=?";
 	private static String UPDATE_QUERY = "UPDATE DKLF.CITY_GROUP SET CITY_GROUP_NAME = ? WHERE CITY_GROUP_ID=?";

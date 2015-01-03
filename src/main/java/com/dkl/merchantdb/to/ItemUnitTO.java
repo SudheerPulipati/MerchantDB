@@ -1,22 +1,16 @@
 package com.dkl.merchantdb.to;
 
-import java.sql.Timestamp;
 
-public class ItemUnitTO extends MerchantBaseTO {
-
-	private static final long serialVersionUID = 8491796771638795682L;
+public class ItemUnitTO{
 
 	private Long companyId;
 
-	private Long unitId;
+	private String unitId;
 
 	private String unitName;
 
 	private Double weight;
 
-	private Timestamp creationDate;
-
-	private Timestamp modifiedDate;
 
 	public Long getCompanyId() {
 		return companyId;
@@ -26,13 +20,7 @@ public class ItemUnitTO extends MerchantBaseTO {
 		this.companyId = companyId;
 	}
 
-	public Long getUnitId() {
-		return unitId;
-	}
-
-	public void setUnitId(Long unitId) {
-		this.unitId = unitId;
-	}
+	
 
 	public String getUnitName() {
 		return unitName;
@@ -50,20 +38,12 @@ public class ItemUnitTO extends MerchantBaseTO {
 		this.weight = weight;
 	}
 
-	public Timestamp getModifiedDate() {
-		return modifiedDate;
+	public String getUnitId() {
+		return unitId;
 	}
 
-	public void setModifiedDate(Timestamp modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	public Timestamp getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Timestamp creationDate) {
-		this.creationDate = creationDate;
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
 	}
 
 }

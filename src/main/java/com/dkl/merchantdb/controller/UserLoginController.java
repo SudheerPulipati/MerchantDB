@@ -2,8 +2,6 @@ package com.dkl.merchantdb.controller;
 
 import java.util.List;
 
-import javax.interceptor.ExcludeClassInterceptors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +22,7 @@ public class UserLoginController {
 	@Autowired
 	private CompanyBO companyBO;
 	
-	@ExcludeClassInterceptors
+	//@ExcludeClassInterceptors
 	@RequestMapping(value = "/processLogin")
 	public String processLogin(UserLoginTO userLoginTO, Model model) {
 		System.out.println("userLoginController" + userLoginTO.getUsername());

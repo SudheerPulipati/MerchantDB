@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<font color="red" size="24" face="Times New Roman">You dont have enough previliges to view this page</font>
+	An Error Occured.. Please contact Administrator
 </body>
 </html>

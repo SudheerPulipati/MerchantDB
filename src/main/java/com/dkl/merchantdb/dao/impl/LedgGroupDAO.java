@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ILedgGroupDAO;
 import com.dkl.merchantdb.dao.mapper.LedgGroupRowMapper;
 import com.dkl.merchantdb.to.LedgGroupTO;
 
-@Component
+@Repository
 public class LedgGroupDAO implements ILedgGroupDAO {
 
 	private static String CREATE_QUERY = "INSERT INTO DKLF.LEDGER_GROUP VALUES(?,?,?,?,?,?)";
@@ -21,7 +21,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 
 	private static String UPDATE_QUERY = "UPDATE DKLF.LEDGER_GROUP SET LEDGER_GRP_NAME = ?,"
 			+ "LEDGER_GRP_TYPE = ?,"
-			+ "LEDGER_GRP_MOD_DATE = ?"
+			+ "MODIFIED_DATE = sysdate()"
 			+ " WHERE LEDGER_GRP_ID = ?";
 	private static String DELETE_QUERY = "DELETE FROM DKLF.CITY_GROUP WHERE CITY_GROUP_ID = ?";
 
@@ -40,7 +40,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 						ledgGroupTO.getLedgGroupName(),
 						ledgGroupTO.getLedgGroupType(),
 						ledgGroupTO.getLedgCreateDate(),
-						ledgGroupTO.getLedgModDate() });
+						ledgGroupTO.getLedgModDate()});
 
 	}
 
@@ -61,7 +61,6 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 				UPDATE_QUERY,
 				new Object[] { ledgGroupTO.getLedgGroupName(),
 						ledgGroupTO.getLedgGroupType(),
-						ledgGroupTO.getLedgModDate(),
 						ledgGroupTO.getLedgGroupID() });
 	}
 

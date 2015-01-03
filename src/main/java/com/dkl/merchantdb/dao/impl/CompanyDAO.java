@@ -4,27 +4,27 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ICompanyDAO;
 import com.dkl.merchantdb.dao.mapper.CompanyMapper;
 import com.dkl.merchantdb.to.CompanyTO;
 import com.dkl.merchantdb.util.DklUtil;
 
-@Component
+@Repository
 public class CompanyDAO implements ICompanyDAO {
 
 	private static final String CREATE_COMPANY = "insert into company values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	private static final String VIEW_COMPANY = "select company_id,company_name,company_street_name,company_city,"
 			+ "company_state,company_pin,company_tin,company_phone,company_email,"
-			+ "company_slips_ind,company_creation_date,company_mod_date from company where company_id=?";
+			+ "company_slips_ind,created_date,modified_date from company where company_id=?";
 
 	private static final String VIEW_COMPANY_LIST = "select * from company";
 
 	private static final String UPDATE_COMPANY = "UPDATE COMPANY SET COMPANY_NAME=?," + "COMPANY_STREET_NAME=?,"
 			+ "company_city=?," + "company_state=?," + "company_pin=?," + "company_tin=?," + "company_phone=?,"
-			+ "company_email=?," + "company_slips_ind=?," + "company_mod_date=?" + "where company_id = ?";
+			+ "company_email=?," + "company_slips_ind=?," + "modified_date=?" + "where company_id = ?";
 
 	private static final String DELETE_QUERY = "DELETE FROM DKLF.COMPANY WHERE COMPANY_ID = ?";
 
@@ -40,12 +40,15 @@ public class CompanyDAO implements ICompanyDAO {
 	}
 
 	@Override
-	public CompanyTO viewCompany(Long companyId) {
+	public CompanyTO viewCompany(String companyId) {
+		// return jdbcTemplate.queryForObject(VIEW_COMPANY, new Object[]{}, new
+		// CompanyMapper());
 		return jdbcTemplate.queryForObject(VIEW_COMPANY, new Object[] { companyId }, new CompanyMapper());
 	}
 
 	@Override
 	public List<CompanyTO> viewCompanyList() {
+
 		return jdbcTemplate.query(VIEW_COMPANY_LIST, new CompanyMapper());
 	}
 

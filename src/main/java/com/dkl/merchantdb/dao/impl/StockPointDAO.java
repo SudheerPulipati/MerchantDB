@@ -4,22 +4,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.IStockPoint;
 import com.dkl.merchantdb.dao.mapper.StockPointMapper;
 import com.dkl.merchantdb.to.StockPointTO;
 
-@Component
+@Repository
 public class StockPointDAO implements IStockPoint {
 
-	private static final String CREATE_QUERY = "INSERT INTO stock_point values(?,?,?,?,?,?,?)";
+	private static final String CREATE_QUERY = "INSERT INTO stock_point values(?,?,?,?,?,?,?,sysdate(),null)";
 
 	private static final String READ_QUERY = "SELECT * FROM stock_point where STOCK_POINT_ID = ?";
 
 	private static final String READ_ALL_QUERY = "SELECT * FROM dklf.stock_point";
 
-	private static final String UPDATE_QUERY = "UPDATE stock_point set STOCK_POINT_NAME = ?,STOCK_POINT_ADDRESS = ?,STOCK_POINT_CITY = ?,STOCK_POINT_STATE = ?,STOCK_POINT_PHONE = ? WHERE STOCK_POINT_ID = ?";
+	private static final String UPDATE_QUERY = "UPDATE stock_point set STOCK_POINT_NAME = ?,STOCK_POINT_ADDRESS = ?,STOCK_POINT_CITY = ?,STOCK_POINT_STATE = ?,STOCK_POINT_PHONE = ?,MODIFIED_DATE=sysdate() WHERE STOCK_POINT_ID = ?";
 
 	private static final String DELETE_QUERY = "DELETE FROM stock_point where STOCK_POINT_ID = ?";
 	
@@ -36,7 +36,7 @@ public class StockPointDAO implements IStockPoint {
 						stockPointTO.getStockPointAddress(),
 						stockPointTO.getStockPointCity(),
 						stockPointTO.getStockPointState(),
-						stockPointTO.getStockPointPhone() });
+						stockPointTO.getStockPointPhone()});
 	}
 
 	@Override

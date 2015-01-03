@@ -4,27 +4,27 @@ public class PartyTO extends MerchantBaseTO {
 
 	private static final long serialVersionUID = 5284035728644911605L;
 
-	long partyID;
+	private long partyID;
 
-	long companyID;
+	private long companyID;
 
-	String partyName;
+	private String partyName;
 
-	String partyType;
+	private String partyType;
 
-	String streetName;
+	private String streetName;
 
-	String city;
+	private String city;
 
-	String telephone;
+	private String telephone;
 
-	String ledgerGroupName;
+	private String ledgerGroupName;
 
-	String cityGroup;
+	private String cityGroup;
 
 	String creationDate;
 
-	String modifiedDate;
+	private String modifiedDate;
 
 	public String getCreationDate() {
 		return creationDate;
@@ -42,13 +42,7 @@ public class PartyTO extends MerchantBaseTO {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public long getPartyID() {
-		return partyID;
-	}
-
-	public void setPartyID(long partyID) {
-		this.partyID = partyID;
-	}
+	
 
 	public long getCompanyID() {
 		return companyID;
@@ -114,4 +108,11 @@ public class PartyTO extends MerchantBaseTO {
 		this.cityGroup = cityGroup;
 	}
 
+	public long getPartyID() {
+		return partyID;
+	}
+
+	public void setPartyID(long partyID) {
+		this.partyID = partyID;
+	}
 }

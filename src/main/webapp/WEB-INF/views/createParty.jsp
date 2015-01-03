@@ -1,15 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" --%>
-<%-- 	pageEncoding="ISO-8859-1"%> --%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
-<!-- <title>Create Party</title> -->
-<!-- <script> -->
-
-<!-- </script> -->
-<!-- </head> -->
-<!-- <body> -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <div class="adminMenuTitle">
 	Create Party
 	<hr
@@ -31,6 +20,8 @@
 							<option value="Trade Debtor">Trade Debtor</option>
 							<option value="Owner">Owner</option>
 							<option value="Employee">Employee</option>
+							<option value="Person">Person</option>
+							<option value="Misc">Misc</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -47,22 +38,29 @@
 				</tr>
 				<tr>
 					<td>Ledger Group Name</td>
-					<td><select name="ledgerGroupName" id="ledgerGroupName">
-							<option value="select">Select</option>
-					</select></td>
+					<td>	
+						<select name="ledgerGroupName" id="ledgerGroupName">
+							<c:forEach items="${ledgerGroupList}" var="element"> 
+								<option value="${element.ledgGroupID}">${element.ledgGroupName}</option>
+							</c:forEach>	
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>City Group</td>
 					<td><select name="cityGroup" id="cityGroup">
-							<option value="select">Select</option>
+							<c:forEach items="${cityGroupList}" var="element"> 
+								<option value="${element.cityGroupID}">${element.cityGroupName}</option>
+							</c:forEach>
 					</select></td>
 				</tr>
 				<tr>
 					<td><br></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="Submit" value="Save"> <input
-						type="reset" value="Clear"></td>
+					<td colspan="2">
+					<input type="Submit" value="Save"> 
+					<input	type="reset" value="Clear"></td>
 				</tr>
 			</table>
 	</form>

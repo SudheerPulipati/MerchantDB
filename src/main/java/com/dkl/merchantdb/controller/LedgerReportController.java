@@ -19,7 +19,6 @@ public class LedgerReportController {
 
 	@RequestMapping("/ledgerReport")
 	public String viewLedgerReport() {
-		System.out.println("/ledgerReport");
 		return "ledgerReport";
 	}
 	

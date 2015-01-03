@@ -14,7 +14,7 @@ public class CityGroupRowMapper implements RowMapper<CityGroupTO> {
 			throws SQLException {
 		CityGroupTO cityGroupTO = new CityGroupTO();
 		cityGroupTO.setCompanyID(resultSet.getLong("company_ID"));
-		cityGroupTO.setCityGroupID(resultSet.getLong("city_group_ID"));
+		cityGroupTO.setCityGroupID(resultSet.getString("city_group_ID"));
 		cityGroupTO.setCityGroupName(resultSet.getString("city_group_name"));
 		return cityGroupTO;
 	}
