@@ -8,7 +8,7 @@ public interface ICompanyDAO {
 
 	int createCompany(CompanyTO companyTO);
 
-	CompanyTO viewCompany(String companyID);
+	CompanyTO viewCompany(Long companyID);
 	
 	List<CompanyTO> viewCompanyList();
 	
