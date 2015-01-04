@@ -40,7 +40,7 @@ public class CompanyDAO implements ICompanyDAO {
 	}
 
 	@Override
-	public CompanyTO viewCompany(String companyId) {
+	public CompanyTO viewCompany(Long companyId) {
 		// return jdbcTemplate.queryForObject(VIEW_COMPANY, new Object[]{}, new
 		// CompanyMapper());
 		return jdbcTemplate.queryForObject(VIEW_COMPANY, new Object[] { companyId }, new CompanyMapper());

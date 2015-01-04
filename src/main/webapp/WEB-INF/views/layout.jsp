@@ -15,6 +15,17 @@
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.css">
 <script src="./js/jquery-ui.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".finYear").each(function() {
+			var label = $(this).text(); // It will get current label text
+			$("#"+label).click(function(event) {
+				event.preventDefault();
+				$(".subList_"+label).toggle();
+			});
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="body">

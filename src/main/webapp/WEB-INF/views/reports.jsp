@@ -46,11 +46,14 @@ table {
 <script>
 	$(function() {
 		$(".tabs").fwd_tabs();
-	});
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
 		$("#cashBook").click();
+		$(".finYear").each(function() {
+			var label = $(this).text(); // It will get current label text
+			$("#"+label).click(function(event) {
+				event.preventDefault();
+				$(".subList_"+label).toggle();
+			});
+		});
 	});
 </script>
 </head>

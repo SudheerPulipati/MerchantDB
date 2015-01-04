@@ -51,7 +51,7 @@ public class CompanyController {
 	public String viewCompany(Model model, @RequestParam("companyId") String companyId) {
 		model.addAttribute("companyId", Long.parseLong(companyId));
 		model.addAttribute("financialYears", financialBookBO.readAllByFK(Long.parseLong(companyId)));
-		model.addAttribute("companyObj", companyBO.viewCompany(companyId));
+		model.addAttribute("companyObj", companyBO.viewCompany(Long.parseLong(companyId)));
 		return "updateCompany";
 	}
 
@@ -86,7 +86,13 @@ public class CompanyController {
 		return "companyAdminView";
 	}
 	
-	
+
+	@RequestMapping("/viewCompanyJSON")
+	@ResponseBody
+	public String viewReportJSON(@ModelAttribute("companyId") Long companyId) {
+		return new Gson().toJson(companyBO.viewCompany(companyId));
+	}
+
 	
 	 @RequestMapping(value = "/deleteCompany")
 	 public String deleteCompany(@RequestParam("companyId") String companyId)

@@ -27,8 +27,8 @@ public class CompanyBO {
 		return companyDAO.createCompany(companyTO);
 	}
 	
-	public CompanyTO viewCompany(String companyID){
-		return companyDAO.viewCompany(companyID);
+	public CompanyTO viewCompany(Long companyId){
+		return companyDAO.viewCompany(companyId);
 	}
 	
 	public List<CompanyTO> viewCompanyList() {
