@@ -20,6 +20,7 @@ public class CashBookReportDAO implements ICashBookReportDAO {
 
 	@Override
 	public List<CashBookTO> readAllCashBookEntries(String finBookId,String startDate,String endDate) {
+		System.out.println(jdbcTemplate.query(READ_ALL_CASHBOOK_ENTRIES, new ReportsMapper(),finBookId,startDate,endDate));
 		return jdbcTemplate.query(READ_ALL_CASHBOOK_ENTRIES, new ReportsMapper(),finBookId,startDate,endDate);
 	}
 

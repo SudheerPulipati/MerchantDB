@@ -21,7 +21,7 @@
 	<form action="saveCompany" method="post" id="createCompanyForm">
 
 		<div class="leftForm" style="padding-left: 100px">
-			<p>${companyCreationStatus}</p>
+			<p><%if(request.getAttribute("status")!=null)request.getAttribute("status"); %></p>
 
 			<label>Company Name</label> <input type="text" name="companyName"
 				id="companyName" />  <label>Street Name</label> <input

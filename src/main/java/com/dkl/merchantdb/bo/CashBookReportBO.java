@@ -15,6 +15,7 @@ public class CashBookReportBO {
 	private ICashBookReportDAO reportsDAO;
 	
 	public List<CashBookTO> readAllCashBookEntries(String finBookId,String startDate,String endDate){
+		System.out.println(reportsDAO.readAllCashBookEntries(finBookId,startDate,endDate));
 		return reportsDAO.readAllCashBookEntries(finBookId,startDate,endDate);
 	}
 }

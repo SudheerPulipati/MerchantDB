@@ -41,6 +41,7 @@ public class CashBookReportsController {
 		jsonTemplateTO.setRecordsTotal(10);
 		List<CashBookTO> dataList = reportsBO.readAllCashBookEntries(bookId, startDate, endDate);
 		jsonTemplateTO.setData(dataList);
+		System.out.println( new Gson().toJson(jsonTemplateTO));
 		return new Gson().toJson(jsonTemplateTO);
 	}
 

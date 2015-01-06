@@ -18,8 +18,8 @@ public class SequenseGenDAO implements IsequenceGenDAO {
 		try {
 			String query = "SELECT MAX(" + table + "." + column + ") from "
 					+ table;
-			long id = jdbcTemplate.queryForObject(query, Long.class);
-			seqId = ++id;
+			seqId = jdbcTemplate.queryForObject(query, Long.class);
+			++seqId;
 		} catch (NullPointerException exception) {
 			System.out.println("Generating 1st Row..");
 		}
