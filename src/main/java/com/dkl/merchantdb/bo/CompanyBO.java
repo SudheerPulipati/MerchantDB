@@ -19,12 +19,16 @@ public class CompanyBO {
 	@Autowired
 	private SequenseGenDAO sequenseGenDAO;
 	
-	public int createCompany(CompanyTO companyTO) {
+	public CompanyTO createCompany(CompanyTO companyTO) {
+		CompanyTO companyToResponse = null;
 		companyTO.setCompanyID(sequenseGenDAO.getSequenceID("company_id", "company"));
 		companyTO.setCreationDate(DklUtil.getTodayDate());
 		companyTO.setModifiedDate(DklUtil.getTodayDate());
 		System.out.println(companyTO.getSlipsIndicator()+"==========");
-		return companyDAO.createCompany(companyTO);
+		if(companyDAO.createCompany(companyTO)>0){
+			companyToResponse = companyTO;
+		}
+		return companyToResponse;
 	}
 	
 	public CompanyTO viewCompany(Long companyId){

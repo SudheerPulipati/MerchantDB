@@ -1,5 +1,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#updateBtn").click(function(){
+			$("form").attr("action","updateCompany");
+		});
+		$("#deleteBtn").click(function(){
+			$("form").attr("action","deleteCompany");
+		});
 		$.ajax({
 			url : 'viewCompanyJSON',
 			type : 'GET',
@@ -24,7 +30,7 @@
 
 			},
 			error : function() {
-				$("#updateForm").reset();
+				window.location.href = "createCompany";
 			}
 		});
 
@@ -38,9 +44,8 @@
 </style>
 <div class="rightContent subMenu">
 	<h4 class="rightHeader">Update Company</h4>
-	<form action="updateCompany" method="post" id="updateForm">
-
-		<div class="leftForm">
+	<div class="leftForm">
+		<form action="editCompany" method="post" id="updateForm">
 			<p style="color: blue">${companyUpdationStatus}</p>
 			<label>Company Name</label> <input type="text" name="companyName" />
 			<label>Street Name</label> <input type="text" name="streetName" /> <label>City</label>
@@ -53,16 +58,7 @@
 				name="slipsIndicator" id="yesInd" value="Yes">Yes <input
 				type="radio" name="slipsIndicator" id="noInd" value="No">No
 			<input type="hidden" name="companyId" value="${companyId}" /> <input
-				type="submit" style="margin-left: 40%" value="Update">
-		</div>
-		<!-- 		<div class="buttons" style="float:left;margin-left:10%"> -->
-		<!-- 				<input type="submit" -->
-		<!-- 					value="Submit"> <input type="button" value="Cancel"> -->
-		<!-- 					</div> -->
-	</form>
-	<form action="deleteCompany" method="post">
-		<div class="leftForm">
-			<input type="hidden" name="companyId" value="${companyId}" /> <input
-				type="submit" value="Delete">
-		</div>
-	</form>
+				type="submit" style="margin-left: 40%" id="updateBtn" value="Update"><input
+				type="submit" id="deleteBtn" value="Delete">
+		</form>
+	</div>

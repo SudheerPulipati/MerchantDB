@@ -1,16 +1,22 @@
 package com.dkl.merchantdb.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.CompanyBO;
 import com.dkl.merchantdb.bo.FinancialBookBO;
@@ -35,19 +41,23 @@ public class CompanyController {
 	
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.GET })
 	public String saveCompany(Model model) {
-		
 		return "createCompany";
 	}
 
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.POST })
-	public String saveCompany(CompanyTO companyTO, Model model) {
-		int rowCount = companyBO.createCompany(companyTO);
+	public String saveCompany(CompanyTO companyTO, HttpSession session,RedirectAttributes redirectAttributes) {
+		CompanyTO companyToResp = companyBO.createCompany(companyTO);
 
-		if (rowCount > 0) {
-			model.addAttribute("companyList", companyBO.viewCompanyList());
-			//model.addAttribute("status", "Company " + companyTO.getCompanyName() + "has created successfully.");
+		if (companyToResp!=null) {
+			List<CompanyTO> companyList = (List<CompanyTO>)session.getAttribute("companyList");
+			if(CollectionUtils.isEmpty(companyList)){
+				companyList = new ArrayList<CompanyTO>();
+			}
+			companyList.add(companyToResp);
+			session.setAttribute("companyList", companyList);
+			redirectAttributes.addAttribute("status", "Company " + companyTO.getCompanyName() + " has been created successfully.");
 		}
-		return "redirect:/success?status=Company " + companyTO.getCompanyName() + " has been created successfully.";
+		return "redirect:success";
 	}
 
 	@RequestMapping(value = "/editCompany", method = { RequestMethod.GET })
@@ -67,15 +77,14 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/updateCompany", method = { RequestMethod.POST })
-	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId, Model model) {
+	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId,RedirectAttributes redirectAttributes) {
 		System.out.println("======updateCompany========" + companyTO);
 		companyTO.setCompanyID(companyId);
 		int noOfRowsUpdated = companyBO.updateCompany(companyTO);
 		if (noOfRowsUpdated > 0) {
-			model.addAttribute("companyList", companyBO.viewCompanyList());
-			//model.addAttribute("status", "Company Details Updated Successfully.");
+			redirectAttributes.addAttribute("status", "Company Details Updated Successfully.");
 		}
-		return "redirect:/success?status=Company Details Updated Successfully.";
+		return "redirect:success";
 	}
 	@RequestMapping(value = "/viewCompany")
 	@ResponseBody
@@ -106,12 +115,21 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/deleteCompany", method = { RequestMethod.POST })
-	public String deleteCompany(@RequestParam("companyId") String companyId, Model model) {
+	public String deleteCompany(@RequestParam("companyId") String companyId, HttpSession session,final RedirectAttributes redirectAttributes) {
 		System.out.println("In Controller");
-		companyBO.deleteCompany(companyId);
-		model.addAttribute("companyList", companyBO.viewCompanyList());
-		//model.addAttribute("status", "Company Details deleted Successfully.");
-		return "redirect:/success?status=Company Details deleted Successfully.";
+		List<CompanyTO> companyList = null;
+		if(companyBO.deleteCompany(companyId)>0){
+			companyList = (List<CompanyTO>)session.getAttribute("companyList");
+			Iterator<CompanyTO> iterator = companyList.iterator();
+			while(iterator.hasNext()){
+				if(iterator.next().getCompanyID() == Long.parseLong(companyId)){
+					iterator.remove();
+				}
+			}
+		}
+		session.setAttribute("companyList", companyList);
+		redirectAttributes.addAttribute("status", "Company Details deleted Successfully.");
+		return "redirect:success";
 	}
 
 	@RequestMapping(value = "/deleteCompany", method = { RequestMethod.GET })
