@@ -20,7 +20,7 @@ public class PartyBO {
 	private SequenseGenDAO sequenseGenDAO;
 
 	public int createParty(PartyTO partyTO) {
-		partyTO.setPartyID(sequenseGenDAO.getSequenceID("PARTY_ID", "PARTY"));
+		partyTO.setPartyID(sequenseGenDAO.getSequenceID("PARTY_ID", "PARTY","PY"));
 		partyTO.setCreationDate(DklUtil.getTodayDate());
 		partyTO.setModifiedDate(DklUtil.getTodayDate());
 		return partyDAO.createParty(partyTO);

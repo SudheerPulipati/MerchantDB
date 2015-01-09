@@ -33,6 +33,14 @@
 			$("[name = unitName]").val(rowData.unitName);
 			$("[name = weight]").val(rowData.weight);
 		});
+		$(".button").click(function(){
+			var buttonName = $(this).val();
+			if(buttonName == "Update"){
+				$("form").attr("action","updateItemUnit");
+			}else{
+				$("form").attr("action","deleteItemUnit");
+			}
+		});
 	});
 </script>
 </head>
@@ -72,16 +80,8 @@
 						<td><input type="text" name="weight" /></td>
 					</tr>
 					<tr>
-						<td><input type="submit" value="Update"></td>
-						<td><input type="reset" value="Clear"></td>
-					</tr>
-				</table>
-			</form>
-			<form method="post" action="/merchantdb/deleteItemUnit">
-				<input type="hidden" name="unitId" />
-				<table>
-					<tr>
-						<td><input type="submit" value="Remove"></td>
+						<td><input type="submit" value="Update" class="button"></td>
+						<td><input type="submit" value="Delete" class="button"></td>
 					</tr>
 				</table>
 			</form>

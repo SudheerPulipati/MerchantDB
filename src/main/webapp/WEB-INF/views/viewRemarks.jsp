@@ -31,14 +31,14 @@
 			$("[name = remarksID]").val(rowData.remarksID);
 			$("[name = remarks]").val(rowData.remarks);
 		});
-		// 		$('#viewRemarks tbody').on('click', 'tr', function() {
-		// 			table.row(this).css({
-		// 				"background-color" : "blue"
-		// 			});
-		// 			var rowData = table.row(this).data();
-		// 			$("[name = companyID]").val(rowData.companyID);
-		// 			$("[name = cityGroupID]").val(rowData.cityGroupID);
-		// 		});
+		$(".button").click(function() {
+			var buttonName = $(this).val();
+			if (buttonName == "Update") {
+				$("form").attr("action", "updateRemark");
+			} else {
+				$("form").attr("action", "deleteRemark");
+			}
+		});
 	});
 </script>
 <div class="adminMenuTitle">
@@ -65,8 +65,7 @@
 		<form method="post" action="/merchantdb/updateRemark"
 			style="margin-left: 25%">
 			<input type="hidden" name="companyID" /> <input type="hidden"
-				name="remarksID" /> <br />
-			<br />
+				name="remarksID" /> <br /> <br />
 			<table id="UpdateCGTable"
 				style="border: 1px solid #8080B2; padding: 10px">
 				<tr>
@@ -74,14 +73,10 @@
 					<td><input type="text" name="remarks" /></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="Save"></td>
-					<td><input type="reset" value="Clear"></td>
+					<td><input type="submit" value="Update" class="button"></td>
+					<td><input type="Submit" value="Delete" class="button"></td>
 				</tr>
 			</table>
-		</form>
-		<form method="post" action="/merchantdb/deleteRemark">
-			<input type="hidden" name="remarksID" /> <input type="submit"
-				value="Remove">
 		</form>
 	</div>
 </div>

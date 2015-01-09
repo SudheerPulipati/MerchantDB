@@ -86,7 +86,7 @@ public class ItemController {
 	
 	 @RequestMapping("/updateItem")
 	 public String updateCityGroup(ItemTO itemTO,@ModelAttribute("companyId") Long companyId) {
-		 System.out.println("updateItemUnit:itemUnitTO:"+itemTO.getItemId());
+		 System.out.println("updateItemUnit:itemUnitTO:"+itemTO.getUnitName());
 		 itemTO.setCompanyId(companyId);
 		 int row = itemBO.update(itemTO);
 		 System.out.println("No of rows updated:"+row);
@@ -97,7 +97,7 @@ public class ItemController {
 	 public String deleteCityGroup(@RequestParam("itemId") String itemId)
 	 {
 	 System.out.println("deleteItemUnit");
-	 itemBO.delete(Long.parseLong(itemId));
+	 itemBO.delete(itemId);
 	 return "viewItem";
 	 }
 }

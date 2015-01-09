@@ -70,7 +70,7 @@ public class RemarksController {
 	@RequestMapping("/deleteRemark")
 	public String deleteRemark(@RequestParam("remarksID") String remarksID) {
 		System.out.println("deleteRemarks");
-		remarksBO.delete(Long.parseLong(remarksID));
+		remarksBO.delete(remarksID);
 		return "viewRemarks";
 	}
 }

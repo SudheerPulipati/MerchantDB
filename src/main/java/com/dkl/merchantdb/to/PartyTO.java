@@ -4,7 +4,7 @@ public class PartyTO extends MerchantBaseTO {
 
 	private static final long serialVersionUID = 5284035728644911605L;
 
-	private long partyID;
+	private String partyID;
 
 	private long companyID;
 
@@ -108,11 +108,11 @@ public class PartyTO extends MerchantBaseTO {
 		this.cityGroup = cityGroup;
 	}
 
-	public long getPartyID() {
+	public String getPartyID() {
 		return partyID;
 	}
 
-	public void setPartyID(long partyID) {
+	public void setPartyID(String partyID) {
 		this.partyID = partyID;
 	}
 }

@@ -23,7 +23,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 			+ "LEDGER_GRP_TYPE = ?,"
 			+ "MODIFIED_DATE = sysdate()"
 			+ " WHERE LEDGER_GRP_ID = ?";
-	private static String DELETE_QUERY = "DELETE FROM DKLF.CITY_GROUP WHERE CITY_GROUP_ID = ?";
+	private static String DELETE_QUERY = "DELETE FROM DKLF.LEDGER_GROUP WHERE LEDGER_GRP_ID = ?";
 
 	private static String READBY_FK_QUERY = "SELECT * FROM DKLF.LEDGER_GROUP WHERE COMPANY_ID = ?";
 

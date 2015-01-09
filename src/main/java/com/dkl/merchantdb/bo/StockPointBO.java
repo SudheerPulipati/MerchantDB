@@ -35,7 +35,7 @@ public class StockPointBO {
 		return stockpointDAO.update(stockPointTO);
 	}
 
-	public int delete(long stockPointID) {
-		return stockpointDAO.delete(stockPointID);
+	public int delete(String stockID) {
+		return stockpointDAO.delete(stockID);
 	}
 }

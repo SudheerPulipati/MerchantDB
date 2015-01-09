@@ -13,5 +13,5 @@ public interface IStockPoint {
 
 	int update(StockPointTO stockPointTO);
 
-	int delete(long stockPointID);
+	int delete(String stockPointID);
 }

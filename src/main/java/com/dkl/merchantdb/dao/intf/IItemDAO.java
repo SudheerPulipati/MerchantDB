@@ -8,6 +8,6 @@ public interface IItemDAO {
 	int createItem(ItemTO itemTO);
 	List<ItemTO> readAllByFK(Long itemId);
 	int updateItem(ItemTO itemTO);
-	int deleteItem(Long itemId);
+	int deleteItem(String itemId);
 	
 }

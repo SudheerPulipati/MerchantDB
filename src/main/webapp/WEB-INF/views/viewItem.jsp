@@ -19,11 +19,11 @@
 				"type" : "POST"
 			},
 			"columns" : [ {
-				"data" : "itemGroupId"
+				"data" : "unitName"
 			}, {
 				"data" : "itemName"
 			}, {
-				"data" : "weight"
+				"data" : "itemNoOfKgs"
 			} ]
 		});
 		var table = $('#viewItem').DataTable();
@@ -45,9 +45,17 @@
 			$("#itemModal").dialog("open");
 			$(".ui-dialog-titlebar").hide();
 			$("[name = itemId]").val(rowData.itemId);
-			$("[name = itemGroupId]").val(rowData.itemGroupId);
+			$("[name = unitName]").val(rowData.unitName);
 			$("[name = itemName]").val(rowData.itemName);
-			$("[name = weight]").val(rowData.weight);
+			$("[name = itemNoOfKgs]").val(rowData.itemNoOfKgs);
+		});
+		$(".button").click(function(){
+			var buttonName = $(this).val();
+			if(buttonName == "Update"){
+				$("form").attr("action","updateItem");
+			}else{
+				$("form").attr("action","deleteItem");
+			}
 		});
 	});
 </script>
@@ -83,7 +91,7 @@
 				<table id="UpdateCGTable" style="border:1px solid #8080B2; padding:10px">
 					<tr>
 						<td>Item Group Name</td>
-						<td><input type="text" name="itemGroupId" /></td>
+						<td><input type="text" name="unitName" /></td>
 					</tr>
 					<tr>
 						<td>Item Name</td>
@@ -91,19 +99,11 @@
 					</tr>
 					<tr>
 						<td>Weight</td>
-						<td><input type="text" name="weight" /></td>
+						<td><input type="text" name="itemNoOfKgs" /></td>
 					</tr>
 					<tr>
-						<td><input type="submit" value="Update"></td>
-						<td><input type="reset" value="Clear"></td>
-					</tr>
-				</table>
-			</form>
-			<form method="post" action="/merchantdb/deleteItem">
-				<input type="hidden" name="itemId" />
-				<table>
-					<tr>
-						<td><input type="submit" value="Remove"></td>
+						<td><input type="submit" value="Update" class="button"></td>
+						<td><input type="submit" value="Delete" class="button"></td>
 					</tr>
 				</table>
 			</form>

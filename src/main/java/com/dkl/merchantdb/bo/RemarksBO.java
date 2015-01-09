@@ -31,7 +31,7 @@ public class RemarksBO {
 		return remarksDAO.update(remarksTO);
 	}
 
-	public int delete(long remarksID) {
+	public int delete(String remarksID) {
 		return remarksDAO.delete(remarksID);
 	}
 

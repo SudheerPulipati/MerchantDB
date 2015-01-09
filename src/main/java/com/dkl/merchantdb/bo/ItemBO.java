@@ -32,7 +32,7 @@ public class ItemBO {
 		return itemDAO.updateItem(itemTO);
 	}
 
-	public int delete(Long itemId) {
+	public int delete(String itemId) {
 		return itemDAO.deleteItem(itemId);
 	}
 }

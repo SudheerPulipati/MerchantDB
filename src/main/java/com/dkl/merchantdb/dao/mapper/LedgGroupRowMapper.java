@@ -13,7 +13,7 @@ public class LedgGroupRowMapper implements RowMapper<LedgGroupTO> {
 	public LedgGroupTO mapRow(ResultSet resultSet, int rowNum)
 			throws SQLException {
 		LedgGroupTO ledgGroupTO = new LedgGroupTO();
-		ledgGroupTO.setLedgGroupID(resultSet.getLong("LEDGER_GRP_ID"));
+		ledgGroupTO.setLedgGroupID(resultSet.getString("LEDGER_GRP_ID"));
 		ledgGroupTO.setCompanyID(resultSet.getLong("COMPANY_ID"));
 		ledgGroupTO.setLedgGroupName(resultSet.getString("LEDGER_GRP_NAME"));
 		ledgGroupTO.setLedgGroupType(resultSet.getString("LEDGER_GRP_TYPE"));

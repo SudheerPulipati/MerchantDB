@@ -41,15 +41,14 @@
 				width : 600,
 				draggable : false,
 				modal : true,
-				autoOpen: false,
-				buttons: {
-			        "Close": function () {
-			            $(this).dialog("close");
-			        }
+				autoOpen : false,
+				buttons : {
+					"Close" : function() {
+						$(this).dialog("close");
+					}
 				}
 			});
-			
-			
+
 			$("#stockPointModal").dialog("open");
 			$(".ui-dialog-titlebar").hide();
 			$("#updateStockPointTable").show();
@@ -59,7 +58,15 @@
 			$("[name = stockPointCity]").val(rowData.stockPointCity);
 			$("[name = stockPointState]").val(rowData.stockPointState);
 			$("[name= stockPointPhone]").val(rowData.stockPointPhone);
-			
+
+		});
+		$(".button").click(function() {
+			var buttonName = $(this).val();
+			if (buttonName == "Update") {
+				$("form").attr("action", "updateStockPoint");
+			} else {
+				$("form").attr("action", "deleteStockPoint");
+			}
 		});
 	});
 </script>
@@ -71,9 +78,9 @@
 			style="border: none; height: 1px; width: 40%; background-color: #505050"
 			align="left" />
 	</div>
-	<div class="dataTableDiv" style ="width:70%">
+	<div class="dataTableDiv" style="width: 70%">
 		<table id="viewStockPoint" class="display datatable" cellspacing="0"
-		border=1 role="grid" style="border: 0px solid #C0C0C0">
+			border=1 role="grid" style="border: 0px solid #C0C0C0">
 			<thead>
 				<tr>
 					<th>StockID</th>
@@ -86,16 +93,20 @@
 			</thead>
 		</table>
 
-		<div id="stockPointModal" title="Update Stock Point" style="display: none">
-		<span style="font-size: 22px;">Stock Point Form</span>
-		<hr
-			style="border: none; height: 1px; width: 70%; background-color: #505050"
-			align="left" />
-			<br/><br/>
-			<form action="/merchantdb/updateStockPoint" method="post" style="margin-left:25%;margin-bottom:auto">
+		<div id="stockPointModal" title="Update Stock Point"
+			style="display: none">
+			<span style="font-size: 22px;">Stock Point Form</span>
+			<hr
+				style="border: none; height: 1px; width: 70%; background-color: #505050"
+				align="left" />
+			<br />
+			<br />
+			<form action="/merchantdb/updateStockPoint" method="post"
+				style="margin-left: 25%; margin-bottom: auto">
 				<input type="hidden" name="companyID"> <input type="hidden"
 					name="stockID">
-				<table id="updateStockPointTable" style="border:1px solid #8080B2; padding:10px">
+				<table id="updateStockPointTable"
+					style="border: 1px solid #8080B2; padding: 10px">
 					<tr>
 						<td>StockPoint Name</td>
 						<td><input type="text" name="stockPointName"></td>
@@ -117,14 +128,10 @@
 						<td><input type="text" name="stockPointPhone"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="Save"><input
-							type="reset" value="Clear"></td>
+						<td><input type="submit" value="Update" class="button"></td>
+						<td><input type="submit" value="Delete" class="button"></td>
 					</tr>
 				</table>
-			</form>
-			<form action="/merchantdb/deleteStockPoint" method="post">
-				<input type="hidden" name="stockID"> <input type="submit"
-					value="Remove" />
 			</form>
 		</div>
 	</div>

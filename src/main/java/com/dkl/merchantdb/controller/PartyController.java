@@ -77,4 +77,10 @@ public class PartyController {
 		partyBO.update(partyTO);
 		return "viewParty";
 	}
+	
+	@RequestMapping(value = "/deleteParty")
+	public String deleteParty(PartyTO partyTO){
+		partyBO.delete(partyTO.getPartyID());
+		return "viewParty";
+	}
 }

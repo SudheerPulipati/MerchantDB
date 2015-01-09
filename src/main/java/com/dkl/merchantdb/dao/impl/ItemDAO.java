@@ -28,7 +28,7 @@ public class ItemDAO implements IItemDAO {
 
 	private static final String READ_ALL_BY_FK = "SELECT * FROM ITEM_MASTER WHERE COMPANY_ID=?";
 	
-	private static final String UPDATE_ITEM = "UPDATE ITEM_MASTER SET ITEM_NAME=?,ITEM_NO_OF_KGS=? WHERE ITEM_ID=?";
+	private static final String UPDATE_ITEM = "UPDATE ITEM_MASTER SET ITEM_UNIT_NAME=?,ITEM_NAME=?,ITEM_NO_OF_KGS=? WHERE ITEM_ID=?";
 	
 	private static final String DELETE_ITEM = "DELETE FROM ITEM_MASTER WHERE ITEM_ID=?";
 
@@ -57,11 +57,11 @@ public class ItemDAO implements IItemDAO {
 		System.out.println(itemTO.getItemName());
 		System.out.println(itemTO.getItemNoOfKgs());
 		System.out.println(itemTO.getItemId());
-		return jdbcTemplate.update(UPDATE_ITEM, itemTO.getItemName(),itemTO.getItemNoOfKgs() ,itemTO.getItemId());
+		return jdbcTemplate.update(UPDATE_ITEM, itemTO.getUnitName(),itemTO.getItemName(),itemTO.getItemNoOfKgs() ,itemTO.getItemId());
 	}
 	
 	@Override
-	public int deleteItem(Long itemId) {
+	public int deleteItem(String itemId) {
 		return jdbcTemplate.update(DELETE_ITEM, itemId);
 	}
 }

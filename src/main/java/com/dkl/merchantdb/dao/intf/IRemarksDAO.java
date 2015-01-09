@@ -9,7 +9,7 @@ public interface IRemarksDAO {
 
 	int update(RemarksTO remarksTO);
 
-	int delete(Long remarksID);
+	int delete(String remarksID);
 
 	List<RemarksTO> readAllByFK(Long companyId);
 }

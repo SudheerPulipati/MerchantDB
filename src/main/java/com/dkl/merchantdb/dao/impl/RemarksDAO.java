@@ -40,7 +40,7 @@ public class RemarksDAO implements IRemarksDAO {
 	}
 
 	@Override
-	public int delete(Long remarksID) {
+	public int delete(String remarksID) {
 		return jdbcTemplate.update(DELETE_QUERY, remarksID);
 	}
 

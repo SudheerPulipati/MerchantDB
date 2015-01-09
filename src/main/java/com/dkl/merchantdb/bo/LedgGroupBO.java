@@ -20,7 +20,7 @@ public class LedgGroupBO {
 	SequenseGenDAO SequenseGenDAO;
 	
 	public void create(LedgGroupTO ledgGroupTO){
-		ledgGroupTO.setLedgGroupID(SequenseGenDAO.getSequenceID("LEDGER_GRP_ID", "LEDGER_GROUP"));
+		ledgGroupTO.setLedgGroupID(SequenseGenDAO.getSequenceID("LEDGER_GRP_ID", "LEDGER_GROUP","LG"));
 		ledgGroupTO.setLedgCreateDate(DklUtil.getTodayDate());
 		ledgGroupTO.setLedgModDate(DklUtil.getTodayDate());
 		ledgGroupDAO.create(ledgGroupTO);

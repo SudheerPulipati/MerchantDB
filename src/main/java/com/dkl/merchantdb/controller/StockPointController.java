@@ -61,7 +61,7 @@ public class StockPointController {
 
 	@RequestMapping(value = "/deleteStockPoint")
 	public String deleteStockPoint(
-			@RequestParam("stockID") Long stockID) {
+			@RequestParam("stockID") String stockID) {
 		stockPointBo.delete(stockID);
 		return "viewStockPoint";
 	}

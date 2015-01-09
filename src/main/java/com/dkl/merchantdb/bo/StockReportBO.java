@@ -12,7 +12,7 @@ import com.dkl.merchantdb.to.StockReportTO;
 public class StockReportBO {
 
 	@Autowired
-	IStockReportDAO stockReportDAO;
+	private IStockReportDAO stockReportDAO;
 	
 	public StockReportTO read(String itemGroupId){
 		return stockReportDAO.read(itemGroupId);

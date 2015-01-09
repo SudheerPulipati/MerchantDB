@@ -22,11 +22,11 @@
 				width : 600,
 				draggable : false,
 				modal : true,
-				autoOpen: false,
-				buttons: {
-			        "Close": function () {
-			            $(this).dialog("close");
-			        }
+				autoOpen : false,
+				buttons : {
+					"Close" : function() {
+						$(this).dialog("close");
+					}
 				}
 			});
 			$("#LedgerGroupModal").dialog("open");
@@ -35,6 +35,14 @@
 			$("[name = companyID]").val(rowData.companyID);
 			$("[name = ledgGroupName]").val(rowData.ledgGroupName);
 			$("[name= ledgGroupType]").val(rowData.ledgGroupType);
+		});
+		$(".button").click(function() {
+			var buttonName = $(this).val();
+			if (buttonName == "Update") {
+				$("form").attr("action", "updateLedgerGroup");
+			} else {
+				$("form").attr("action", "deleteLedgerGroup");
+			}
 		});
 	});
 </script>
@@ -55,16 +63,18 @@
 		</thead>
 	</table>
 
-	<div id="LedgerGroupModal" style="display:none">
+	<div id="LedgerGroupModal" style="display: none">
 		<span style="font-size: 22px;">Ledger Group Form</span>
 		<hr
 			style="border: none; height: 1px; width: 70%; background-color: #505050"
 			align="left" />
-		<form action="/merchantdb/updateLedgerGroup" method="post" style = "margin-left:25%;margin-bottom:auto">
+		<form action="/merchantdb/updateLedgerGroup" method="post"
+			style="margin-left: 25%; margin-bottom: auto">
 			<input type="hidden" name="companyID"> <input type="hidden"
-				name="ledgGroupID">
-				<br/><br/>
-			<table id="updateLedgerTable" style="border:1px solid #8080B2; padding:10px">
+				name="ledgGroupID"> <br />
+			<br />
+			<table id="updateLedgerTable"
+				style="border: 1px solid #8080B2; padding: 10px">
 				<tr>
 					<td>Group Name :</td>
 					<td><input type="text" name="ledgGroupName"></td>
@@ -80,15 +90,10 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="Save"
-						class="button"></td>
-					<td><input type="reset" value="Clear" class="button"></td>
+					<td><input type="submit" value="Update" class="button"></td>
+					<td><input type="submit" value="Delete" class="button"></td>
 				</tr>
 			</table>
-		</form>
-		<form action="/merchantdb/updateLedgerGroup" method="post">
-			<input type="hidden" name="ledgGroupID"> <input type="submit"
-				value="Remove" />
 		</form>
 	</div>
 </div>

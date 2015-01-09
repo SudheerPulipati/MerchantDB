@@ -13,7 +13,7 @@ public class PartyMapper implements RowMapper<PartyTO> {
 	public PartyTO mapRow(ResultSet resultSet, int row) throws SQLException {
 
 		PartyTO partyTO = new PartyTO();
-		partyTO.setPartyID(resultSet.getLong("PARTY_ID"));
+		partyTO.setPartyID(resultSet.getString("PARTY_ID"));
 		partyTO.setCompanyID(resultSet.getLong("COMPANY_ID"));
 		partyTO.setPartyName(resultSet.getString("PARTY_Name"));
 		partyTO.setPartyType(resultSet.getString("PARTY_TYPE"));

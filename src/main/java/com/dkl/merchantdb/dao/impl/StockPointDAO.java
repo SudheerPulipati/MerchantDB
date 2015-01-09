@@ -63,8 +63,8 @@ public class StockPointDAO implements IStockPoint {
 	}
 
 	@Override
-	public int delete(long stockPointID) {
-		return jdbcTemplate.update(DELETE_QUERY, new Object[] { stockPointID });
+	public int delete(String stockID) {
+		return jdbcTemplate.update(DELETE_QUERY, new Object[] { stockID });
 	}
 
 }
