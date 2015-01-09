@@ -23,7 +23,7 @@ public class StockReportController {
 	
 	@RequestMapping("/stockReport")
 	public String viewStockReport(){
-		return "viewStockReport";
+		return "stockReport";
 	}
 	
 	@RequestMapping("/viewStockReportJson")

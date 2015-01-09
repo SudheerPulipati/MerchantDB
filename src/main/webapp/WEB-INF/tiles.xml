@@ -161,6 +161,10 @@
 		<put-attribute name="title" value="View ledger Report" />
 		<put-attribute name="body" value="/WEB-INF/views/ledgerReport.jsp" />
 	</definition>
+	<definition name="stockReport" extends= "reportLayout">
+		<put-attribute name="title" value="View stock Report" />
+		<put-attribute name="body" value="/WEB-INF/views/stockReport.jsp" />
+	</definition>
 	<!-- Remarks -->
 	<definition name="createRemark" extends="base">
 		<put-attribute name="title" value="Create Remark" />
