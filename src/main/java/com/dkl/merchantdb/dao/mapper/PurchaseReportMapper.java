@@ -19,10 +19,10 @@ public class PurchaseReportMapper implements RowMapper<PurchaseReportTO> {
 		purchaseReportTO.setItemGroup(resultSet.getString("item_batch_name"));
 		purchaseReportTO.setPartyName(resultSet.getString("firm_name"));
 		purchaseReportTO.setPurchaseDate(resultSet.getString("modified_date"));
-		purchaseReportTO.setStockPoint(resultSet.getString("stock_point_name"));
-		purchaseReportTO.setQuantity(resultSet.getString("purchase_quantity"));
-		purchaseReportTO.setBillPrice(resultSet.getString("price1"));
-		purchaseReportTO.setUnbilledPrice(resultSet.getString("price2"));
+		purchaseReportTO.setStockPoint(resultSet.getString("item_stock_point_id"));
+		purchaseReportTO.setQuantity(resultSet.getString("stock_purchase_qty"));
+		purchaseReportTO.setBillPrice(resultSet.getString("stock_transfer_in"));
+		purchaseReportTO.setUnbilledPrice(resultSet.getString("stock_transfer_out"));
 		return purchaseReportTO;
 	}
 

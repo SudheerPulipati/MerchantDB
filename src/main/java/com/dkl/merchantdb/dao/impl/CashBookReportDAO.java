@@ -16,7 +16,7 @@ public class CashBookReportDAO implements ICashBookReportDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private static final String READ_ALL_CASHBOOK_ENTRIES = "SELECT A.FIRMNAME,A.MODIFIED_DATE,A.DEPOSITTYPE,A.AMOUNT,A.NARRATION FROM LEDGER A,FIN_BOOK B WHERE A.BOOKID = B.FIB_ID and A.BOOKID = ? and date(A.MODIFIED_DATE) BETWEEN ? AND ?";
+	private static final String READ_ALL_CASHBOOK_ENTRIES = "SELECT A.FIRM_NAME,A.MODIFIED_DATE,A.ledger_cr_dr,A.ledger_AMOUNT FROM LEDGER A,FIN_BOOK B WHERE A.FIB_ID = B.FIB_ID and A.FIB_ID = ? and date(A.MODIFIED_DATE) BETWEEN ? AND ?";
 
 	@Override
 	public List<CashBookTO> readAllCashBookEntries(String finBookId,String startDate,String endDate) {

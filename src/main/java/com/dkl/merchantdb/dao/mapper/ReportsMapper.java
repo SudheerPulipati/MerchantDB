@@ -13,15 +13,15 @@ public class ReportsMapper implements RowMapper<CashBookTO> {
 	@Override
 	public CashBookTO mapRow(ResultSet resultSet, int row) throws SQLException {
 		CashBookTO cashBookTO = new CashBookTO();
-		cashBookTO.setPartyName(resultSet.getString("firmname"));
+		cashBookTO.setPartyName(resultSet.getString("firm_name"));
 		cashBookTO.setModifiedDate(resultSet.getTimestamp("modified_date"));
-		cashBookTO.setRemarks(resultSet.getString("narration"));
+		//cashBookTO.setRemarks(resultSet.getString("narration"));
 		cashBookTO.setAction("Need to set");
-		if (StringUtils.equalsIgnoreCase(resultSet.getString("depositType"), "cr")) {
-			cashBookTO.setCredit(resultSet.getDouble("amount"));
+		if (StringUtils.equalsIgnoreCase(resultSet.getString("ledger_cr_dr"), "cr")) {
+			cashBookTO.setCredit(resultSet.getDouble("ledger_amount"));
 			cashBookTO.setDebit(0d);
 		} else {
-			cashBookTO.setDebit(resultSet.getDouble("amount"));
+			cashBookTO.setDebit(resultSet.getDouble("ledger_amount"));
 			cashBookTO.setCredit(0d);
 		}
 

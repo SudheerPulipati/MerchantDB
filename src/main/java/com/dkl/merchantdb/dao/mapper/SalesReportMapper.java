@@ -19,10 +19,10 @@ public class SalesReportMapper implements RowMapper<SalesReportTO> {
 		salesReportTO.setItemGroup(resultSet.getString("item_batch_name"));
 		salesReportTO.setPartyName(resultSet.getString("firm_name"));
 		salesReportTO.setSalesDate(resultSet.getString("modified_date"));
-		salesReportTO.setStockPoint(resultSet.getString("stock_point_name"));
-		salesReportTO.setQuantity(resultSet.getString("sale_quantity"));
-		salesReportTO.setBillPrice(resultSet.getString("price1"));
-		salesReportTO.setUnbilledPrice(resultSet.getString("price2"));
+		salesReportTO.setStockPoint(resultSet.getString("item_stock_point_id"));
+		salesReportTO.setQuantity(resultSet.getString("stock_sale_qty"));
+		salesReportTO.setBillPrice(resultSet.getString("stock_transfer_in"));
+		salesReportTO.setUnbilledPrice(resultSet.getString("stock_transfer_out"));
 		return salesReportTO;
 	}
 
