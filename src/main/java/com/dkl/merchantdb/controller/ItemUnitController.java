@@ -35,7 +35,7 @@ public class ItemUnitController {
 		if (noOfRows > 0) {
 			redirectAttributes.addAttribute("status", "Item Unit "+itemUnitTO.getUnitName()+" has been created successfully");
 		}
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 
 	@RequestMapping("/viewItemUnit")

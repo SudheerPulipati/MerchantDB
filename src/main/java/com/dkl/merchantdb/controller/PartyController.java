@@ -51,7 +51,7 @@ public class PartyController {
 			redirectAttributes.addAttribute("status", "Party " + partyTO.getPartyName()
 					+ " has been created successfully.");
 		}
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 
 	@RequestMapping(value = "/viewParty")

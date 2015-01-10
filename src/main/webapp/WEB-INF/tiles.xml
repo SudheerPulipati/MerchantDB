@@ -6,14 +6,16 @@
 	<definition name="base" template="/WEB-INF/views/layout.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/dklfHeader.jsp" />
-		<put-attribute name="companiesMenu" value="/WEB-INF/views/dklfCompaniesMenu.jsp" />
-		<put-attribute name="finYearsMenu" value="/WEB-INF/views/dklfFinYearsMenu.jsp" />
-		<put-attribute name="beforeBody" value="/WEB-INF/views/dklfBeforeBody.jsp"/>
+		<put-attribute name="companiesMenu"
+			value="/WEB-INF/views/dklfCompaniesMenu.jsp" />
+		<put-attribute name="finYearsMenu"
+			value="/WEB-INF/views/dklfFinYearsMenu.jsp" />
+		<put-attribute name="beforeBody" value="/WEB-INF/views/dklfBeforeBody.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
 	<definition name="reportLayout" template="/WEB-INF/views/reportLayout.jsp">
-	<put-attribute name="title" value="" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="" />
 	</definition>
 	<definition name="login" extends="base">
@@ -21,23 +23,23 @@
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="companiesMenu" value="" />
 		<put-attribute name="finYearsMenu" value="" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>
 	<definition name="home" extends="base">
 		<put-attribute name="title" value="Merchant DB" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 	</definition>
 	<!-- Company -->
 	<definition name="createCompany" extends="base">
 		<put-attribute name="title" value="Create Company" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/createCompany.jsp" />
 	</definition>
 	<definition name="updateCompany" extends="base">
 		<put-attribute name="title" value="Update Company" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/updateCompany.jsp" />
 	</definition>
 	<definition name="companyAdminView" extends="base">
@@ -87,17 +89,17 @@
 		<put-attribute name="title" value="View Party" />
 		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" />
 	</definition>
-<!-- 	<definition name="viewParty" extends="base"> -->
-<!-- 		<put-attribute name="title" value="View Party" /> -->
-<!-- 		<put-attribute name="header" value="" /> -->
-<!-- 		<put-attribute name="companiesMenu" value="" /> -->
-<!-- 		<put-attribute name="finYearsMenu" value="" /> -->
-<!-- 		<put-attribute name="beforeBody" value=""/> -->
- <!-- 		<put-attribute name="body" value="" /> --> 
-<!-- 		<put-attribute name="footer" value="" /> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" /> -->
-<!-- 	</definition> -->
-	
+	<!-- <definition name="viewParty" extends="base"> -->
+	<!-- <put-attribute name="title" value="View Party" /> -->
+	<!-- <put-attribute name="header" value="" /> -->
+	<!-- <put-attribute name="companiesMenu" value="" /> -->
+	<!-- <put-attribute name="finYearsMenu" value="" /> -->
+	<!-- <put-attribute name="beforeBody" value=""/> -->
+	<!-- <put-attribute name="body" value="" /> -->
+	<!-- <put-attribute name="footer" value="" /> -->
+	<!-- <put-attribute name="body" value="/WEB-INF/views/viewParty.jsp" /> -->
+	<!-- </definition> -->
+
 	<!-- Item Unit -->
 	<definition name="createItemUnit" extends="base">
 		<put-attribute name="title" value="Create Item Unit" />
@@ -107,7 +109,7 @@
 		<put-attribute name="title" value="View Item Unit" />
 		<put-attribute name="body" value="/WEB-INF/views/viewItemUnit.jsp" />
 	</definition>
-	
+
 	<!-- Item -->
 	<definition name="createItem" extends="base">
 		<put-attribute name="title" value="Create Item" />
@@ -117,51 +119,55 @@
 		<put-attribute name="title" value="View Item" />
 		<put-attribute name="body" value="/WEB-INF/views/viewItem.jsp" />
 	</definition>
-	
+
 	<!-- Stock Point -->
 	<definition name="createStockPoint" extends="base">
 		<put-attribute name="title" value="Create StockPoint" />
-		<put-attribute name="body" value="/WEB-INF/views/createStockPoint.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/createStockPoint.jsp" />
 	</definition>
 	<definition name="viewStockPoint" extends="base">
 		<put-attribute name="title" value="View StockPoint" />
 		<put-attribute name="body" value="/WEB-INF/views/viewStockPoint.jsp" />
 	</definition>
-	<!--Reports  -->
+	<!--Reports -->
 	<definition name="reports" extends="base">
 		<put-attribute name="title" value="View Reports" />
 		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/reports.jsp" />
 	</definition>
-	<definition name="cashbookReport" extends= "reportLayout">
+	<definition name="cashbookReport" extends="reportLayout">
 		<put-attribute name="title" value="View Cashbook Report" />
 		<put-attribute name="body" value="/WEB-INF/views/cashReport.jsp" />
 	</definition>
-	<definition name="purchaseReport" extends= "reportLayout">
+	<definition name="purchaseReport" extends="reportLayout">
 		<put-attribute name="title" value="View Purchase Report" />
 		<put-attribute name="body" value="/WEB-INF/views/purchaseReport.jsp" />
 	</definition>
-	<definition name="salesReport" extends= "reportLayout">
+	<definition name="salesReport" extends="reportLayout">
 		<put-attribute name="title" value="View Purchase Report" />
 		<put-attribute name="body" value="/WEB-INF/views/salesReport.jsp" />
 	</definition>
-	<definition name="trailBalanceReport" extends= "reportLayout">
+	<definition name="trailBalanceReport" extends="reportLayout">
 		<put-attribute name="title" value="View Trail Balance Report" />
-		<put-attribute name="body" value="/WEB-INF/views/trailBalanceReport.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/trailBalanceReport.jsp" />
 	</definition>
-	<definition name="balanceSheetReport" extends= "reportLayout">
+	<definition name="balanceSheetReport" extends="reportLayout">
 		<put-attribute name="title" value="View Balance Sheet Report" />
-		<put-attribute name="body" value="/WEB-INF/views/balanceSheetReport.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/balanceSheetReport.jsp" />
 	</definition>
-	<definition name="profitLossReport" extends= "reportLayout">
+	<definition name="profitLossReport" extends="reportLayout">
 		<put-attribute name="title" value="View Profit Loss Report" />
-		<put-attribute name="body" value="/WEB-INF/views/profitLossReport.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/profitLossReport.jsp" />
 	</definition>
-	<definition name="ledgerReport" extends= "reportLayout">
+	<definition name="ledgerReport" extends="reportLayout">
 		<put-attribute name="title" value="View ledger Report" />
 		<put-attribute name="body" value="/WEB-INF/views/ledgerReport.jsp" />
 	</definition>
-	<definition name="stockReport" extends= "reportLayout">
+	<definition name="stockReport" extends="reportLayout">
 		<put-attribute name="title" value="View stock Report" />
 		<put-attribute name="body" value="/WEB-INF/views/stockReport.jsp" />
 	</definition>
@@ -177,24 +183,28 @@
 	<!-- Error -->
 	<definition name="error" extends="base">
 		<put-attribute name="title" value="Error page" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
 	</definition>
 	<!-- Success -->
 	<definition name="success" extends="base">
 		<put-attribute name="title" value="Success Page" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
+	</definition>
+	<definition name="adminSuccess" extends="base">
+		<put-attribute name="title" value="Admin Success Page" />
 		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
 	</definition>
 	<!-- Sales -->
 	<definition name="sales" extends="base">
 		<put-attribute name="title" value="Under Construction" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/sales.jsp" />
 	</definition>
 	<definition name="purchaseOrder" extends="base">
 		<put-attribute name="title" value="Under Construction" />
-		<put-attribute name="beforeBody" value=""/>
+		<put-attribute name="beforeBody" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/purchaseOrder.jsp" />
 	</definition>
 </tiles-definitions>

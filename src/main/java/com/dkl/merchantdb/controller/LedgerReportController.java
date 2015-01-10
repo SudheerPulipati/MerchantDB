@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.dkl.merchantdb.to.JsonTemplateTO;
 import com.dkl.merchantdb.to.LedgerReportDetailTO;
 import com.dkl.merchantdb.to.LedgerReportTO;
 import com.google.gson.Gson;

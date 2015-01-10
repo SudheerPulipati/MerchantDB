@@ -137,9 +137,4 @@ public class CompanyController {
 		return "createCompany";
 	}
 	
-	@RequestMapping(value = "/success", method = { RequestMethod.GET })
-	public String success(@RequestParam("status")String status,Model model) {
-		model.addAttribute("status", status);
-		return "success";
-	}
 }

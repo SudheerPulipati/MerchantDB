@@ -35,7 +35,7 @@ public class RemarksController {
 		if (noOfRows > 0) {
 			redirectAttributes.addAttribute("status", "Remark "+remarksTO.getRemarks()+" has been inserted successfully");
 		}
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 
 	@RequestMapping("/viewRemarks")

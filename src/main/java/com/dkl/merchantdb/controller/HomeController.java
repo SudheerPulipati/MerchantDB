@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -44,5 +45,17 @@ public class HomeController {
 	@RequestMapping(value = "/purchaseOder", method = RequestMethod.GET)
 	public String purchaseOrder() {
 		return "purchaseOder";
+	}
+	
+	@RequestMapping(value = "/success", method = { RequestMethod.GET })
+	public String success(@RequestParam("status")String status,Model model) {
+		model.addAttribute("status", status);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/adminSuccess", method = { RequestMethod.GET })
+	public String adminSuccess(@RequestParam("status")String status,Model model) {
+		model.addAttribute("status", status);
+		return "adminSuccess";
 	}
 }

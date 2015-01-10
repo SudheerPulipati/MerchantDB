@@ -37,7 +37,7 @@ public class StockPointController {
 		if(noOfRows>0){
 			redirectAttributes.addAttribute("status", "StockPoint "+stockPointTO.getStockPointName()+" has been created successfully.");
 		}
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 
 	@RequestMapping(value = "/viewStockPoint")

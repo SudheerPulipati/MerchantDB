@@ -38,7 +38,7 @@ public class ItemController {
 		if (noOfRows > 0) {
 			model.addAttribute("status", "Item "+itemTO.getItemName()+" has been inserted successfully");
 		}
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 
 	@RequestMapping(value="/getWeight")

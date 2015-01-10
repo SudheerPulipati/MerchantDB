@@ -36,7 +36,7 @@ public class LedgeGroupController {
 		ledgGroupTO.setCompanyID(companyId);
 		ledgGroupBO.create(ledgGroupTO);
 		redirectAttributes.addAttribute("status", "Ledger Group "+ledgGroupTO.getLedgGroupName() + " has been created successfully.");
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 	
 	@RequestMapping(value="/viewLedgerGroup")

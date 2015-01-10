@@ -35,7 +35,7 @@ public class CityGroupController {
 		cityGroupTO.setCompanyID(companyId);
 		cityGroupBO.create(cityGroupTO);
 		redirectAttributes.addAttribute("status", "Citygroup "+cityGroupTO.getCityGroupName()+" has been completed successfully.");
-		return "redirect:success";
+		return "redirect:adminSuccess";
 	}
 	
 	@RequestMapping(value="/viewCityGroup")
