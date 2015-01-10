@@ -8,14 +8,31 @@
 			var rowContent = "";
 			var ledgerNames;
 			var ledgerGroups;
+			$('.filterType').hide();
+			$("#applyFilter").change(function(){
+			    //alert($("#isAgeSelected").is(':checked'));
+			 if($("#applyFilter").is(':checked')){
+			    $('.filterType').show();
+			    $("#ledgerPagination").hide();
+			} if(!$("#applyFilter").is(':checked')){
+			    $('input[name="filterType"]').attr('checked', false);
+			    $('.filterType').hide(); 
+			    $('.filterTypeValues').hide();
+			    $("#ledgerPagination").show();
+			} 
+			});
 			$('input[type=radio][name=filterType]').change(
 				function() {
 				    if ("ledgerName" === this.value) {
 					$("#filterByLedgerGroup").hide();
 					$("#filterByLedgerName").show();
+					//$("#ledgerPagination").hide();
 				    } else if ("ledgerGroup" === this.value) {
 					$("#filterByLedgerGroup").show();
 					$("#filterByLedgerName").hide();
+					//$("#ledgerPagination").hide();
+				    } else{
+					//$("#ledgerPagination").show();
 				    }
 				});
 			$
@@ -54,7 +71,8 @@
 										response[i].ledgerGroup));
 					    }
 					}
-					initTable(response, null, null, null);
+					initTable(response,false);
+					 
 				    }
 				});
 			$("#ledgerNameFilter").change(function(e) {
@@ -62,15 +80,16 @@
 			    if (ledgerNames != null) {
 				filterByLedgerName(response, ledgerNames);
 			    } else {
-				initTable(response, null, null, null);
+				initTable(response, true);
 			    }
 			});
 			$("#ledgerGroupFilter").change(function(e) {
 			    ledgerGroups = $(e.target).val();
+			    console.log("CHANGED "+ledgerGroups+" :: "+$(e.target).length);
 			    if (ledgerGroups != null) {
 				filterByLedgerGroup(response, ledgerGroups);
 			    } else {
-				initTable(response, null, null, null);
+				initTable(response,true);
 			    }
 			});
 
@@ -199,9 +218,9 @@
 			    }
 			}
 
-			function initTable(response, ledgerName, ledgerGroup,
-				CityGroup) {
+			function initTable(response,isFilteredData) {
 			    $("#ledgerReportTable tbody").empty();
+			    
 			    for (var index = 0; index < response.length; index++) {
 				rowContent = "";
 				var newRow = true;
@@ -242,11 +261,11 @@
 					    + '</td>';
 				    rowContent += '</tr>';
 				}
-				$("#ledgerReportTable tbody")
-					.append(rowContent);
+				$("#ledgerReportTable tbody").append(rowContent);
 			    }
-			   loadPagination(totRows);
-			    //testPaginate(totRows);
+			    if(!isFilteredData){
+				loadPagination(totRows);
+			    }
 			}
 			$("#pagination_next").click(function(){
 			    onNext(totRows);
@@ -259,18 +278,23 @@
 <div id="ledgerReportContainer">
 	<table>
 		<tr>
-			<td style="border: 1px solid gray"><input type="radio"
+		 <td colspan=2>
+		 <input type="checkbox" name="applyFilter" id="applyFilter">Apply Filter
+		 </td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid gray" class="filterType"><input type="radio"
 				name="filterType" id="filterType" value="ledgerName" />Filter By
 				LedgerName</td>
-			<td style="border: 1px solid gray"><input type="radio"
+			<td style="border: 1px solid gray" class="filterType"><input type="radio"
 				name="filterType" id="filterType" value="ledgerGroup" />Filter By
 				LedgerGroup</td>
 		</tr>
-		<tr id="filterByLedgerName" style="display: none">
+		<tr id="filterByLedgerName" class="filterTypeValues" style="display: none">
 			<td colspan="2"><select id="ledgerNameFilter" multiple
 				style="width: 100%"></select></td>
 		</tr>
-		<tr id="filterByLedgerGroup" style="display: none">
+		<tr id="filterByLedgerGroup" style="display: none" class="filterTypeValues">
 			<td colspan="2"><select id="ledgerGroupFilter" multiple
 				style="width: 100%"></select></td>
 		</tr>
