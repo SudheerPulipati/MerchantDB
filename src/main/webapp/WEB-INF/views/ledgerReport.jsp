@@ -19,6 +19,7 @@
 			    $('.filterType').hide(); 
 			    $('.filterTypeValues').hide();
 			    $("#ledgerPagination").show();
+			    initTable(response, true);
 			} 
 			});
 			$('input[type=radio][name=filterType]').change(

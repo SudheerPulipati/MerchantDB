@@ -1,5 +1,6 @@
 package com.dkl.merchantdb.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class StockReportDAO implements IStockReportDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	private static final String READ_ALL_QUERY = "";
+	private static final String READ_ALL_QUERY = "SELECT item_ledger.ITEM_ID, item_ledger.ITEM_GROUP_NAME, item_stock_point.ITEM_BATCH_ID, item_stock_point.STOCK_POINT_NAME, item_stock_point.STOCK_OPEN_QTY,item_stock_point.STOCK_PURCHASE_QTY,item_stock_point.STOCK_SALE_QTY,item_stock_point.STOCK_ON_HAND FROM item_ledger JOIN item_stock_point on item_ledger.ITEM_ID = item_stock_point.ITEM_ID";
 
 	private static final String READ_QUERY = "";
 
@@ -28,7 +29,26 @@ public class StockReportDAO implements IStockReportDAO {
 
 	@Override
 	public List<StockReportTO> readAll() {
-		return jdbcTemplate.query(READ_ALL_QUERY, new StockReportMapper());
+		//return jdbcTemplate.query(READ_ALL_QUERY, new StockReportMapper());
+		return populateReport();
+	}
+	
+	//FIXME due to unavailable of datat in database this method is used to show data.This should be deleted  
+	private List<StockReportTO> populateReport(){
+		List<StockReportTO> stockReportTOList = new ArrayList<StockReportTO>();
+		for(int i=0;i<20;i++){
+			StockReportTO StockReportTO = new StockReportTO();
+			StockReportTO.setItemGroup("Item Group"+i);
+			StockReportTO.setItemName("ItemName"+i);
+			StockReportTO.setItemBond("Bond"+i);
+			StockReportTO.setStockPoint("Stock"+i);
+			StockReportTO.setOpen(""+i);
+			StockReportTO.setPurchase(""+i);
+			StockReportTO.setSale(""+i);
+			StockReportTO.setStockInHand(""+i);
+			stockReportTOList.add(StockReportTO);
+		}
+		return stockReportTOList;
 	}
 
 }

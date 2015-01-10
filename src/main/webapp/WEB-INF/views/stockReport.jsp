@@ -38,7 +38,7 @@
 			$("#salesToDate").datepicker({
 			    dateFormat : 'yy-mm-dd'
 			});
-			$("#salesReportContainer").hide();
+			//$("#stockReportContainer").hide();
 			$("#showSales").click(function() {
 			    $("#salesReportContainer").show();
 			    $('#stockReport').dataTable({
@@ -46,11 +46,11 @@
 				"processing" : true,
 				"pagingType" : "full_numbers",
 				"ajax" : {
-				    "url" : "stockReportJSON",
+				    "url" : "http://localhost:8080/merchantdb/viewStockReportJson",
 				    "type" : "POST",
 				    "data" : {
-					startDate : $("#salesFromDate").val(),
-					endDate : $("#salesToDate").val()
+					//startDate : $("#salesFromDate").val(),
+					//endDate : $("#salesToDate").val()
 				    }
 				},
 
