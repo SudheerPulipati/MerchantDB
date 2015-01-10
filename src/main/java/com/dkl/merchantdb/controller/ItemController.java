@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.ItemBO;
 import com.dkl.merchantdb.bo.ItemUnitBO;
 import com.dkl.merchantdb.to.ItemTO;
-import com.dkl.merchantdb.to.ItemUnitTO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
 
 @Controller
@@ -33,23 +32,23 @@ public class ItemController {
 	}
 
 	@RequestMapping("/saveItem")
-	public String saveItem(ItemTO itemTO, @ModelAttribute("companyId") Long companyId, Model model) {
+	public String saveItem(ItemTO itemTO, @ModelAttribute("companyId") Long companyId, RedirectAttributes model) {
 		itemTO.setCompanyId(companyId);
 		int noOfRows = itemBO.createItem(itemTO);
 		if (noOfRows > 0) {
-			model.addAttribute("itemCreationStatus", "Item has been inserted successfully");
+			model.addAttribute("status", "Item "+itemTO.getItemName()+" has been inserted successfully");
 		}
-		return "createItem";
+		return "redirect:success";
 	}
 
 	@RequestMapping(value="/getWeight")
 	@ResponseBody
-	public ItemUnitTO  getWeight(@RequestParam String unitName, @ModelAttribute("companyId") Long companyId) {
+	public Long  getWeight(@RequestParam String unitName, @ModelAttribute("companyId") Long companyId) {
 		System.out.println(unitName+"==============="+companyId);
-		ItemUnitTO itemUnitTO = itemUnitBO.getWeight(unitName, companyId);
-		System.out.println(itemUnitTO.getUnitId()+"===============");
+		Long weight = itemUnitBO.getWeight(unitName, companyId);
+		System.out.println(weight+"===============");
 		//ResponseEntity<String> return new ResponseEntity<String>(headers, HttpStatus.OK);
-		return itemUnitTO;
+		return weight;
 	}
 
 	// @RequestMapping("/saveItemUnit")

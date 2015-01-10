@@ -42,7 +42,7 @@ public class ItemDAO implements IItemDAO {
 		return jdbcTemplate.update(CREATE_ITEM, itemTO.getCompanyId(), itemTO.getItemId(), 
 				itemTO.getItemName(),itemTO.getUnitId(), itemTO.getUnitName(),itemTO.getItemNoOfKgs(),itemTO.getVat(),
 				itemTO.getSalesTaxExcemption(),	itemTO.getTownCoolie(), itemTO.getOutOfTownCoolie(), itemTO.getEetaCoolie(),
-				itemTO.getUnloadingCoolie(), itemTO.getPricePer());
+				itemTO.getUnloadingCoolie(), Double.parseDouble(itemTO.getPricePer()));
 	}
 
 	@Override

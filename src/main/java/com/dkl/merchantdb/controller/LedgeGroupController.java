@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.LedgGroupBO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
@@ -30,11 +31,12 @@ public class LedgeGroupController {
 	}
 	
 	@RequestMapping(value="/saveLedgerGroup")
-	public String saveLedgerGroup(LedgGroupTO ledgGroupTO,@ModelAttribute("companyId")Long companyId){
+	public String saveLedgerGroup(LedgGroupTO ledgGroupTO,@ModelAttribute("companyId")Long companyId,RedirectAttributes redirectAttributes){
 		System.out.println("CreateLedgerGroup:companyId:"+companyId);
 		ledgGroupTO.setCompanyID(companyId);
 		ledgGroupBO.create(ledgGroupTO);
-		return "viewLedgerGroup";
+		redirectAttributes.addAttribute("status", "Ledger Group "+ledgGroupTO.getLedgGroupName() + " has been created successfully.");
+		return "redirect:success";
 	}
 	
 	@RequestMapping(value="/viewLedgerGroup")

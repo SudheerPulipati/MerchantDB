@@ -36,6 +36,9 @@
 				$("#weight").val(response);
 			});
 		});
+		$("#pricePerUnitName").click(function(){
+			$(this).val($("#weight").val());
+		});
 	});
 </script>
 </head>
@@ -70,7 +73,7 @@
 			</tr>
 			<tr>
 				<td>Price per</td>
-				<td colspan="2"><input type="radio" name="pricePer" value="10Kg">10Kg<input type="radio" name="pricePer" value="Unit Name">Unit
+				<td colspan="2"><input type="radio" name="pricePer" value="10">10Kg<input type="radio" name="pricePer" value="" id="pricePerUnitName">Unit
 					Name</td>
 			</tr>
 			<tr>

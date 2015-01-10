@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.StockPointBO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
@@ -30,10 +31,13 @@ public class StockPointController {
 
 	@RequestMapping(value = "/saveStockPoint")
 	public String saveStockPoint(StockPointTO stockPointTO,
-			@ModelAttribute("companyId") Long companyId) {
+			@ModelAttribute("companyId") Long companyId,RedirectAttributes redirectAttributes) {
 		stockPointTO.setCompanyID(companyId);
-		stockPointBo.create(stockPointTO);
-		return "viewStockPoint";
+		int noOfRows = stockPointBo.create(stockPointTO);
+		if(noOfRows>0){
+			redirectAttributes.addAttribute("status", "StockPoint "+stockPointTO.getStockPointName()+" has been created successfully.");
+		}
+		return "redirect:success";
 	}
 
 	@RequestMapping(value = "/viewStockPoint")

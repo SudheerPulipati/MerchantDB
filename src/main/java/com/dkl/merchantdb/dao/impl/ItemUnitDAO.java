@@ -25,7 +25,7 @@ public class ItemUnitDAO implements IItemUnitDAO {
 	
 	private static final String DELETE_ITEM_UNIT = "DELETE FROM UNIT WHERE UNIT_ID=?";
 
-	private static final String GET_WEIGHT = "SELECT * FROM UNIT WHERE UNIT_NAME=? AND COMPANY_ID=?";
+	private static final String GET_WEIGHT = "SELECT UNIT_NO_OF_KG FROM UNIT WHERE UNIT_NAME=? AND COMPANY_ID=?";
 
 	@Override
 	public int createItemUnit(ItemUnitTO itemUnitTO) {
@@ -50,12 +50,12 @@ public class ItemUnitDAO implements IItemUnitDAO {
 	}
 
 	@Override
-	public ItemUnitTO getWeight(String unitName, Long companyId) {
+	public Long getWeight(String unitName, Long companyId) {
 		try{
-			return jdbcTemplate.queryForObject(GET_WEIGHT, new Object[] {unitName,companyId},new ItemUnitMapper());
+			return jdbcTemplate.queryForObject(GET_WEIGHT, new Object[] {unitName,companyId},Long.class);
 		}catch (EmptyResultDataAccessException e) {
 			System.out.println("No Such Unit Available..."+unitName+"...for company id..."+companyId);
-			return new ItemUnitTO();
+			return 0L;
 		}
 	}
 

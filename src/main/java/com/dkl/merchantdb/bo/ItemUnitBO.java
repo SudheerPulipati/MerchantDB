@@ -35,7 +35,7 @@ public class ItemUnitBO {
 		return itemUnitDAO.deleteItemUnit(itemUnitId);
 	}
 
-	public ItemUnitTO getWeight(String unitName, Long companyId) {
+	public Long getWeight(String unitName, Long companyId) {
 		return itemUnitDAO.getWeight(unitName,companyId);
 	}
 	

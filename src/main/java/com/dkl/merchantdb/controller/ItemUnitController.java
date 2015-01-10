@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.ItemUnitBO;
 import com.dkl.merchantdb.to.ItemUnitTO;
@@ -29,13 +29,13 @@ public class ItemUnitController {
 	}
 
 	@RequestMapping("/saveItemUnit")
-	public String saveItemUnit(ItemUnitTO itemUnitTO, @ModelAttribute("companyId") Long companyId, Model model) {
+	public String saveItemUnit(ItemUnitTO itemUnitTO, @ModelAttribute("companyId") Long companyId, RedirectAttributes redirectAttributes) {
 		itemUnitTO.setCompanyId(companyId);
 		int noOfRows = itemUnitBO.createItemUnit(itemUnitTO);
 		if (noOfRows > 0) {
-			model.addAttribute("success", "Item Unit has been created successfully");
+			redirectAttributes.addAttribute("status", "Item Unit "+itemUnitTO.getUnitName()+" has been created successfully");
 		}
-		return "createItemUnit";
+		return "redirect:success";
 	}
 
 	@RequestMapping("/viewItemUnit")

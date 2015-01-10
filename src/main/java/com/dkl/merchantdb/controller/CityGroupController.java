@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.CityGroupBO;
 import com.dkl.merchantdb.to.CityGroupTO;
@@ -30,10 +31,11 @@ public class CityGroupController {
 	}
 	
 	@RequestMapping(value="/saveCityGroup")
-	public String saveCityGroup(CityGroupTO cityGroupTO,@ModelAttribute("companyId")Long companyId){
+	public String saveCityGroup(CityGroupTO cityGroupTO,@ModelAttribute("companyId")Long companyId,RedirectAttributes redirectAttributes){
 		cityGroupTO.setCompanyID(companyId);
 		cityGroupBO.create(cityGroupTO);
-		return "viewCityGroup";
+		redirectAttributes.addAttribute("status", "Citygroup "+cityGroupTO.getCityGroupName()+" has been completed successfully.");
+		return "redirect:success";
 	}
 	
 	@RequestMapping(value="/viewCityGroup")
