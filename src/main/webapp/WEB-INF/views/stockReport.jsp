@@ -38,9 +38,9 @@
 			$("#salesToDate").datepicker({
 			    dateFormat : 'yy-mm-dd'
 			});
-			//$("#stockReportContainer").hide();
+			$("#stockReportContainer").hide();
 			$("#showSales").click(function() {
-			    $("#salesReportContainer").show();
+			    $("#stockReportContainer").show();
 			    $('#stockReport').dataTable({
 				"destroy" : true,
 				"processing" : true,
