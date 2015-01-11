@@ -18,12 +18,24 @@ public class PurchaseReportDAO implements IPurchaseReportDAO {
 	weight_difference price_per price1 price2 amount1 amount2 total_amount firm_id firm_name creation_date modified_date
 	 */
 
-	private static final String READ_ALL_PURCHASE_RECORDS_QUERY = "SELECT distinct D.firm_name,B.item_batch_name,B.item_name,C.modified_date,item_stock_point_id,stock_purchase_qty,stock_transfer_in,stock_transfer_out from fin_book A,item_stock_register B,item_transaction C,ledger D where A.fib_id = B.fib_id = C.fib_id = D.fib_id and A.fib_id = ? and date(C.modified_date) between ? and ?";
+	private static final String READ_ALL_PURCHASE_RECORDS_QUERY = "SELECT distinct D.firm_name,"
+																				+ "B.item_batch_name"
+																				+ ",B.item_name,"
+																				+ "C.modified_date"
+																				+ ",B.item_stock_point_id"
+																				+ ",B.stock_purchase_qty"
+																				+ ",B.stock_transfer_in"
+																				+ ",B.stock_transfer_out "
+																				+ "from dklf.fin_book A,dklf.item_stock_register B,dklf.item_transaction C,dklf.ledger D "
+																				+ "where A.fib_id = B.fib_id = C.fib_id = D.fib_id and A.fib_id = ? "
+																				+ "and C.MODIFIED_DATE between ? and ?";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<PurchaseReportTO> readAllPurchaseEntries(String finBookId, String startDate, String endDate) {
+		System.out.println(READ_ALL_PURCHASE_RECORDS_QUERY);
+		System.out.println(finBookId+" : "+startDate+" : "+endDate);
 		return jdbcTemplate.query(READ_ALL_PURCHASE_RECORDS_QUERY, new PurchaseReportMapper(),finBookId,startDate,endDate);
 	}
 

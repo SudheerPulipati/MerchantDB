@@ -17,7 +17,16 @@ public class StockReportDAO implements IStockReportDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	private static final String READ_ALL_QUERY = "SELECT item_ledger.ITEM_ID, item_ledger.ITEM_GROUP_NAME, item_stock_point.ITEM_BATCH_ID, item_stock_point.STOCK_POINT_NAME, item_stock_point.STOCK_OPEN_QTY,item_stock_point.STOCK_PURCHASE_QTY,item_stock_point.STOCK_SALE_QTY,item_stock_point.STOCK_ON_HAND FROM item_ledger JOIN item_stock_point on item_ledger.ITEM_ID = item_stock_point.ITEM_ID";
+	private static final String READ_ALL_QUERY = "SELECT item_ledger.ITEM_GROUP_NAME"
+												    + ", item_ledger.ITEM_NAME"
+												    + ", item_stock_point.ITEM_BATCH_ID"
+												    + ", item_stock_point.STOCK_POINT_NAME"
+												    + ", item_stock_point.STOCK_OPEN_QTY"
+												    + ",item_stock_point.STOCK_PURCHASE_QTY"
+												    + ",item_stock_point.STOCK_SALE_QTY"
+												    + ",item_stock_point.STOCK_ON_HAND "
+												    + "FROM dklf.item_ledger JOIN dklf.item_stock_point "
+												    + "on item_ledger.ITEM_ID = item_stock_point.ITEM_ID";
 
 	private static final String READ_QUERY = "";
 
@@ -29,8 +38,8 @@ public class StockReportDAO implements IStockReportDAO {
 
 	@Override
 	public List<StockReportTO> readAll() {
-		//return jdbcTemplate.query(READ_ALL_QUERY, new StockReportMapper());
-		return populateReport();
+		return jdbcTemplate.query(READ_ALL_QUERY, new StockReportMapper());
+		//return populateReport();
 	}
 	
 	//FIXME due to unavailable of datat in database this method is used to show data.This should be deleted  
