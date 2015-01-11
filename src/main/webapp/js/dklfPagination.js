@@ -16,6 +16,8 @@ function getTotRows() {
 function loadPagination(totalRows) {
 	console.log("Total Rows to be paginated::"+totalRows);
 	setTotRows(totalRows);
+	startIndex =0;
+	endIndex = itemsPerPage;
 	if (getTotRows() <= itemsPerPage) {
 		hidePagination(getTotRows());
 	} else {

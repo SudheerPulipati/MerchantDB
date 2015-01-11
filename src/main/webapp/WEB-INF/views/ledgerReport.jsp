@@ -1,6 +1,20 @@
 <script type="text/javascript" src="./js/dklfPagination.js"></script>
 <script type="text/javascript" src="./js/report/ledgerReportScript.js"></script>
-
+ 
+<table style="width: 100%">
+	<tr>
+		<td><input type="radio" name="ledgerReportDate" value="onDate"
+			id="ledgerReportDate">On Date &nbsp; <input type="radio"
+			name="ledgerReportDate" value="betweenDate" id="ledgerReportDate">Between
+			Date</td>
+		<td><span id="lrFromDateLbl">Date:</span><input type="text"
+			id="ledgerReportFromDate">&nbsp; <span id="lrToDateLbl"
+			style="display: none">To:</span><input type="text"
+			id="ledgerReportToDate" style="display: none"></td>
+		<td><input type="button" value="Show" id="showLedgerReport">
+		</td>
+	</tr>
+</table>
 <div id="ledgerReportContainer">
 <input type="checkbox" name="applyFilter" id="applyFilter">Apply Filter<br/><br/>
 <fieldset id="filterReport" style="display:none">

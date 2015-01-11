@@ -2,6 +2,34 @@ var globalResponse = "";
 $(document)
 		.ready(
 				function() {
+					$("input[name='ledgerReportDate']").click(
+							function() {
+								if ($('input:radio[name=ledgerReportDate]:checked')
+										.val() == "onDate") {
+									$("#lrFromDateLbl").html("Date ");
+									$("#lrToDateLbl").hide();
+									$("#ledgerReportToDate").val("");
+									$("#ledgerReportToDate").hide();
+								} else if ($(
+										'input:radio[name=ledgerReportDate]:checked')
+										.val() == "betweenDate") {
+									$("#lrFromDateLbl").html("From ");
+									$("#lrToDateLbl").html("To ");
+									$("#lrToDateLbl").show();
+									$("#ledgerReportToDate").show();
+									$("#ledgerReportFromDate").val("");
+								}
+							});
+					$("#ledgerReportFromDate").datepicker({
+						dateFormat : 'yy-mm-dd'
+					});
+					$("#ledgerReportToDate").datepicker({
+						dateFormat : 'yy-mm-dd'
+					});
+					$("#ledgerReportContainer").hide();
+					$("#showLedgerReport").click(function() {
+						$("#ledgerReportContainer").show();
+					});
 					$.ajax({
 						"url" : "ledgerReportJSON",
 						"type" : "POST",
