@@ -52,6 +52,9 @@ $(document)
 							}
 						}
 					}
+					function getRowColour(rowNum){
+						return 0 === rowNum%2?"#CCC":"#FFF";
+					}
 					function initTable(response) {
 						$("#ledgerReportTable tbody").empty();
 						var totalMainRow = 0;
@@ -60,7 +63,7 @@ $(document)
 							var newRow = true;
 							var rowSpan = response[index].ledgerReportDetailTOList.length;
 							for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
-								rowContent += '<tr>';
+								rowContent += '<tr style="background:'+getRowColour(index)+'">';
 								if (newRow == true) {
 									rowContent += '<td rowspan = "' + rowSpan
 											+ '" class="rowNum' + index + '">'
@@ -112,7 +115,7 @@ $(document)
 								var newRow = true;
 								var rowSpan = response[index].ledgerReportDetailTOList.length;
 								for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
-									rowContent += '<tr>';
+									rowContent += '<tr style="background:'+getRowColour(index)+'">';
 									if (newRow == true) {
 										rowContent += '<td rowspan = "'
 												+ rowSpan + '">'
@@ -165,7 +168,7 @@ $(document)
 								var newRow = true;
 								var rowSpan = response[index].ledgerReportDetailTOList.length;
 								for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
-									rowContent += '<tr>';
+									rowContent += '<tr style="background:'+getRowColour(index)+'">';
 									if (newRow == true) {
 										rowContent += '<td rowspan = "'
 												+ rowSpan + '">'
@@ -219,7 +222,7 @@ $(document)
 								var newRow = true;
 								var rowSpan = response[index].ledgerReportDetailTOList.length;
 								for (var innerIndex = 0; innerIndex < rowSpan; innerIndex++) {
-									rowContent += '<tr>';
+									rowContent += '<tr style="background:'+getRowColour(index)+'">';
 									if (newRow == true) {
 										rowContent += '<td rowspan = "'
 												+ rowSpan + '">'

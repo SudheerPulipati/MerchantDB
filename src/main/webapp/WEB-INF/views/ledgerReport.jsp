@@ -33,13 +33,13 @@
 	</fieldset>
 	<div id="ledgerReportFilter"></div>
 	<style type="text/css">
-#ledgerReportTable tbody tr:nth-child(even) {
+/* #ledgerReportTable tbody tr:nth-child(even) {
 	background: #CCC
 }
 
 #ledgerReportTable tbody tr:nth-child(odd) {
 	background: #FFF
-}
+} */
 
 #ledgerReportTable td {
 	border-right: 1px solid;
