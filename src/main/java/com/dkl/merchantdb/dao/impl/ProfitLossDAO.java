@@ -13,13 +13,18 @@ import com.dkl.merchantdb.to.ProfitLossTO;
 @Component
 public class ProfitLossDAO implements IProfitLossDAO {
 
-	private static final String PROFIT_LOSS_RECORDS_QUERY = "SELECT A.LEDGER_NAME,A.LEDGER_CR_DR,A.LEDGER_AMOUNT FROM LEDGER A,FIN_BOOK B WHERE A.FIB_ID = B.FIB_ID and A.FIB_ID = ? and date(A.MODIFIED_DATE) BETWEEN ? AND ?";
+	private static final String PROFIT_LOSS_RECORDS_QUERY = "SELECT A.LEDGER_NAME"
+																+ ",A.LEDGER_CR_DR"
+																+ ",A.LEDGER_AMOUNT "
+																+ "FROM dklf.ledger A,dklf.FIN_BOOK B "
+																+ "WHERE A.FIB_ID = B.FIB_ID and A.FIB_ID = ? and A.MODIFIED_DATE BETWEEN ? AND ?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<ProfitLossTO> readAllProfitLossRecords(String bookId, String startDate, String endDate) {
+		System.out.println(PROFIT_LOSS_RECORDS_QUERY);
 		return jdbcTemplate.query(PROFIT_LOSS_RECORDS_QUERY, new ProfitLossMapper(), bookId, startDate, endDate);
 	}
 

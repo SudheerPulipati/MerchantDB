@@ -13,7 +13,11 @@ import com.dkl.merchantdb.to.TrailBalanceTO;
 @Component
 public class TrailBalanceReportDAO implements ITrailBalanceReportDAO {
 
-	private static final String TRAIL_BAL_RECORDS_QUERY = "SELECT A.LEDGER_NAME,A.LEDGER_CR_DR,A.LEDGER_AMOUNT FROM LEDGER A,FIN_BOOK B WHERE A.FIB_ID = B.FIB_ID and A.FIB_ID = ? and date(A.MODIFIED_DATE) BETWEEN ? AND ?";
+	private static final String TRAIL_BAL_RECORDS_QUERY = "SELECT A.LEDGER_NAME"
+															  + ",A.LEDGER_CR_DR"
+															  + ",A.LEDGER_AMOUNT "
+															  + "FROM dklf.LEDGER A,dklf.FIN_BOOK B "
+															  + "WHERE A.FIB_ID = B.FIB_ID and A.FIB_ID = ? and A.MODIFIED_DATE BETWEEN ? AND ?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
