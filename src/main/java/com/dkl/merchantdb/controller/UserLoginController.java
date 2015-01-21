@@ -13,7 +13,7 @@ import com.dkl.merchantdb.bo.UserLoginBO;
 import com.dkl.merchantdb.to.UserLoginTO;
 
 @Controller
-@SessionAttributes({ "username", "companyList","userRole" })
+@SessionAttributes({ "username", "companyList", "userRole" })
 public class UserLoginController {
 
 	@Autowired
@@ -21,8 +21,8 @@ public class UserLoginController {
 
 	@Autowired
 	private CompanyBO companyBO;
-	
-	//@ExcludeClassInterceptors
+
+	// @ExcludeClassInterceptors
 	@RequestMapping(value = "/processLogin")
 	public String processLogin(UserLoginTO userLoginTO, Model model) {
 		System.out.println("userLoginController" + userLoginTO.getUsername());
@@ -30,17 +30,12 @@ public class UserLoginController {
 		UserLoginTO userLoginResponse = userLoginBO.getUserInfo(userLoginTO.getUsername(), userLoginTO.getPassword());
 		if (userLoginResponse != null) {
 			List<String> userRoles = userLoginBO.getUserRoles(userLoginResponse.getUserID());
-//			session.setAttribute("username", userLoginTO.getUsername());
-//			session.setAttribute("companyList", companyBO.viewCompanyList());
+			// session.setAttribute("username", userLoginTO.getUsername());
+			// session.setAttribute("companyList", companyBO.viewCompanyList());
 			model.addAttribute("username", userLoginTO.getUsername());
 			model.addAttribute("userRole", userRoles.get(0));
-			if (userRoles.contains("admin")) {
-				model.addAttribute("companyList", companyBO.viewCompanyList());
-				viewName = "home";
-			} else{
-				viewName = "home";
-			}
-
+			model.addAttribute("companyList", companyBO.viewCompanyList());
+			viewName = "home";
 		} else {
 			viewName = "login";
 			model.addAttribute("error", "Invalid Credentials");
@@ -48,13 +43,13 @@ public class UserLoginController {
 		return viewName;
 	}
 
-//	@RequestMapping(value = "/logout")
-//	public String logout(HttpServletRequest request) {
-//		System.out.println("You have been successfully logged out");
-//		HttpSession session = request.getSession(false);
-//	    session.invalidate();
-//		//request.getSession().setAttribute("username", null);
-//		//request.getSession().removeAttribute("username");
-//		return "login";
-//	}
+	// @RequestMapping(value = "/logout")
+	// public String logout(HttpServletRequest request) {
+	// System.out.println("You have been successfully logged out");
+	// HttpSession session = request.getSession(false);
+	// session.invalidate();
+	// //request.getSession().setAttribute("username", null);
+	// //request.getSession().removeAttribute("username");
+	// return "login";
+	// }
 }

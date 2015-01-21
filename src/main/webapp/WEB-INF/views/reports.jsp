@@ -47,12 +47,83 @@ table {
 	$(function() {
 		$(".tabs").fwd_tabs();
 		$("#cashBook").click();
-		$(".finYear").each(function() {
-			var label = $(this).text(); // It will get current label text
-			$("#"+label).click(function(event) {
-				event.preventDefault();
-				$(".subList_"+label).toggle();
+		var selectedItem = $("#companyId").val();
+		if (selectedItem != null) {
+			$("#" + selectedItem).addClass("companyStyle");
+			$(".companyName_" + selectedItem).css("color", "white");
+			$(".companyEdit_" + selectedItem).css({
+				"color" : "white",
+				"display" : "inline"
 			});
+			$(".companyAdmin_" + selectedItem).css({
+				"color" : "white",
+				"display" : "inline"
+			});
+		}
+		$(".companyName_" + selectedItem).on('mouseenter', function() {
+			$(this).css('color', 'grey');
+		});
+		$(".companyName_" + selectedItem).on('mouseleave', function() {
+			$(this).css('color', 'white');
+		});
+		$(".companyEdit_" + selectedItem).on('mouseenter', function() {
+			$(this).css('color', 'grey');
+		});
+		$(".companyEdit_" + selectedItem).on('mouseleave', function() {
+			$(this).css('color', 'white');
+		});
+		$(".companyAdmin_" + selectedItem).on('mouseenter', function() {
+			$(this).css('color', 'grey');
+		});
+		$(".companyAdmin_" + selectedItem).on('mouseleave', function() {
+			$(this).css('color', 'white');
+		});
+		$(".companyEdit_" + selectedItem).click(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url : 'editCompany',
+				type : 'POST',
+				data : 'companyId=' + $(this).attr('href'),
+				crossDomain : true,
+				success : function(data) {
+					window.location.href = "updateCompany";
+				},
+				error : function() {
+					alert('error');
+				}
+			});
+		});
+		var selectedYear = $("#fbid").val();
+		var temp = "";
+		if (selectedYear != "" ) {
+			$("#" + selectedYear).css({
+				"background" : "#00365B",
+				"color" : "white",
+				"border" : "1px solid #BFA04D"
+			});
+			$(".subList_" + selectedYear).show(500);
+			temp=selectedYear;
+		}
+		
+		$(".finYear").on("click", function(event) {
+			var finYearId = event.currentTarget.id;
+			//if (selectedYear == finYearId) {
+				$("#" + finYearId).css({
+					"background" : "#00365B",
+					"color" : "white",
+					"border" : "1px solid #BFA04D"
+				});
+				$("#" + temp).css({
+					"background" : "",
+					"color" : "",
+					"border" : ""
+				});
+				event.preventDefault();
+				$(".subList_" + finYearId).show(500);
+				$(".subList_" + temp).hide(500);
+				temp = finYearId;
+
+			//}
 		});
 	});
 </script>

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CheckUserInterceptor implements HandlerInterceptor {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		String requestUri = request.getRequestURI();
 		System.out.println("PATH::::" + requestUri);
 		HttpSession session = request.getSession();
@@ -27,16 +27,19 @@ public class CheckUserInterceptor implements HandlerInterceptor {
 
 		if (!(requestUri.equals("/merchantdb/") || requestUri.equals("/merchantdb/processLogin")
 				|| requestUri.equals("/merchantdb/error") || requestUri.equals("/merchantdb/logout"))) {
-
-			if (session.getAttribute("username") != null) {
-				String role = (String) session.getAttribute("userRole");
-				System.out.println("UserRole::" + role);
-				if ("clerk".equals(role) && !clerkUrlList.contains(requestUri.trim())) {
-					response.getWriter().write("<h1>You dont have enough previliges to view this page</h1>");
-					response.sendRedirect("error");
+			try {
+				if (session.getAttribute("username") != null) {
+					String role = (String) session.getAttribute("userRole");
+					System.out.println("UserRole::" + role);
+					if ("clerk".equals(role) && !clerkUrlList.contains(requestUri.trim())) {
+						response.getWriter().write("<h1>You dont have enough previliges to view this page</h1>");
+						response.sendRedirect("error");
+					}
+				} else {
+					response.sendRedirect("/merchantdb");
 				}
-			} else {
-				response.sendRedirect("/merchantdb");
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return true;

@@ -25,7 +25,7 @@ import com.dkl.merchantdb.to.JsonTemplateTO;
 import com.google.gson.Gson;
 
 @Controller
-@SessionAttributes({ "companyId", "financialYears", "companyList" })
+@SessionAttributes({ "companyId", "financialYears", "companyList", "selectedItem" })
 public class CompanyController {
 
 	@Autowired
@@ -38,24 +38,25 @@ public class CompanyController {
 	public String createCompany() {
 		return "createCompany";
 	}
-	
+
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.GET })
 	public String saveCompany(Model model) {
 		return "createCompany";
 	}
 
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.POST })
-	public String saveCompany(CompanyTO companyTO, HttpSession session,RedirectAttributes redirectAttributes) {
+	public String saveCompany(CompanyTO companyTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		CompanyTO companyToResp = companyBO.createCompany(companyTO);
 
-		if (companyToResp!=null) {
-			List<CompanyTO> companyList = (List<CompanyTO>)session.getAttribute("companyList");
-			if(CollectionUtils.isEmpty(companyList)){
+		if (companyToResp != null) {
+			List<CompanyTO> companyList = (List<CompanyTO>) session.getAttribute("companyList");
+			if (CollectionUtils.isEmpty(companyList)) {
 				companyList = new ArrayList<CompanyTO>();
 			}
 			companyList.add(companyToResp);
 			session.setAttribute("companyList", companyList);
-			redirectAttributes.addAttribute("status", "Company " + companyTO.getCompanyName() + " has been created successfully.");
+			redirectAttributes.addAttribute("status", "Company " + companyTO.getCompanyName()
+					+ " has been created successfully.");
 		}
 		return "redirect:success";
 	}
@@ -64,7 +65,8 @@ public class CompanyController {
 	public String editCompany() {
 		return "updateCompany";
 	}
-	@RequestMapping(value = "/editCompany",method = { RequestMethod.POST })
+
+	@RequestMapping(value = "/editCompany", method = { RequestMethod.POST })
 	public String viewCompany(Model model, @RequestParam("companyId") String companyId) {
 		model.addAttribute("companyId", Long.parseLong(companyId));
 		model.addAttribute("companyObj", companyBO.viewCompany(Long.parseLong(companyId)));
@@ -77,15 +79,18 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/updateCompany", method = { RequestMethod.POST })
-	public String updateCompany(CompanyTO companyTO, @ModelAttribute("companyId") Long companyId,RedirectAttributes redirectAttributes) {
+	public String updateCompany(CompanyTO companyTO, @RequestParam("companyId") String companyId, Model model,
+			RedirectAttributes redirectAttributes) {
 		System.out.println("======updateCompany========" + companyTO);
-		companyTO.setCompanyID(companyId);
+		model.addAttribute("selectedItem", companyId);
+		companyTO.setCompanyID(Long.parseLong(companyId));
 		int noOfRowsUpdated = companyBO.updateCompany(companyTO);
 		if (noOfRowsUpdated > 0) {
 			redirectAttributes.addAttribute("status", "Company Details Updated Successfully.");
 		}
 		return "redirect:success";
 	}
+
 	@RequestMapping(value = "/viewCompany")
 	@ResponseBody
 	public String viewCompany() {
@@ -98,14 +103,21 @@ public class CompanyController {
 		// return "viewCompany";
 		return new Gson().toJson(jsonTemplateTO);
 	}
-	
-	
 
 	@RequestMapping(value = "/adminView")
 	public String adminView(Model model, @RequestParam("companyId") String companyId) {
-		model.addAttribute("companyId", Long.parseLong(companyId));
+		model.addAttribute("companyList", companyBO.viewCompanyList());
+		model.addAttribute("selectedItem", companyId);
 		model.addAttribute("financialYears", financialBookBO.readAllByFK(Long.parseLong(companyId)));
 		return "companyAdminView";
+	}
+
+	@RequestMapping(value = "/viewFinYears")
+	public String viewFinYears(Model model, @RequestParam("companyId") String companyId) {
+		model.addAttribute("companyId", Long.parseLong(companyId));
+		model.addAttribute("selectedItem", companyId);
+		model.addAttribute("financialYears", financialBookBO.readAllByFK(Long.parseLong(companyId)));
+		return "viewFinYears";
 	}
 
 	@RequestMapping("/viewCompanyJSON")
@@ -115,14 +127,15 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/deleteCompany", method = { RequestMethod.POST })
-	public String deleteCompany(@RequestParam("companyId") String companyId, HttpSession session,final RedirectAttributes redirectAttributes) {
+	public String deleteCompany(@RequestParam("companyId") String companyId, HttpSession session,
+			final RedirectAttributes redirectAttributes) {
 		System.out.println("In Controller");
 		List<CompanyTO> companyList = null;
-		if(companyBO.deleteCompany(companyId)>0){
-			companyList = (List<CompanyTO>)session.getAttribute("companyList");
+		if (companyBO.deleteCompany(companyId) > 0) {
+			companyList = (List<CompanyTO>) session.getAttribute("companyList");
 			Iterator<CompanyTO> iterator = companyList.iterator();
-			while(iterator.hasNext()){
-				if(iterator.next().getCompanyID() == Long.parseLong(companyId)){
+			while (iterator.hasNext()) {
+				if (iterator.next().getCompanyID() == Long.parseLong(companyId)) {
 					iterator.remove();
 				}
 			}
@@ -136,5 +149,5 @@ public class CompanyController {
 	public String deleteCompany() {
 		return "createCompany";
 	}
-	
+
 }

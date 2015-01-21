@@ -15,7 +15,7 @@ public class ReportsMapper implements RowMapper<CashBookTO> {
 		CashBookTO cashBookTO = new CashBookTO();
 		cashBookTO.setPartyName(resultSet.getString("firm_name"));
 		cashBookTO.setModifiedDate(resultSet.getTimestamp("modified_date"));
-		//cashBookTO.setRemarks(resultSet.getString("narration"));
+		cashBookTO.setRemarks("narration");
 		cashBookTO.setAction("Need to set");
 		if (StringUtils.equalsIgnoreCase(resultSet.getString("ledger_cr_dr"), "cr")) {
 			cashBookTO.setCredit(resultSet.getDouble("ledger_amount"));

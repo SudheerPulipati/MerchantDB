@@ -45,6 +45,10 @@
 	<definition name="companyAdminView" extends="base">
 		<put-attribute name="title" value="Admin View" />
 	</definition>
+	<definition name="viewFinYears" extends="base">
+		<put-attribute name="title" value="Financial Years" />
+		<put-attribute name="beforeBody" value="" />
+	</definition>
 	<definition name="viewCompany" extends="base">
 		<put-attribute name="title" value="View City Group" />
 		<put-attribute name="body" value="/WEB-INF/views/viewCompany.jsp" />
