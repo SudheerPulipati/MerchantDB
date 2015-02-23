@@ -5,13 +5,13 @@
 		align="left" />
 </div>
 
-<form action="/merchantdb/saveLedgerGroup" method="post">
+<form action="/merchantdb/saveLedgerGroup" method="post" id="createLedgerForm">
 
 	<p>${partyCreationStatus}</p>
 	<table>
 		<tr>
 			<td>Group Name</td>
-			<td><input type="text" name="ledgGroupName"></td>
+			<td><input type="text" name="ledgGroupName" id="ledgGroupName"></td>
 		</tr>
 		<tr>
 			<td>Group Type</td>
