@@ -85,4 +85,17 @@ $(function() {
 		
 		}
 	});
+	$("#createLedgerForm").validate({
+		rules: {
+			ledgGroupName: {
+				required : true,
+				maxlength : 20
+			}
+		},
+		messages : {
+			ledgGroupName : {
+				required : "Please enter valid LedgerGroup name."
+			},
+		}
+	});
 });
