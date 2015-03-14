@@ -1,5 +1,7 @@
 package com.dkl.merchantdb.to;
 
+import java.util.List;
+
 public class CompanyTO extends MerchantBaseTO{
 
 	private static final long serialVersionUID = -801728705692238686L;
@@ -27,6 +29,16 @@ public class CompanyTO extends MerchantBaseTO{
 	String creationDate;
 
 	String modifiedDate;
+	
+	List<FirmTO> firmList;
+
+	public List<FirmTO> getFirmList() {
+		return firmList;
+	}
+
+	public void setFirmList(List<FirmTO> firmList) {
+		this.firmList = firmList;
+	}
 
 	public Long getCompanyID() {
 		return companyID;

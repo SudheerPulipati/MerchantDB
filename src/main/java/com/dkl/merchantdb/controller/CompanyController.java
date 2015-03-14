@@ -45,10 +45,9 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.POST })
-	public String saveCompany(CompanyTO companyTO, HttpSession session, RedirectAttributes redirectAttributes) {
-		CompanyTO companyToResp = companyBO.createCompany(companyTO);
-
-		if (companyToResp != null) {
+	public String saveCompany(CompanyTO companyTO, HttpSession session, RedirectAttributes redirectAttributes, @RequestParam("firmNames")List<String> firmNames) {
+		CompanyTO companyToResp = companyBO.createCompany(companyTO, firmNames);
+		/*if (companyToResp != null) {
 			List<CompanyTO> companyList = (List<CompanyTO>) session.getAttribute("companyList");
 			if (CollectionUtils.isEmpty(companyList)) {
 				companyList = new ArrayList<CompanyTO>();
@@ -57,8 +56,9 @@ public class CompanyController {
 			session.setAttribute("companyList", companyList);
 			redirectAttributes.addAttribute("status", "Company " + companyTO.getCompanyName()
 					+ " has been created successfully.");
-		}
-		return "redirect:success";
+		}*/
+		//return "redirect:success";
+		return "createCompany";
 	}
 
 	@RequestMapping(value = "/editCompany", method = { RequestMethod.GET })
@@ -81,7 +81,6 @@ public class CompanyController {
 	@RequestMapping(value = "/updateCompany", method = { RequestMethod.POST })
 	public String updateCompany(CompanyTO companyTO, @RequestParam("companyId") String companyId, Model model,
 			RedirectAttributes redirectAttributes) {
-		System.out.println("======updateCompany========" + companyTO);
 		model.addAttribute("selectedItem", companyId);
 		companyTO.setCompanyID(Long.parseLong(companyId));
 		int noOfRowsUpdated = companyBO.updateCompany(companyTO);
@@ -123,6 +122,7 @@ public class CompanyController {
 	@RequestMapping("/viewCompanyJSON")
 	@ResponseBody
 	public String viewReportJSON(@ModelAttribute("companyId") Long companyId) {
+		System.out.println(new Gson().toJson(companyBO.viewCompany(companyId)));
 		return new Gson().toJson(companyBO.viewCompany(companyId));
 	}
 

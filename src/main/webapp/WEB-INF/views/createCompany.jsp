@@ -1,23 +1,4 @@
 <script src="./js/Company.js" type="text/javascript"></script>
-<style type="text/css">
-#yesInd, #noInd {
-	width: 20px;
-	margin: 20px;
-}
-fieldset{
-width:400px
-}
-.deleteFirm{
-padding:5px;
-background-color:#B5B591;
-cursor:pointer;
-float:right
-}
-.firmsTable td{
-border:1px solid;
-padding:6px
-}
-</style>
 <div class="rightContent subMenu">
 	<h4 class="rightHeader">Create Company</h4>
 
@@ -46,7 +27,7 @@ padding:6px
 				<center>
 			 <input type="text" id="firmName">
 			<input type="button" id="addFirmBtn" value="Add Firm"><br />
-			<input type="hidden" id="firmList" value="" />
+			<input type="hidden" id="firmList" name="firmNames" value="" />
 			<fieldset>
 				<legend>Firms:</legend>
 				<table class="firmsTable" cellspacing=5>

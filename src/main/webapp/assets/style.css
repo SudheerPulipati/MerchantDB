@@ -346,3 +346,20 @@ input[type="submit"], input[type="button"], input[type="reset"] {
 	padding: 0 0 0 30px;
 	line-height: 22px;
 }
+#yesInd, #noInd {
+	width: 20px;
+	margin: 20px;
+}
+fieldset{
+width:400px
+}
+.deleteFirm{
+padding:5px;
+background-color:#B5B591;
+cursor:pointer;
+float:right
+}
+.firmsTable td{
+border:1px solid;
+padding:6px
+}

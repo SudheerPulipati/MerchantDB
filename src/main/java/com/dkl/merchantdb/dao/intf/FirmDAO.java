@@ -11,8 +11,10 @@ public interface FirmDAO{
 	FirmTO readFirm(String firmID);
 
 	List<FirmTO> readAllFirms();
-
-	void updateParty(FirmTO firmTO);
+	
+	public List<FirmTO> readAllFirmsByFK(Long companyId);
+	
+	int updateFirm(FirmTO firmTO);
 
 	void deleteParty(String firmID);
 }

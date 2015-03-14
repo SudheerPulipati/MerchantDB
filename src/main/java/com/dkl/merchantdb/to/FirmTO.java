@@ -1,8 +1,8 @@
 package com.dkl.merchantdb.to;
 
 public class FirmTO {
-	private String companyID;
-	private String firmID;
+	private Long companyID;
+	private Long firmID;
 	private String firmName;
 	private String creationDate;
 	private String modifiedDate;
@@ -26,18 +26,27 @@ public class FirmTO {
 	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	public String getCompanyID() {
+	public Long getCompanyID() {
 		return companyID;
 	}
-	public void setCompanyID(String companyID) {
+	public void setCompanyID(Long companyID) {
 		this.companyID = companyID;
 	}
-	public String getFirmID() {
+	public Long getFirmID() {
 		return firmID;
 	}
-	public void setFirmID(String firmID) {
+	public void setFirmID(Long firmID) {
 		this.firmID = firmID;
 	}
-
+	
+	public String toString(){
+		StringBuilder log = new StringBuilder("#Firm Detail#");
+		log.append("Company ID : ").append(this.companyID);
+		log.append("Firm ID : ").append(this.firmID);
+		log.append("Firm Name : ").append(this.firmName);
+		log.append("Creation Date : ").append(this.creationDate);
+		log.append("Modified Date : ").append(this.modifiedDate);
+		return log.toString();
+	}
 	
 }
