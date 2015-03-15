@@ -49,8 +49,13 @@ $(document).ready(function(){
 		var firm = $("#firmName").val();
 		var firmID = Math.floor((Math.random() * 10000) + 1);
 		firmList.push(firmID+":"+firm);
+		companyId = $("#companyId").val();
+		if(window.location.pathname.indexOf("updateCompany") >= 0){
+			insrtFirm(firmID, firm, companyId);
+		}
 		populateFirmTable();
 		$("#firmName").val("");
+		
 	});
 	$(document).on('click', ".deleteFirm" , function(event) {
       event.preventDefault();
@@ -116,6 +121,20 @@ $(document).ready(function(){
 			crossDomain : true,
 			success : function(data) {
 				alert("success");
+			}
+		});
+		
+	}
+	
+	function insrtFirm(firmId,firmName,companyId){
+		alert("hre");
+		$.ajax({
+			url : 'insertFirmByAjax',
+			type : 'POST',
+			data : {companyID:companyId,firmID:firmId,firmName:firmName},
+			crossDomain : true,
+			success : function(data) {
+				alert("hello");
 			}
 		});
 	}

@@ -16,5 +16,5 @@ public interface FirmDAO{
 	
 	int updateFirm(FirmTO firmTO);
 
-	void deleteParty(String firmID);
+	int deleteFirm(String firmID);
 }
