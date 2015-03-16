@@ -29,11 +29,13 @@ public class FirmDAOImpl implements FirmDAO {
 
 	@Override
 	public int createFirm(FirmTO firmTO) {
+		System.out.println(firmTO.getFirmID());
 		return jdbcTemplate.update(
 				INSERT_QUERY,
 				new Object[] {firmTO.getFirmID(),
 						firmTO.getFirmName(), firmTO.getCreationDate(),
 						firmTO.getModifiedDate(), firmTO.getCompanyID() });
+		
 	}
 
 	@Override

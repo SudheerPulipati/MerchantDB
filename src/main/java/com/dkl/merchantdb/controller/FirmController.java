@@ -27,11 +27,10 @@ public class FirmController {
 	}
 	
 	@RequestMapping(value = "/insertFirmByAjax", method = { RequestMethod.POST })
-	public void insertFirm(FirmTO firmTO){
+	public String insertFirm(FirmTO firmTO){
 		firmTO.setFirmID(sequenseGenDAO.getSequenceID("firm_id","firm"));
-		//firmDAO.createFirm(firmTO);
-		System.out.println("#TEST#"+firmTO);
-		 
+		firmDAO.createFirm(firmTO);
+		return "viewFirmJSON"; 
 	}
 	
 	@RequestMapping(value = "/deleteFirmByAjax", method = { RequestMethod.POST })

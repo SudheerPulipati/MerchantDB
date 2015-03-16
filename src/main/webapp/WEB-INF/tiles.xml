@@ -67,7 +67,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/viewCityGroupJSON.jsp" />
 	</definition>
-
+	<definition name="viewFirmJSON" extends="base">
+		<put-attribute name="title" value="JSON" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/viewFirmJSON.jsp" />
+	</definition>
 	<definition name="createLedgerGroup" extends="base">
 		<put-attribute name="title" value="Create Ledger Group" />
 		<put-attribute name="body"

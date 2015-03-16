@@ -136,7 +136,10 @@ $(document).ready(function(){
 			data : {companyID:companyId,firmID:firmId,firmName:firmName},
 			crossDomain : true,
 			success : function(data) {
-				alert("hello");
+				location.reload();
+			},
+			error: function(data) {
+				   
 			}
 		});
 	}
