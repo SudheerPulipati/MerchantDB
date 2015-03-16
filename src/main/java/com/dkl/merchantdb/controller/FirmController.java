@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.dkl.merchantdb.dao.intf.FirmDAO;
 import com.dkl.merchantdb.dao.impl.SequenseGenDAO;
+import com.dkl.merchantdb.dao.intf.FirmDAO;
 import com.dkl.merchantdb.to.FirmTO;
 
 @Controller
@@ -28,7 +28,7 @@ public class FirmController {
 	
 	@RequestMapping(value = "/insertFirmByAjax", method = { RequestMethod.POST })
 	public String insertFirm(FirmTO firmTO){
-		firmTO.setFirmID(sequenseGenDAO.getSequenceID("firm_id","firm"));
+		firmTO.setFirmID(sequenseGenDAO.getSequenceID("firm_id","firm","FIRM"));
 		firmDAO.createFirm(firmTO);
 		return "viewFirmJSON"; 
 	}

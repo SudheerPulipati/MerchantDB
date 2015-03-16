@@ -7,9 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ItemMasterDAO;
-import com.dkl.merchantdb.dao.mapper.ItemMasterLedgerMapper;
 import com.dkl.merchantdb.dao.mapper.ItemMasterMapper;
-import com.dkl.merchantdb.to.ItemMasterLedgerTO;
 import com.dkl.merchantdb.to.ItemMasterTO;
 
 @Repository

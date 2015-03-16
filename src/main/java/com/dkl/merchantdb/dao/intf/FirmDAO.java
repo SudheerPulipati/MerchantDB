@@ -16,5 +16,5 @@ public interface FirmDAO{
 	
 	int updateFirm(FirmTO firmTO);
 
-	int deleteFirm(Long firmID);
+	int deleteFirm(String string);
 }

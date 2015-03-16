@@ -70,7 +70,7 @@ public class FirmDAOImpl implements FirmDAO {
 	}
 
 	@Override
-	public int deleteFirm(Long firmID) {
+	public int deleteFirm(String firmID) {
 		return jdbcTemplate.update(DELETE_FIRM, new Object[] { firmID });
 	}
 }
