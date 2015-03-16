@@ -31,7 +31,7 @@
 			"processing" : true,
 			"pagingType" : "full_numbers",
 			"ajax" : {
-				"url" : "http://localhost:8080/merchantdb/purchaseReportJSON",
+				"url" : "purchaseReportJSON",
 				"type" : "POST",
 				"data" : {
 					startDate: $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val(),

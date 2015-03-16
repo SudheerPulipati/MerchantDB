@@ -15,12 +15,18 @@ public class FinancialBookDAO implements IFinancialBookDAO {
 
 	private static final String READ_ALL_BY_FK_QUERY = "SELECT * FROM FIN_BOOK WHERE COMPANY_ID = ?";
 
+	private static final String READ_MAX_FIN_YEAR = "SELECT MAX(FIB_ID) FROM FIN_BOOK WHERE COMPANY_ID = ?";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<FinancialBookTO> readAllByFk(Long companyId) {
 		return jdbcTemplate.query(READ_ALL_BY_FK_QUERY, new FinancialBookMapper(), companyId);
+	}
+
+	@Override
+	public String getMaxFinYear(long companyID) {
+		return jdbcTemplate.queryForObject(READ_MAX_FIN_YEAR, String.class, companyID);
 	}
 
 }

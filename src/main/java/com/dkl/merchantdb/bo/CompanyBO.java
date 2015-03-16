@@ -11,7 +11,6 @@ import com.dkl.merchantdb.dao.intf.ICompanyDAO;
 import com.dkl.merchantdb.to.CompanyTO;
 import com.dkl.merchantdb.to.FirmTO;
 import com.dkl.merchantdb.util.DklUtil;
-import com.dkl.merchantdb.to.FirmTO;
 @Component
 public class CompanyBO {
 
@@ -29,19 +28,20 @@ public class CompanyBO {
 		companyTO.setCompanyID(sequenseGenDAO.getSequenceID("company_id", "company"));
 		companyTO.setCreationDate(DklUtil.getTodayDate());
 		companyTO.setModifiedDate(DklUtil.getTodayDate());
-		for(String firmDetail : firmNames){
-			FirmTO firmTO = new FirmTO(); 
-			firmTO.setCompanyID(companyTO.getCompanyID());
-			firmTO.setFirmID(sequenseGenDAO.getSequenceID("firm_id", "firm"));
-			firmTO.setFirmName(getFirmName(firmDetail));
-			firmTO.setCreationDate(companyTO.getCreationDate());
-			firmTO.setModifiedDate(companyTO.getModifiedDate());
-			System.out.println(firmTO);
-			firmDAO.createFirm(firmTO);
-		}
 		if(companyDAO.createCompany(companyTO)>0){
 			companyToResponse = companyTO;
 		}
+		for(String firmDetail : firmNames){
+			FirmTO firmTO = new FirmTO(); 
+			firmTO.setCompanyID(companyToResponse.getCompanyID());
+			firmTO.setFirmID(sequenseGenDAO.getSequenceID("firm_id", "firm","FIRM"));
+			firmTO.setFirmName(getFirmName(firmDetail));
+			firmTO.setCreationDate(companyToResponse.getCreationDate());
+			firmTO.setModifiedDate(companyToResponse.getModifiedDate());
+			System.out.println(firmTO);
+			firmDAO.createFirm(firmTO);
+		}
+		
 		return companyToResponse;
 	}
 	

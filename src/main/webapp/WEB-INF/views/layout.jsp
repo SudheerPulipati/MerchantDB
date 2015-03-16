@@ -17,28 +17,6 @@
 <link rel="stylesheet" type="text/css"
 	href="./css/jquery.dataTables.css">
 <script src="./js/jquery-ui.js"></script>
-<script>
-	$(document).ready(function() {
-		
-		// 		var companyId = "";
-		// 		$(".companyName").on("click", function(event) {
-		// 			companyId = event.currentTarget.id;
-		// 			alert($("#companyId").attr("value",companyId));
-		// 		});
-		// 		if ($("#companyId").val() != null) {
-		// 			alert($("#companyId").val());
-		// 			$("#" + companyId).addClass("companyStyle");
-		// 		}
-		
-// 		$(".finYear").each(function() {
-// 			var label = $(this).text(); // It will get current label text
-// 			$("#" + label).click(function(event) {
-// 				event.preventDefault();
-// 				$(".subList_" + label).toggle();
-// 			});
-// 		});
-	});
-</script>
 </head>
 <body>
 	<div class="body">

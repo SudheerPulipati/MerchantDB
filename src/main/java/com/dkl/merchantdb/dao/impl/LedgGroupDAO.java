@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.ILedgGroupDAO;
 import com.dkl.merchantdb.dao.mapper.LedgGroupRowMapper;
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 
 @Repository
 public class LedgGroupDAO implements ILedgGroupDAO {
@@ -31,7 +31,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public void create(LedgGroupTO ledgGroupTO) {
+	public void create(LedgerGroupTO ledgGroupTO) {
 		System.out.println("ID ="+ledgGroupTO.getLedgGroupID());
 		jdbcTemplate.update(
 				CREATE_QUERY,
@@ -45,18 +45,18 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 	}
 
 	@Override
-	public LedgGroupTO read(int ledgGroupID) {
+	public LedgerGroupTO read(String ledgGroupID) {
 		return jdbcTemplate.queryForObject(READ_QUERY,
 				new Object[] { ledgGroupID }, new LedgGroupRowMapper());
 	}
 
 	@Override
-	public List<LedgGroupTO> readAll(Long companyId) {
+	public List<LedgerGroupTO> readAll(Long companyId) {
 		return jdbcTemplate.query(READ_ALL_QUERY, new LedgGroupRowMapper(),companyId);
 	}
 
 	@Override
-	public void update(LedgGroupTO ledgGroupTO) {
+	public void update(LedgerGroupTO ledgGroupTO) {
 		jdbcTemplate.update(
 				UPDATE_QUERY,
 				new Object[] { ledgGroupTO.getLedgGroupName(),
@@ -71,7 +71,7 @@ public class LedgGroupDAO implements ILedgGroupDAO {
 	}
 
 	@Override
-	public List<LedgGroupTO> readByFK(int companyID) {
+	public List<LedgerGroupTO> readByFK(int companyID) {
 		return jdbcTemplate.query(READBY_FK_QUERY, new Object[] { companyID },
 				new LedgGroupRowMapper());
 	}

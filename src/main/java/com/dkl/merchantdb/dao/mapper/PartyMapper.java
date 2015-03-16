@@ -17,13 +17,16 @@ public class PartyMapper implements RowMapper<PartyTO> {
 		partyTO.setCompanyID(resultSet.getLong("COMPANY_ID"));
 		partyTO.setPartyName(resultSet.getString("PARTY_Name"));
 		partyTO.setPartyType(resultSet.getString("PARTY_TYPE"));
-		partyTO.setCityGroup(resultSet.getString("CITY_GROUP_NAME"));
-		partyTO.setLedgerGroupName(resultSet.getString("LEDGER_GRP_NAME"));
-		partyTO.setStreetName(resultSet.getString("PARTY_STREET_NAME"));
-		partyTO.setCity(resultSet.getString("PARTY_CITY"));
-		partyTO.setTelephone(resultSet.getString("PARTY_PHONE"));
+		partyTO.setCityGroupId(resultSet.getString("CITY_GROUP_ID"));
+		partyTO.setLedgerGroupId(resultSet.getString("LEDGER_GRP_ID"));
+		partyTO.setStreetName(resultSet.getString("STREET_NAME"));
+		partyTO.setCity(resultSet.getString("CITY"));
+		partyTO.setTelephone(resultSet.getString("PHONE"));
 		partyTO.setCreationDate(resultSet.getString("created_date"));
 		partyTO.setModifiedDate(resultSet.getString("modified_date"));
+		partyTO.setState(resultSet.getString("STATE"));
+		partyTO.setPincode(resultSet.getInt("PINCODE"));
+		partyTO.setEmail(resultSet.getString("EMAIL"));
 		return partyTO;
 	}
 

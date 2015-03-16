@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dkl.merchantdb.bo.LedgGroupBO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 import com.google.gson.Gson;
 
 @Controller
@@ -25,13 +25,13 @@ public class LedgeGroupController {
 	LedgGroupBO ledgGroupBO;
 	
 	@RequestMapping(value="/createLedgerGroup")
-	public String createLedgerGroup(LedgGroupTO ledgGroupTO){
+	public String createLedgerGroup(LedgerGroupTO ledgGroupTO){
 		
 		return "createLedgerGroup";
 	}
 	
 	@RequestMapping(value="/saveLedgerGroup")
-	public String saveLedgerGroup(LedgGroupTO ledgGroupTO,@ModelAttribute("companyId")Long companyId,RedirectAttributes redirectAttributes){
+	public String saveLedgerGroup(LedgerGroupTO ledgGroupTO,@ModelAttribute("companyId")Long companyId,RedirectAttributes redirectAttributes){
 		System.out.println("CreateLedgerGroup:companyId:"+companyId);
 		ledgGroupTO.setCompanyID(companyId);
 		ledgGroupBO.create(ledgGroupTO);
@@ -51,13 +51,13 @@ public class LedgeGroupController {
 		jsonTemplateTO.setDraw(1);
 		jsonTemplateTO.setRecordsTotal(10);
 		jsonTemplateTO.setRecordsFiltered(10);
-		List<LedgGroupTO> dataList = ledgGroupBO.readAllByFK(companyId);
+		List<LedgerGroupTO> dataList = ledgGroupBO.readAllByFK(companyId);
 		jsonTemplateTO.setData(dataList);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 	
 	@RequestMapping(value="/updateLedgerGroup")
-	public String updateLedgerGroup(LedgGroupTO ledgGroupTO){
+	public String updateLedgerGroup(LedgerGroupTO ledgGroupTO){
 		ledgGroupBO.update(ledgGroupTO);
 		return "viewLedgerGroup";
 	}

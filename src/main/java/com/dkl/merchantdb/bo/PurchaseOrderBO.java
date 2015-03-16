@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dkl.merchantdb.dao.intf.ItemLedgerDAO;
 import com.dkl.merchantdb.dao.intf.ItemStockRegisterDAO;
 import com.dkl.merchantdb.dao.intf.ItemTransactionDAO;
-import com.dkl.merchantdb.dao.intf.LedgerAccountDAO;
+import com.dkl.merchantdb.dao.intf.ILedgerAccountDAO;
 import com.dkl.merchantdb.dao.intf.LedgerDAO;
 import com.dkl.merchantdb.dao.intf.PurchaseOrderDAO;
 import com.dkl.merchantdb.dao.intf.IsequenceGenDAO;
@@ -43,7 +43,7 @@ public class PurchaseOrderBO {
 	private LedgerDAO ledgerDAO;
 	
 	@Autowired
-	private LedgerAccountDAO ledgerAccountDAO;
+	private ILedgerAccountDAO ledgerAccountDAO;
 	
 	@Autowired
 	private IsequenceGenDAO sequenceGenDAO;

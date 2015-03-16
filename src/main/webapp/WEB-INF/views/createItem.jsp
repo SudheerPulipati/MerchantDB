@@ -39,8 +39,20 @@
 		$("#pricePerUnitName").click(function(){
 			$(this).val($("#weight").val());
 		});
+		if($("#status").val()!= "null"){
+			alert($("#status").val());
+		}
 	});
 </script>
+<style>
+.coolie{
+	display:box;
+	border:1px solid blue;
+	text-align:center;
+	background-color:#00365B;
+	color:white
+}
+</style>
 </head>
 <body>
 	<div class="adminMenuTitle">
@@ -67,9 +79,13 @@
 			<tr>
 				<td>Unit Name</td>
 				<td><input type="text" name="unitName" id="unitName"></td>
-				<td>Weight(kgs)</td>
-				<td><input type="text" name="weight" id="weight"
+				<td align="right">Weight(kgs)</td>
+				<td><input type="text" name="itemNoOfKgs" id="weight"
 					style="background: #DBD7D9" readonly></td>
+			</tr>
+			<tr>
+			<td>VAT</td>
+			<td><input type="text" name="vat" id="unitName"></td>
 			</tr>
 			<tr>
 				<td>Price per</td>
@@ -78,14 +94,16 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="button" name="" value="Town"></td>
-				<td><input type="button" name="" value="OutOfTown"></td>
-				<td><input type="button" name="" value="Sale"></td>
+				<td><div class="coolie">Town</div></td>
+				<td><div class="coolie">Out Of Town</div></td>
+				<td><div class="coolie">Eeta</div></td>
+				<td><div class="coolie">Unloading</div></td>
 			</tr>
 			<tr>
 				<td>Coolie</td>
 				<td><input type="text" name="townCoolie"></td>
 				<td><input type="text" name="outOfTownCoolie"></td>
+				<td><input type="text" name="eetaCoolie"></td>
 				<td><input type="text" name="unloadingCoolie"></td>
 			</tr>
 			<tr>
@@ -93,13 +111,6 @@
 				<td colspan="2"><input type="radio" name="salesTaxExcemption"
 					value="Yes">Yes<input type="radio"
 					name="salesTaxExcemption" value="No">No</td>
-			</tr>
-
-			<tr>
-				<td>Display Ind</td>
-				<td colspan="2"><input type="radio" name="displayInd"
-					value="Yes">Yes<input type="radio" name="displayInd"
-					value="No">No</td>
 			</tr>
 
 			<tr>
@@ -112,6 +123,7 @@
 				<td></td>
 			</tr>
 		</table>
+		<input type="hidden" id="status" value='<%=request.getParameter("status") %>'>
 	</form>
 </body>
 </html>

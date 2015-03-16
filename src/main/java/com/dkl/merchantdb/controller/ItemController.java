@@ -3,6 +3,7 @@ package com.dkl.merchantdb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,13 @@ public class ItemController {
 	@RequestMapping("/saveItem")
 	public String saveItem(ItemTO itemTO, @ModelAttribute("companyId") Long companyId, RedirectAttributes model) {
 		itemTO.setCompanyId(companyId);
-		int noOfRows = itemBO.createItem(itemTO);
+		int noOfRows = 0;
+		try{
+			noOfRows = itemBO.createItem(itemTO);
+		}catch(EmptyResultDataAccessException exception){
+			model.addAttribute("status", "Insertion of item has been failed as Firm details are not available");
+			return "redirect:createItem";
+		}
 		if (noOfRows > 0) {
 			model.addAttribute("status", "Item "+itemTO.getItemName()+" has been inserted successfully");
 		}

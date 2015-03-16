@@ -2,15 +2,14 @@ package com.dkl.merchantdb.dao.intf;
 
 import java.util.List;
 
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 
 public interface ILedgGroupDAO {
 	
-	void create(LedgGroupTO ledgGroupTO);
-	LedgGroupTO read(int ledgGroupID);
-	void update(LedgGroupTO ledgGroupTO);
+	void create(LedgerGroupTO ledgGroupTO);
+	void update(LedgerGroupTO ledgGroupTO);
 	void delete(String ledgGroupID);
-	List<LedgGroupTO> readByFK(int companyID);
-	List<LedgGroupTO> readAll(Long companyId);
-	
+	List<LedgerGroupTO> readByFK(int companyID);
+	List<LedgerGroupTO> readAll(Long companyId);
+	LedgerGroupTO read(String ledgGroupID);
 }

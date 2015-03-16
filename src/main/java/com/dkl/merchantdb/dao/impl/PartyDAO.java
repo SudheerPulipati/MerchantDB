@@ -13,12 +13,14 @@ import com.dkl.merchantdb.to.PartyTO;
 @Repository
 public class PartyDAO implements IPartyDAO {
 
-	private static final String CREATE_QUERY = "insert into party values(?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String CREATE_QUERY = "insert into party values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
 	private static final String READ_QUERY = "select * from party where party_id=?";
+
 	private static final String READ_ALL_QUERY = "select * from party where company_id=?";
-	private static final String UPDATE_QUERY = "update party set party_name=?,party_type=?,"
-			+ "party_street_name=?,party_city=?,"
-			+ "party_phone=?,modified_date=sysdate()" + " where party_id=?";
+
+	private static final String UPDATE_QUERY = "update party set party_name=?,party_type=?,street_name=?,city=?,phone=?,modified_date=sysdate() where party_id=?";
+
 	private static final String DELETE_QUERY = "delete from party where party_id=?";
 
 	@Autowired
@@ -28,18 +30,15 @@ public class PartyDAO implements IPartyDAO {
 	public int createParty(PartyTO partyTO) {
 		return jdbcTemplate.update(
 				CREATE_QUERY,
-				new Object[] { partyTO.getPartyID(), partyTO.getCompanyID(),
-						partyTO.getPartyName(), partyTO.getPartyType(),
-						partyTO.getCityGroup(), partyTO.getLedgerGroupName(),
-						partyTO.getStreetName(), partyTO.getCity(),
-						partyTO.getTelephone(), partyTO.getCreationDate(),
-						partyTO.getModifiedDate() });
+				new Object[] { partyTO.getPartyID(), partyTO.getCompanyID(), partyTO.getPartyName(),
+						partyTO.getPartyType(), partyTO.getCityGroupId(), partyTO.getLedgerGroupId(),
+						partyTO.getStreetName(), partyTO.getCity(), partyTO.getTelephone(), partyTO.getCreationDate(),
+						partyTO.getModifiedDate(), partyTO.getState(), partyTO.getPincode(), partyTO.getEmail() });
 	}
 
 	@Override
 	public PartyTO readParty(String partyID) {
-		return jdbcTemplate.queryForObject(READ_QUERY,
-				new Object[] { partyID }, new PartyMapper());
+		return jdbcTemplate.queryForObject(READ_QUERY, new Object[] { partyID }, new PartyMapper());
 	}
 
 	@Override
@@ -54,10 +53,8 @@ public class PartyDAO implements IPartyDAO {
 		System.out.println("Party Name : " + partyTO.getPartyName());
 		jdbcTemplate.update(
 				UPDATE_QUERY,
-				new Object[] { partyTO.getPartyName(), partyTO.getPartyType(),
-						partyTO.getStreetName(), partyTO.getCity(),
-						partyTO.getTelephone(),
-						partyTO.getPartyID() });
+				new Object[] { partyTO.getPartyName(), partyTO.getPartyType(), partyTO.getStreetName(),
+						partyTO.getCity(), partyTO.getTelephone(), partyTO.getPartyID() });
 		System.out.println("AFTER UPDATE...");
 
 	}

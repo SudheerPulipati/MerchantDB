@@ -3,6 +3,7 @@ package com.dkl.merchantdb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +17,7 @@ import com.dkl.merchantdb.bo.LedgGroupBO;
 import com.dkl.merchantdb.bo.PartyBO;
 import com.dkl.merchantdb.to.CityGroupTO;
 import com.dkl.merchantdb.to.JsonTemplateTO;
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 import com.dkl.merchantdb.to.PartyTO;
 import com.google.gson.Gson;
 
@@ -35,7 +36,7 @@ public class PartyController {
 
 	@RequestMapping(value = "/createParty")
 	public String createParty(Model model, @ModelAttribute("companyId") Long companyId) {
-		List<LedgGroupTO> ledgerGrpList = ledgGroupBO.readAllByFK(companyId);
+		List<LedgerGroupTO> ledgerGrpList = ledgGroupBO.readAllByFK(companyId);
 		List<CityGroupTO> cityGrpList = cityGroupBO.readAllByFK(companyId);
 		model.addAttribute("ledgerGroupList", ledgerGrpList);
 		model.addAttribute("cityGroupList", cityGrpList);
@@ -46,11 +47,18 @@ public class PartyController {
 	public String saveParty(PartyTO partyTO, @ModelAttribute("companyId") Long companyId,
 			RedirectAttributes redirectAttributes) {
 		partyTO.setCompanyID(companyId);
-		int rowCount = partyBO.createParty(partyTO);
-		if (rowCount > 0) {
+		int noOfRows = 0;
+		try {
+			noOfRows = partyBO.createParty(partyTO);
+		} catch (EmptyResultDataAccessException exception) {
+			redirectAttributes.addAttribute("status", "Insertion of item has been failed as Firm details are not available");
+			return "redirect:createParty";
+		}
+		if (noOfRows > 0) {
 			redirectAttributes.addAttribute("status", "Party " + partyTO.getPartyName()
 					+ " has been created successfully.");
 		}
+		
 		return "redirect:adminSuccess";
 	}
 

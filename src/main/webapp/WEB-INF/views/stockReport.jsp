@@ -46,7 +46,7 @@
 				"processing" : true,
 				"pagingType" : "full_numbers",
 				"ajax" : {
-				    "url" : "http://localhost:8080/merchantdb/viewStockReportJson",
+				    "url" : "viewStockReportJson",
 				    "type" : "POST",
 				    "data" : {
 					//startDate : $("#salesFromDate").val(),

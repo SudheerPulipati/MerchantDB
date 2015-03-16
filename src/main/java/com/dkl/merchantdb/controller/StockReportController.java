@@ -35,6 +35,7 @@ public class StockReportController {
 		jsonTemplateTO.setRecordsFiltered(stockReportToList.size()%10);
 		jsonTemplateTO.setRecordsTotal(stockReportToList.size());
 		jsonTemplateTO.setData(stockReportToList);
+		System.out.println(jsonTemplateTO);
 		return new Gson().toJson(jsonTemplateTO);
 	}
 }

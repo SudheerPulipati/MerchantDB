@@ -18,9 +18,21 @@ public class PartyTO extends MerchantBaseTO {
 
 	private String telephone;
 
+	private String ledgerGroupId;
+
 	private String ledgerGroupName;
 
-	private String cityGroup;
+	private String ledgerGroupType;
+
+	private double openingBalance;
+
+	private String cityGroupId;
+
+	private String state;
+
+	private int pincode;
+
+	private String email;
 
 	String creationDate;
 
@@ -41,8 +53,6 @@ public class PartyTO extends MerchantBaseTO {
 	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-
-	
 
 	public long getCompanyID() {
 		return companyID;
@@ -92,20 +102,20 @@ public class PartyTO extends MerchantBaseTO {
 		this.telephone = telephone;
 	}
 
-	public String getLedgerGroupName() {
-		return ledgerGroupName;
+	public String getLedgerGroupId() {
+		return ledgerGroupId;
 	}
 
-	public void setLedgerGroupName(String ledgerGroupName) {
-		this.ledgerGroupName = ledgerGroupName;
+	public void setLedgerGroupId(String ledgerGroupId) {
+		this.ledgerGroupId = ledgerGroupId;
 	}
 
-	public String getCityGroup() {
-		return cityGroup;
+	public String getCityGroupId() {
+		return cityGroupId;
 	}
 
-	public void setCityGroup(String cityGroup) {
-		this.cityGroup = cityGroup;
+	public void setCityGroupId(String cityGroupId) {
+		this.cityGroupId = cityGroupId;
 	}
 
 	public String getPartyID() {
@@ -114,5 +124,53 @@ public class PartyTO extends MerchantBaseTO {
 
 	public void setPartyID(String partyID) {
 		this.partyID = partyID;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getLedgerGroupName() {
+		return ledgerGroupName;
+	}
+
+	public void setLedgerGroupName(String ledgerGroupName) {
+		this.ledgerGroupName = ledgerGroupName;
+	}
+
+	public String getLedgerGroupType() {
+		return ledgerGroupType;
+	}
+
+	public void setLedgerGroupType(String ledgerGroupType) {
+		this.ledgerGroupType = ledgerGroupType;
+	}
+
+	public double getOpeningBalance() {
+		return openingBalance;
+	}
+
+	public void setOpeningBalance(double openingBalance) {
+		this.openingBalance = openingBalance;
 	}
 }

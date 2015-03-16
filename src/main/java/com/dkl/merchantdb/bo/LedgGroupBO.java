@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.dkl.merchantdb.dao.impl.LedgGroupDAO;
 import com.dkl.merchantdb.dao.impl.SequenseGenDAO;
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 import com.dkl.merchantdb.util.DklUtil;
 
 @Component
@@ -19,22 +19,22 @@ public class LedgGroupBO {
 	@Autowired
 	SequenseGenDAO SequenseGenDAO;
 	
-	public void create(LedgGroupTO ledgGroupTO){
+	public void create(LedgerGroupTO ledgGroupTO){
 		ledgGroupTO.setLedgGroupID(SequenseGenDAO.getSequenceID("LEDGER_GRP_ID", "LEDGER_GROUP","LG"));
 		ledgGroupTO.setLedgCreateDate(DklUtil.getTodayDate());
 		ledgGroupTO.setLedgModDate(DklUtil.getTodayDate());
 		ledgGroupDAO.create(ledgGroupTO);
 	}
 	
-	public LedgGroupTO read(int ledgGroupID){
+	public LedgerGroupTO read(String ledgGroupID){
 		return ledgGroupDAO.read(ledgGroupID);
 	}
 	
-	public List<LedgGroupTO> readAllByFK(Long companyId){
+	public List<LedgerGroupTO> readAllByFK(Long companyId){
 		return ledgGroupDAO.readAll(companyId);
 	}
 	
-	public void update(LedgGroupTO ledgGroupTO){
+	public void update(LedgerGroupTO ledgGroupTO){
 		ledgGroupTO.setLedgModDate(DklUtil.getTodayDate());
 		ledgGroupDAO.update(ledgGroupTO);
 	}
@@ -43,7 +43,7 @@ public class LedgGroupBO {
 		ledgGroupDAO.delete(ledgGroupID);
 	}
 	
-	public List<LedgGroupTO> readByFK(int companyID){
+	public List<LedgerGroupTO> readByFK(int companyID){
 		return ledgGroupDAO.readByFK(companyID);
 	}
 }

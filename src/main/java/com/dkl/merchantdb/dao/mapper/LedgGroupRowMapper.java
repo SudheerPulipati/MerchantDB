@@ -5,14 +5,14 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.dkl.merchantdb.to.LedgGroupTO;
+import com.dkl.merchantdb.to.LedgerGroupTO;
 
-public class LedgGroupRowMapper implements RowMapper<LedgGroupTO> {
+public class LedgGroupRowMapper implements RowMapper<LedgerGroupTO> {
 
 	@Override
-	public LedgGroupTO mapRow(ResultSet resultSet, int rowNum)
+	public LedgerGroupTO mapRow(ResultSet resultSet, int rowNum)
 			throws SQLException {
-		LedgGroupTO ledgGroupTO = new LedgGroupTO();
+		LedgerGroupTO ledgGroupTO = new LedgerGroupTO();
 		ledgGroupTO.setLedgGroupID(resultSet.getString("LEDGER_GRP_ID"));
 		ledgGroupTO.setCompanyID(resultSet.getLong("COMPANY_ID"));
 		ledgGroupTO.setLedgGroupName(resultSet.getString("LEDGER_GRP_NAME"));

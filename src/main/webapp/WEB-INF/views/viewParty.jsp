@@ -12,9 +12,9 @@
 			}, {
 				"data" : "partyType"
 			}, {
-				"data" : "ledgerGroupName"
+				"data" : "ledgerGroupId"
 			}, {
-				"data" : "cityGroup"
+				"data" : "cityGroupId"
 			}, {
 				"data" : "streetName"
 			}, {
