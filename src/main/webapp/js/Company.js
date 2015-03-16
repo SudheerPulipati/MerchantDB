@@ -64,6 +64,9 @@ $(document).ready(function(){
 		firmList = jQuery.grep(firmList, function(value,index) {
 						return getFirmID(value) !== selectedFirmID;
 					});
+		if(window.location.pathname.indexOf("updateCompany") >= 0){
+			deleteFirm(selectedFirmID);
+		}
 		populateFirmTable();
 	});
 	
@@ -127,7 +130,6 @@ $(document).ready(function(){
 	}
 	
 	function insrtFirm(firmId,firmName,companyId){
-		alert("hre");
 		$.ajax({
 			url : 'insertFirmByAjax',
 			type : 'POST',
@@ -138,6 +140,22 @@ $(document).ready(function(){
 			}
 		});
 	}
+	
+	function deleteFirm(firmId){
+		$.ajax({
+			url : 'deleteFirmByAjax',
+			type : 'POST',
+			data : {firmID:firmId},
+			crossDomain : true,
+			success : function(data) {
+				 alert(data);
+			},
+			error: function(data) {
+				   
+				}
+		});
+	}
+	
 	function getListFromValue(text){
 		return text.split(",");
 	}

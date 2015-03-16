@@ -31,9 +31,9 @@ public class FirmDAOImpl implements FirmDAO {
 	public int createFirm(FirmTO firmTO) {
 		return jdbcTemplate.update(
 				INSERT_QUERY,
-				new Object[] { firmTO.getCompanyID(), firmTO.getFirmID(),
+				new Object[] {firmTO.getFirmID(),
 						firmTO.getFirmName(), firmTO.getCreationDate(),
-						firmTO.getModifiedDate() });
+						firmTO.getModifiedDate(), firmTO.getCompanyID() });
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class FirmDAOImpl implements FirmDAO {
 	}
 
 	@Override
-	public int deleteFirm(String firmID) {
+	public int deleteFirm(Long firmID) {
 		return jdbcTemplate.update(DELETE_FIRM, new Object[] { firmID });
 	}
 }

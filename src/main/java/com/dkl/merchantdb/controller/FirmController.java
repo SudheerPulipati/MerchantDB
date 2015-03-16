@@ -36,6 +36,7 @@ public class FirmController {
 	
 	@RequestMapping(value = "/deleteFirmByAjax", method = { RequestMethod.POST })
 	public String deleteFirm(FirmTO firmTO){
-		return null;
+		firmDAO.deleteFirm(firmTO.getFirmID());
+		return "deleteFirmByAjax";
 	}
 }
