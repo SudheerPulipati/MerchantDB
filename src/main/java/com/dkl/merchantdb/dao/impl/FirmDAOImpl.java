@@ -14,7 +14,7 @@ import com.dkl.merchantdb.util.DklUtil;
 @Repository
 public class FirmDAOImpl implements FirmDAO {
 
-	private static final String INSERT_QUERY = "insert into firm values(?,?,?,?,?)";
+	private static final String INSERT_QUERY = "insert into firm values(?,?,Now(),Now(),?)";
 
 	private static final String READ_ALL_QUERY = "select * from firm ";
 
@@ -33,8 +33,7 @@ public class FirmDAOImpl implements FirmDAO {
 		return jdbcTemplate.update(
 				INSERT_QUERY,
 				new Object[] {firmTO.getFirmID(),
-						firmTO.getFirmName(), firmTO.getCreationDate(),
-						firmTO.getModifiedDate(), firmTO.getCompanyID() });
+						firmTO.getFirmName(), firmTO.getCompanyID() });
 		
 	}
 

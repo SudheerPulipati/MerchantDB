@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dkl.merchantdb.dao.impl.SequenseGenDAO;
 import com.dkl.merchantdb.dao.intf.FirmDAO;
@@ -23,6 +24,7 @@ public class CompanyBO {
 	@Autowired
 	private SequenseGenDAO sequenseGenDAO;
 	
+	@Transactional
 	public CompanyTO createCompany(CompanyTO companyTO, List<String> firmNames) {
 		CompanyTO companyToResponse = null;
 		companyTO.setCompanyID(sequenseGenDAO.getSequenceID("company_id", "company"));
@@ -56,6 +58,7 @@ public class CompanyBO {
 	}
 	
 	public int updateCompany(CompanyTO companyTO){
+		
 		return companyDAO.update(companyTO);
 	}
 	

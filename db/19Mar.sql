@@ -52,12 +52,12 @@ DROP TABLE IF EXISTS `city_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `city_group` (
-  `CITY_GROUP_ID` varchar(45) NOT NULL,
+  `city_group_id` varchar(10) NOT NULL DEFAULT '',
   `COMPANY_ID` int(11) NOT NULL,
-  `CITY_GROUP_NAME` varchar(45) DEFAULT NULL,
-  `CREATED_DATE` varchar(45) NOT NULL,
-  `MODIFIED_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`CITY_GROUP_ID`,`COMPANY_ID`)
+  `city_group_name` varchar(20) DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
+  `modified_date` date DEFAULT NULL,
+  PRIMARY KEY (`city_group_id`,`COMPANY_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +67,7 @@ CREATE TABLE `city_group` (
 
 LOCK TABLES `city_group` WRITE;
 /*!40000 ALTER TABLE `city_group` DISABLE KEYS */;
-INSERT INTO `city_group` VALUES ('CG1',1000001,'OLD MARKET','2014-12-07 14:13:30',NULL),('CG3',1000001,'ELURU','2014-12-07 14:13:41',NULL),('CG4',1000001,'LANKA','2014-12-07 14:13:45',NULL),('CG5',1000001,'NEW MARKET','2014-12-07 14:13:57',NULL),('CG6',1000001,'ELURU','2015-01-10 11:33:44',NULL);
+INSERT INTO `city_group` VALUES ('CG1',1000001,'OLD MARKET','2014-12-07',NULL),('CG3',1000001,'ELURU','2014-12-07',NULL),('CG4',1000001,'LANKA','2014-12-07',NULL),('CG5',1000001,'NEW MARKET 1','2014-12-07',NULL),('CG6',1000001,'ELURU','2015-01-10',NULL),('CG7',1000002,'CHINTALAPUDY','2015-02-28',NULL),('CG8',1000003,'CHINTALAPUDY','2015-03-17',NULL);
 /*!40000 ALTER TABLE `city_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1000001,'DKL Firms','Tuta Street','Eluru','A.P','5340012','123456','9030736209','dns.ramchand@gamil.com','No','2014-12-21','2015-01-11'),(1000002,'PavanSai Firm','Tuta Street','HYDERABAD','A.P','500047','123456','9030736209','saipavan.jhnr@gmail.com','Yes','2014-12-21','2014-12-21');
+INSERT INTO `company` VALUES (1000001,'DKL Firms','Tuta Street','Eluru','A.P','5340012','123456','9030736209','dns.ramchand@gamil.com','No','2014-12-21','2015-03-17'),(1000002,'PavanSai Firm','Tuta Street','HYDERABAD','A.P','500047','123456','9030736209','saipavan.jhnr@gmail.com','Yes','2014-12-21','2014-12-21'),(1000003,'Wipro','Nanakramguda','Hyderabad','Telangana','500032','123456789012345','919059839194','raghunadh871@gmail.com','Yes','2015-03-16','2015-03-17');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,11 +114,11 @@ DROP TABLE IF EXISTS `fin_book`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fin_book` (
   `fib_id` varchar(10) NOT NULL DEFAULT '',
-  `company_id` int(10) DEFAULT NULL,
+  `company_id` int(10) NOT NULL DEFAULT '0',
   `fib_financial_yr` varchar(10) DEFAULT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`fib_id`)
+  PRIMARY KEY (`fib_id`,`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -128,7 +128,7 @@ CREATE TABLE `fin_book` (
 
 LOCK TABLES `fin_book` WRITE;
 /*!40000 ALTER TABLE `fin_book` DISABLE KEYS */;
-INSERT INTO `fin_book` VALUES ('FY2012-13',1000001,'2012-2013','2015-01-21 19:12:30','2015-01-21 19:12:30'),('FY2013-14',1000001,'2013-2014','2014-11-09 06:43:51','2014-11-09 06:43:51');
+INSERT INTO `fin_book` VALUES ('FY2012-13',1000001,'2012-2013','2015-01-21 13:42:30','2015-01-21 13:42:30'),('FY2012-13',1000002,'2012-2013','2015-02-28 12:10:11','2015-02-28 12:10:11'),('FY2013-14',1000001,'2013-2014','2014-11-09 01:13:51','2014-11-09 01:13:51'),('FY2013-14',1000002,'2013-2014','2015-02-28 12:10:33','2015-02-28 12:10:33'),('FY2014-15',1000001,'2014-2015','2015-02-28 12:10:56','2015-02-28 12:10:56'),('FY2014-15',1000002,'2014-2015','2015-02-28 12:10:51','2015-02-28 12:10:51');
 /*!40000 ALTER TABLE `fin_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,12 +140,15 @@ DROP TABLE IF EXISTS `firm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `firm` (
-  `COMPANY_ID` int(11) NOT NULL,
-  `FIRM_ID` varchar(30) NOT NULL DEFAULT '',
-  `FIRM_NAME` varchar(45) DEFAULT NULL,
-  `CREATED_DATE` varchar(45) NOT NULL,
-  `MODIFIED_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`FIRM_ID`,`COMPANY_ID`)
+  `firm_id` varchar(10) NOT NULL,
+  `firm_name` varchar(20) DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
+  `modified_date` date DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`firm_id`),
+  UNIQUE KEY `firm_pk` (`firm_name`,`company_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `firm_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`COMPANY_ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -155,7 +158,7 @@ CREATE TABLE `firm` (
 
 LOCK TABLES `firm` WRITE;
 /*!40000 ALTER TABLE `firm` DISABLE KEYS */;
-INSERT INTO `firm` VALUES (1000001,'FIRM1','DVR','21-Dec-14',NULL),(1000001,'FIRM2','SJR','21-Dec-14',NULL),(1000001,'FIRM3','AN','21-Dec-14',NULL);
+INSERT INTO `firm` VALUES ('FIRM1','xyz','2015-03-16','2015-03-16',1000003),('FIRM2','SJR','2015-03-17','2015-03-17',1000001);
 /*!40000 ALTER TABLE `firm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,6 +215,7 @@ CREATE TABLE `item_ledger` (
 
 LOCK TABLES `item_ledger` WRITE;
 /*!40000 ALTER TABLE `item_ledger` DISABLE KEYS */;
+INSERT INTO `item_ledger` VALUES ('IT1LG1',1000001,'IT1',NULL,'22 KG Red Chillies CLOSING STOCK','CLOSING STOCK','2015-03-16 23:21:09','2015-03-16 23:21:09'),('IT2LG1',1000001,'IT2',NULL,'Something CLOSING STOCK','CLOSING STOCK','2015-03-16 23:22:39','2015-03-16 23:22:39');
 /*!40000 ALTER TABLE `item_ledger` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +252,7 @@ CREATE TABLE `item_master` (
 
 LOCK TABLES `item_master` WRITE;
 /*!40000 ALTER TABLE `item_master` DISABLE KEYS */;
-INSERT INTO `item_master` VALUES ('IT1',1000001,'10 KG Karipuli','UT5','10 KG',10,'2%','Yes',100,101,1.81,102,10,'2014-12-13 00:49:30','2014-12-13 00:49:30'),('IT3',1000001,'20 KG Red Chillies','UT2','10 KG',20,'2%','No',100,101,1.81,102,20,'2014-12-13 00:58:17','2014-12-13 00:58:17'),('IT4',1000001,'15 KG Soap Nuts','UT6','15 KG',22,'2%','No',100,101,1.81,102,22,'2014-12-13 00:59:19','2014-12-13 00:59:19');
+INSERT INTO `item_master` VALUES ('IT1',1000001,'22 KG Red Chillies',NULL,'Tamarind',0,'4','No',2.2,5.54,4.2,3.1,10,'2015-03-16 23:21:09','2015-03-16 23:21:09'),('IT2',1000001,'Something',NULL,'10 KG',10,'10','No',2.2,3.5,4.2,1.4,10,'2015-03-16 23:22:39','2015-03-16 23:22:39');
 /*!40000 ALTER TABLE `item_master` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,21 +413,27 @@ DROP TABLE IF EXISTS `ledger_account`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ledger_account` (
   `LEDGER_ACC_ID` varchar(45) NOT NULL,
-  `FIB_ID` varchar(45) NOT NULL DEFAULT '',
+  `fib_id` varchar(10) NOT NULL DEFAULT '',
   `LEDGER_ACC_NAME` varchar(45) DEFAULT NULL,
   `LEDGER_GRP_ID` varchar(45) DEFAULT NULL,
   `LEDGER_GRP_NAME` varchar(45) DEFAULT NULL,
   `LEDGER_GRP_TYPE` varchar(45) DEFAULT NULL,
-  `FIRM_ID` varchar(45) NOT NULL DEFAULT '',
+  `firm_id` varchar(10) NOT NULL DEFAULT '',
   `FIRM_NAME` varchar(45) DEFAULT NULL,
-  `CITY_GROUP_ID` varchar(45) DEFAULT NULL,
+  `city_group_id` varchar(10) DEFAULT NULL,
   `LEDGER_ACC_OPEN_BAL` double NOT NULL,
   `LEDGER_ACC_CREDIT` double NOT NULL,
   `LEDGER_ACC_DEBIT` double NOT NULL,
   `LEDGER_ACC_CLOSE_BAL` double NOT NULL,
   `CREATED_DATE` varchar(45) NOT NULL,
   `MODIFIED_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`LEDGER_ACC_ID`,`FIB_ID`,`FIRM_ID`)
+  PRIMARY KEY (`LEDGER_ACC_ID`,`fib_id`,`firm_id`),
+  KEY `fk_led_acc_fin_book` (`fib_id`),
+  KEY `fk_led_acc_firm` (`firm_id`),
+  KEY `fk_led_acc_city_grp` (`city_group_id`),
+  CONSTRAINT `fk_led_acc_city_grp` FOREIGN KEY (`city_group_id`) REFERENCES `city_group` (`city_group_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_led_acc_fin_book` FOREIGN KEY (`fib_id`) REFERENCES `fin_book` (`fib_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_led_acc_firm` FOREIGN KEY (`firm_id`) REFERENCES `firm` (`firm_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -433,6 +443,7 @@ CREATE TABLE `ledger_account` (
 
 LOCK TABLES `ledger_account` WRITE;
 /*!40000 ALTER TABLE `ledger_account` DISABLE KEYS */;
+INSERT INTO `ledger_account` VALUES ('PY5','FY2014-15','SJR','LG7','PURCHASE','expenditure','FIRM2',NULL,'CG6',2000,0,0,0,'2015-03-17 00:27:27','2015-03-17 00:27:27');
 /*!40000 ALTER TABLE `ledger_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,13 +455,13 @@ DROP TABLE IF EXISTS `ledger_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ledger_group` (
-  `LEDGER_GRP_ID` varchar(30) NOT NULL,
+  `ledger_grp_id` varchar(10) NOT NULL DEFAULT '',
   `COMPANY_ID` int(11) NOT NULL,
   `LEDGER_GRP_NAME` varchar(45) DEFAULT NULL,
   `LEDGER_GRP_TYPE` varchar(45) DEFAULT NULL,
   `CREATED_DATE` varchar(45) NOT NULL,
   `MODIFIED_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`LEDGER_GRP_ID`,`COMPANY_ID`)
+  PRIMARY KEY (`ledger_grp_id`,`COMPANY_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -460,7 +471,7 @@ CREATE TABLE `ledger_group` (
 
 LOCK TABLES `ledger_group` WRITE;
 /*!40000 ALTER TABLE `ledger_group` DISABLE KEYS */;
-INSERT INTO `ledger_group` VALUES ('LG1',1000001,'CLOSING STOCK','income','2014-12-07','2015-01-10 14:07:39'),('LG10',1000001,'CAPITAL ACCOUNTS','income','2014-12-07','2015-01-10 14:07:50'),('LG11',1000001,'TRADE CREDITORS','liabilities','2014-12-07','2014-12-07 14:06:13'),('LG2',1000001,'SALE','income','2014-12-07','2014-12-07'),('LG3',1000001,'TRADE DEBTORS','assets','2014-12-07','2014-12-07'),('LG4',1000001,'CASH ON HAND','assets','2014-12-07','2015-01-10 14:08:06'),('LG5',1000001,'STOCK ON HAND','assets','2014-12-07','2014-12-07'),('LG6',1000001,'OPENING STOCK','assets','2014-12-07','2014-12-07'),('LG7',1000001,'PURCHASE','expenditure','2014-12-07','2014-12-07'),('LG8',1000001,'PROFIT & LOSS','expenditure','2014-12-07','2014-12-07'),('LG9',1000001,'EXPENSE','expenditure','2014-12-07','2014-12-07 14:06:10');
+INSERT INTO `ledger_group` VALUES ('LG1',1000001,'CLOSING STOCK','income','2014-12-07','2015-01-10 14:07:39'),('LG10',1000001,'CAPITAL ACCOUNTS','income','2014-12-07','2015-01-10 14:07:50'),('LG11',1000001,'TRADE CREDITORS','liabilities','2014-12-07','2014-12-07 14:06:13'),('LG12',1000002,'Group1','liabilities','2015-02-28','2015-02-28'),('LG13',1000003,'Group1','income','2015-03-17','2015-03-17'),('LG2',1000001,'SALE','income','2014-12-07','2014-12-07'),('LG3',1000001,'TRADE DEBTORS','assets','2014-12-07','2014-12-07'),('LG4',1000001,'CASH ON HAND','assets','2014-12-07','2015-01-10 14:08:06'),('LG5',1000001,'STOCK ON HAND','assets','2014-12-07','2014-12-07'),('LG6',1000001,'OPENING STOCK','assets','2014-12-07','2014-12-07'),('LG7',1000001,'PURCHASE','expenditure','2014-12-07','2014-12-07'),('LG8',1000001,'PROFIT & LOSS','expenditure','2014-12-07','2014-12-07'),('LG9',1000001,'EXPENSE','expenditure','2014-12-07','2014-12-07 14:06:10');
 /*!40000 ALTER TABLE `ledger_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,14 +578,21 @@ CREATE TABLE `party` (
   `COMPANY_ID` int(11) NOT NULL,
   `party_name` varchar(30) DEFAULT NULL,
   `PARTY_TYPE` varchar(45) DEFAULT NULL,
-  `city_group_name` varchar(30) DEFAULT NULL,
-  `LEDGER_GRP_NAME` varchar(30) DEFAULT NULL,
-  `PARTY_STREET_NAME` varchar(45) DEFAULT NULL,
-  `PARTY_CITY` varchar(45) DEFAULT NULL,
-  `PARTY_PHONE` varchar(45) DEFAULT NULL,
+  `city_group_id` varchar(10) DEFAULT NULL,
+  `ledger_grp_id` varchar(10) DEFAULT NULL,
+  `street_name` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `phone` varchar(13) DEFAULT NULL,
   `CREATED_DATE` varchar(45) NOT NULL,
   `MODIFIED_DATE` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`PARTY_ID`,`COMPANY_ID`)
+  `state` varchar(20) DEFAULT NULL,
+  `pincode` int(6) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`PARTY_ID`,`COMPANY_ID`),
+  KEY `fk_party` (`ledger_grp_id`),
+  KEY `fk_party_city_group` (`city_group_id`),
+  CONSTRAINT `fk_party` FOREIGN KEY (`ledger_grp_id`) REFERENCES `ledger_group` (`ledger_grp_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_party_city_group` FOREIGN KEY (`city_group_id`) REFERENCES `city_group` (`city_group_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -584,7 +602,7 @@ CREATE TABLE `party` (
 
 LOCK TABLES `party` WRITE;
 /*!40000 ALTER TABLE `party` DISABLE KEYS */;
-INSERT INTO `party` VALUES ('PY1',1000001,'DVR','Person','CG3','LG10','Agraharam','Eluru','09030736209','2014-12-07','2014-12-19 00:14:56'),('PY2',1000001,'SJR','Trade Debtor','CG3','LG10','Sanath Nagar','Eluru','09030736209','2014-12-07','2015-01-10 01:18:47'),('PY3',1000001,'KRK','Person','CG3','LG10','Tuta Street','Eluru','09030736209','2014-12-07','2014-12-07'),('PY4',1000001,'BASAVAPPA','Trade Debtor','CG1','LG11','Tuta Street','Hindpur','09030736209','2014-12-07','2015-01-10 01:32:26'),('PY5',1000001,'BASAVAPPA','Trade Debtor','CG5','LG2','Lanco Hills','Hyderabad','+919966833088','2015-01-10','2015-01-10');
+INSERT INTO `party` VALUES ('PY1',1000001,'BASAVAPPA','Owner','CG6','LG4','Agraharam','Eluru','09030736209','2015-02-28','2015-02-28',NULL,0,NULL),('PY2',1000002,'DVR','Person','CG7','LG12','Agraharam','Eluru','09030736209','2015-02-28','2015-02-28',NULL,0,NULL),('PY4',1000001,'KRK','Person','CG1','LG11','Tuta Street','Eluru','98484','2015-02-28','2015-02-28',NULL,0,NULL),('PY5',1000001,'SJR','Person','CG6','LG7','Agraharam','Eluru','9966833088','2015-03-17','2015-03-17',NULL,0,NULL);
 /*!40000 ALTER TABLE `party` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -637,7 +655,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'admin','2014-12-07 10:04:20',NULL),(2,'clerk','2014-12-07 10:04:20',NULL);
+INSERT INTO `role` VALUES (1,'admin','2014-12-07 10:04:20',NULL),(2,'clerk','2014-12-07 10:04:20','2015-02-28 15:39:43');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -670,28 +688,6 @@ LOCK TABLES `stock_point` WRITE;
 /*!40000 ALTER TABLE `stock_point` DISABLE KEYS */;
 INSERT INTO `stock_point` VALUES ('SP1',1000001,'ELR MAIN SHOP','10-168/1/1 VASANTHA PURI COLONY MALKAJGIRI','HYDERABAD','ANDHRA PRADESH','09030736209','2014-12-07 15:16:12','2015-01-10 01:32:38'),('SP2',1000001,'ELR MAIN SHOP','Lanco Hills','Hyderabad','ANDHRA PRADESH','09030736209','2015-01-10 11:34:37',NULL);
 /*!40000 ALTER TABLE `stock_point` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `test`
---
-
-DROP TABLE IF EXISTS `test`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `test` (
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `test`
---
-
-LOCK TABLES `test` WRITE;
-/*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES ('2014-10-25 18:30:00'),('2014-10-26 10:28:23');
-/*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -820,7 +816,7 @@ CREATE TABLE `user_url_mappings` (
   `role_id` int(10) NOT NULL DEFAULT '0',
   `url_pattern` varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY (`role_id`,`url_pattern`),
-  CONSTRAINT `user_url_mappings_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
+  CONSTRAINT `user_url_mappings_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -843,4 +839,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-22  2:25:55
+-- Dump completed on 2015-03-17  0:51:51

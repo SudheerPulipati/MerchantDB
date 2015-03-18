@@ -22,14 +22,15 @@
 				type="radio" name="slipsIndicator" id="noInd" value="No">No
 			<input type="hidden" name="companyId" value="${companyId}" /> 
 			<input type="hidden" id="firmList" name="firmNames" value="" />
+			<fieldset style="margin-left: 26%;width:60%">
 			<input type="text" id="firmName">
-			<input type="button" id="addFirmBtn" value="Add Firm"><br /> 
-			<fieldset>
+			<input type="button" id="addFirmBtn" value="Add Firm"><br />
 				<legend>Firms:</legend>
 				<table class="firmsTable" cellspacing=5>
 					<tbody></tbody>
 				</table>
 			</fieldset>
+			<br/>
 			<input
 				type="submit" style="margin-left: 40%" id="updateBtn" value="Update"><input
 				type="submit" id="deleteBtn" value="Delete">

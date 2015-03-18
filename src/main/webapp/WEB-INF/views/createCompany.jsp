@@ -23,18 +23,18 @@
 				Number</label> <input type="text" name="tinNumber" id="tinNumber" /> <label>Ship
 				System</label> <input type="radio" name="slipsIndicator" id="yesInd"
 				value="Yes">Yes <input type="radio" name="slipsIndicator"
-				id="noInd" value="No">No
-				<center>
-			 <input type="text" id="firmName">
-			<input type="button" id="addFirmBtn" value="Add Firm"><br />
+				id="noInd" value="No">No 
+			
 			<input type="hidden" id="firmList" name="firmNames" value="" />
-			<fieldset>
+			<fieldset style="margin-left: 26%;width:60%">
+			<input type="text" id="firmName">
+			<input type="button" id="addFirmBtn" value="Add Firm"><br />
 				<legend>Firms:</legend>
 				<table class="firmsTable" cellspacing=5>
 					<tbody></tbody>
 				</table>
 			</fieldset>
-			</center>
+			<br/>
 			<input type="submit" style="margin-left: 40%" value="Create">
 			<input type="button" value="Cancel">
 		</div>

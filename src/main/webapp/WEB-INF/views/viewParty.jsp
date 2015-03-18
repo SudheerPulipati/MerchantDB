@@ -103,6 +103,8 @@
 							<option value="Trade Debtor">Trade Debtor</option>
 							<option value="Owner">Owner</option>
 							<option value="Employee">Employee</option>
+							<option value="Person">Person</option>
+							<option value="Misc">Misc</option>
 					</select></td>
 				</tr>
 				<tr>
