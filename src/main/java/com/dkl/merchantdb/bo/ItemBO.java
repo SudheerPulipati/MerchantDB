@@ -95,10 +95,6 @@ public class ItemBO {
 
 	@Transactional
 	public int delete(String itemId) {
-		int noOfRowsDeleted = 0;
-		noOfRowsDeleted += ledgerAccountDAO.deleteLedgerAccountRecord(itemId);
-		noOfRowsDeleted += itemLedgerDAO.deleteItemLedgerRecord(itemId);
-		noOfRowsDeleted += itemDAO.deleteItem(itemId);
-		return noOfRowsDeleted;
+		return itemDAO.deleteItem(itemId);
 	}
 }

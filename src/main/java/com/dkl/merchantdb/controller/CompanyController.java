@@ -45,7 +45,8 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/saveCompany", method = { RequestMethod.POST })
-	public String saveCompany(CompanyTO companyTO, HttpSession session, RedirectAttributes redirectAttributes, @RequestParam("firmNames")List<String> firmNames) {
+	public String saveCompany(CompanyTO companyTO, HttpSession session, RedirectAttributes redirectAttributes,
+			@RequestParam("firmNames") List<String> firmNames) {
 		CompanyTO companyToResp = companyBO.createCompany(companyTO, firmNames);
 		if (companyToResp != null) {
 			List<CompanyTO> companyList = (List<CompanyTO>) session.getAttribute("companyList");
@@ -58,7 +59,7 @@ public class CompanyController {
 					+ " has been created successfully.");
 		}
 		return "redirect:success";
-//		return "createCompany";
+		// return "createCompany";
 	}
 
 	@RequestMapping(value = "/editCompany", method = { RequestMethod.GET })
@@ -79,8 +80,8 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/updateCompany", method = { RequestMethod.POST })
-	public String updateCompany(CompanyTO companyTO, @RequestParam("companyId") String companyId, Model model,
-			RedirectAttributes redirectAttributes) {
+	public String updateCompany(CompanyTO companyTO, @RequestParam("companyId") String companyId,
+			 Model model, RedirectAttributes redirectAttributes) {
 		model.addAttribute("selectedItem", companyId);
 		companyTO.setCompanyID(Long.parseLong(companyId));
 		int noOfRowsUpdated = companyBO.updateCompany(companyTO);

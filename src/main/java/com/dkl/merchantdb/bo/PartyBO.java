@@ -102,6 +102,5 @@ public class PartyBO {
 	@Transactional
 	public void delete(String partyID) {
 		partyDAO.deleteParty(partyID);
-		ledgerAccountDAO.deleteLedgerAccountRecord(partyID);
 	}
 }
