@@ -3,11 +3,13 @@ package com.dkl.merchantdb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dkl.merchantdb.bo.LedgGroupBO;
 import com.dkl.merchantdb.to.LedgerReportDetailTO;
 import com.dkl.merchantdb.to.LedgerReportTO;
 import com.google.gson.Gson;
@@ -15,7 +17,10 @@ import com.google.gson.Gson;
 @Controller
 @SessionAttributes("fbid")
 public class LedgerReportController {
-
+	
+	@Autowired
+	LedgGroupBO ledgerGroupBO;
+	
 	@RequestMapping("/ledgerReport")
 	public String viewLedgerReport() {
 		return "ledgerReport";
@@ -47,10 +52,10 @@ public class LedgerReportController {
 			ledgerReportDetailTO2.setRemarks("GOOD");
 			LedgerReportDetailTOList.add(ledgerReportDetailTO2);
 		ledgerReportTO.setLedgerReportDetailTOList(LedgerReportDetailTOList);*/
-		return new Gson().toJson(populateLedgerReportTO());
+		return new Gson().toJson(ledgerGroupBO.readLedgerReport());
 	}
 	
-	private List<LedgerReportTO> populateLedgerReportTO(){
+	/*private List<LedgerReportTO> populateLedgerReportTO(){
 	    List<LedgerReportTO> ledgerReportToList = new ArrayList<LedgerReportTO>();
 	    
 	    for(int i=0;i<60;i++){
@@ -68,9 +73,9 @@ public class LedgerReportController {
 	    ledgerReportTO.setLedgerReportDetailTOList(populateLedgerReportDetailTO());
 	    ledgerReportToList.add(ledgerReportTO);
 	    return ledgerReportToList;
-	}
+	}*/
 	
-	private List<LedgerReportDetailTO> populateLedgerReportDetailTO(){
+	/*private List<LedgerReportDetailTO> populateLedgerReportDetailTO(){
 	    List<LedgerReportDetailTO> ledgerReportDetailTOList = new ArrayList<LedgerReportDetailTO>();
 	    for(int i=0;i<5;i++){
 		LedgerReportDetailTO ledgerReportDetailTO = new LedgerReportDetailTO();
@@ -83,5 +88,5 @@ public class LedgerReportController {
 		ledgerReportDetailTOList.add(ledgerReportDetailTO);
 	    }
 	    return ledgerReportDetailTOList;
-	}
+	}*/
 }
