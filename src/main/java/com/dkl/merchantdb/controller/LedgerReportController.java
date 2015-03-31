@@ -52,6 +52,7 @@ public class LedgerReportController {
 			ledgerReportDetailTO2.setRemarks("GOOD");
 			LedgerReportDetailTOList.add(ledgerReportDetailTO2);
 		ledgerReportTO.setLedgerReportDetailTOList(LedgerReportDetailTOList);*/
+		System.out.println("#123#"+new Gson().toJson(ledgerGroupBO.readLedgerReport()));
 		return new Gson().toJson(ledgerGroupBO.readLedgerReport());
 	}
 	

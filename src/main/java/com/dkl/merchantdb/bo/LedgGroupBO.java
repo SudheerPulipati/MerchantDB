@@ -59,6 +59,7 @@ public class LedgGroupBO {
 	
 	public List<LedgerReportTO> readLedgerReport(){
 		List<LedgerReportDataTO> ledgerReportDataToList = ledgerAccountDAO.getLedgerReportData();
+		
 		//List<LedgerReportDataTO> ledgerReportDataToList = genMockLedgerReportData();
 		List<LedgerReportTO> ledgerReportList = new ArrayList<LedgerReportTO>();
 		LedgerReportTO ledgerReportTO = null;
@@ -79,6 +80,7 @@ public class LedgGroupBO {
 				ledgerReportTO.setCityGroup(reportData.getCityGroup());
 				ledgerReportDetailTO.setDate(reportData.getDate());
 				ledgerReportDetailTO.setCredit(Long.toString(reportData.getCredit()));
+				ledgerReportDetailTO.setDebit(Long.toString(reportData.getDebit()));
 				ledgerReportDetailTO.setBalance(Long.toString(reportData.getBalance()));
 				ledgerReportDetailTO.setMode(reportData.getMode());
 				LedgerReportDetailList.add(ledgerReportDetailTO);
@@ -88,6 +90,7 @@ public class LedgGroupBO {
 			}  else {
 				ledgerReportDetailTO.setDate(reportData.getDate());
 				ledgerReportDetailTO.setCredit(Long.toString(reportData.getCredit()));
+				ledgerReportDetailTO.setDebit(Long.toString(reportData.getDebit()));
 				ledgerReportDetailTO.setBalance(Long.toString(reportData.getBalance()));
 				ledgerReportDetailTO.setMode(reportData.getMode());
 				LedgerReportDetailList.add(ledgerReportDetailTO);
