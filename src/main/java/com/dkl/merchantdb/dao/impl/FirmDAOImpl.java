@@ -64,7 +64,6 @@ public class FirmDAOImpl implements FirmDAO {
 		} catch (Exception e) {
 			isUpdated = 0;
 		}
-		System.out.println("UPDATED:::" + isUpdated);
 		return isUpdated;
 	}
 

@@ -59,6 +59,7 @@ $(document).ready(function(){
 	});
 	$(document).on('click', ".deleteFirm" , function(event) {
       event.preventDefault();
+      console.log(firmList);
 		var selectedFirmID = $(this).closest('td').attr("id"); 
 		 
 		firmList = jQuery.grep(firmList, function(value,index) {
@@ -67,6 +68,7 @@ $(document).ready(function(){
 		if(window.location.pathname.indexOf("updateCompany") >= 0){
 			deleteFirm(selectedFirmID);
 		}
+		console.log(firmList);
 		populateFirmTable();
 	});
 	
@@ -80,7 +82,7 @@ $(document).ready(function(){
 	function getFirmID(firmText){
 		return firmText.split(":")[0];
 	}
-	function getFirmaName(firmText){
+	function getFirmName(firmText){
 		return firmText.split(":")[1];
 	}
 	function populateFirmTable(){
@@ -89,9 +91,9 @@ $(document).ready(function(){
 		var row = '<tr id="firmRow">';
 		$.each(firmList,function(index,value){
 			if(0 == index%3 && index != 0){
-				row += '</tr><tr id="firmRow"><td id="'+getFirmID(value)+'"><span class="firmNameSpan">'+ getFirmaName(value)+' </span><span class="deleteFirm">X</span></td>';
+				row += '</tr><tr id="firmRow"><td id="'+getFirmID(value)+'"><span class="firmNameSpan">'+ getFirmName(value)+' </span><span class="deleteFirm">X</span></td>';
 			} else {
-				row += '<td id="'+getFirmID(value)+'"><span class="firmNameSpan">'+ getFirmaName(value)+'</span> <span class="deleteFirm">X</span></td>';
+				row += '<td id="'+getFirmID(value)+'"><span class="firmNameSpan">'+ getFirmName(value)+'</span> <span class="deleteFirm">X</span></td>';
 			} 
 			
 		});
@@ -117,13 +119,27 @@ $(document).ready(function(){
 		$("#firmModal").dialog("open");
 	}
 	function updateFirm(firmId, firmName){
+		alert(firmList.length);
+		alert(getFirmID(firmList[0]));
+		alert(getFirmName(firmList[0]));
 		$.ajax({
 			url : 'updateFirmByAjax',
 			type : 'POST',
 			data : {firmID:firmId,firmName:firmName},
 			crossDomain : true,
 			success : function(data) {
-				alert("success");
+				jsonData = $.parseJSON(data);
+				if(jsonData.firmName == firmName){
+					$("#firmModal").dialog('close');
+					for(i=0;i<firmList.length;i++){
+						if(getFirmID(firmList[0]) == jsonData.firmID){
+							firmID = jsonData.firmID;
+							firmName = jsonData.firmName;
+							firmList[0] = firmID+":"+firmName;
+							populateFirmTable();
+						}
+					}
+				}
 			}
 		});
 		
@@ -136,10 +152,8 @@ $(document).ready(function(){
 			data : {companyID:companyId,firmID:firmId,firmName:firmName},
 			crossDomain : true,
 			success : function(data) {
-				location.reload();
-			},
-			error: function(data) {
-				   
+				jsonData = $.parseJSON(data);
+				$("#"+firmId).attr("id",jsonData.firmID);
 			}
 		});
 	}
@@ -151,11 +165,11 @@ $(document).ready(function(){
 			data : {firmID:firmId},
 			crossDomain : true,
 			success : function(data) {
-				 alert(data);
-			},
-			error: function(data) {
-				   
+				jsonData = $.parseJSON(data);
+				if(jsonData.firmID != firmId){
+					alert("Some technical error occured.");
 				}
+			}
 		});
 	}
 	
