@@ -45,6 +45,8 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO{
 		orderRequestTO.setPartyList(partyDAO.readAllParty(CompanyId));
 		orderRequestTO.setFirmList(firmDAO.readAllFirms());
 		orderRequestTO.setStockPointList(stockPointDAO.getAllStockPointDetails());
+		System.out.println("====prepareDataForPurchaseOrder========"+orderRequestTO.getStockPointList().get(0).getStockID());
+		
 		orderRequestTO.setItemMasterList(itemMasterDAO.getAllItems());
 		return orderRequestTO;
 	}

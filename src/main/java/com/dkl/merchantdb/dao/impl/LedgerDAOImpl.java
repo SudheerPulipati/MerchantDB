@@ -11,7 +11,7 @@ import com.dkl.merchantdb.to.LedgerTO;
 public class LedgerDAOImpl implements LedgerDAO{
 
 	private static final String INSERT_INTO_LEDGER = "INSERT INTO `dklf`.`ledger`(`FIB_ID`,`TRANS_ID`,`TRANS_TYPE`,`TRANS_DATE`,"
-			+ "`LEDGER_ID`,`LEDGER_SEQ_NO`,`LEDGER_NAME`,`FIRM_ID`,`FIRM_NAME`,`LEDGER_CR_DR`,`LEDGER_AMOUNT`,`LEDGER_GRP_CRT_DATE`,`LEDGER_GRP_MOD_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),now());";
+			+ "`LEDGER_ID`,`LEDGER_SEQ_NO`,`LEDGER_NAME`,`FIRM_ID`,`FIRM_NAME`,`LEDGER_CR_DR`,`LEDGER_AMOUNT`,`CREATED_DATE`,`MODIFIED_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),now());";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -19,6 +19,10 @@ public class LedgerDAOImpl implements LedgerDAO{
 	@Override
 	public int createLedgerItemAndLedgerPartyRecords(LedgerTO ledgerItem, LedgerTO ledgerParty) {
 		int result =0;
+		
+		System.out.println("===========ledgerItem============="+ledgerItem.toString());
+		
+		System.out.println("===========ledgerParty============="+ledgerParty.toString());
 		
 		result = jdbcTemplate.update(INSERT_INTO_LEDGER, new Object[]{
 				ledgerItem.getBookID(),

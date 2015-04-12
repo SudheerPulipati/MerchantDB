@@ -22,7 +22,7 @@ public class ItemStockRegisterDAOImpl implements ItemStockRegisterDAO{
 			+ "`STOCK_SALE_QTY`,`STOCK_TRANSFER_IN`,`STOCK_TRANSFER_OUT`,`STOCK_ON_HAND`,`STOCK_CRT_DATE`,`STOCK_MOD_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now(),now())";
 	
 	private static final String UPDATE_STOCK_REGISTER = "UPDATE `dklf`.`item_stock_register` SET `STOCK_PURCHASE_QTY` = ?,"
-			+ "`STOCK_ON_HAND` = ?,`STOCK_MOD_DATE` = sysdate() WHERE `ITEM_STOCK_POINT_ID` = ?";	
+			+ "`STOCK_ON_HAND` = ?,`MODIFIED_DATE` = sysdate() WHERE `ITEM_STOCK_POINT_ID` = ?";	
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

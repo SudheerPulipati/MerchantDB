@@ -12,7 +12,7 @@ public class ItemTransactionDAOImpl implements ItemTransactionDAO{
 	
 	private static final String INSERT_ITEM_TRANSACTION_QUERY = "INSERT INTO `dklf`.`item_transaction`(`FIB_ID`,`ITEM_TRANSACTION_ID`,"
 			+ "`ITEM_TRANS_SEQ_NO`,`ITEM_ID`,`ITEM_NAME`,`ITEM_BATCH_ID`,`ITEM_BATCH_NAME`,`ITEM_QTY`,`ITEM_WEIGHT`,`ITEM_WEIGHT_DIFF`,"
-			+ "`ITEM_PRICE_PER`,`ITEM_PRICE_1`,`ITEM_PRICE_2`,`ITEM_AMOUNT_1`,`ITEM_AMOUNT_2`,`ITEM_TOTAL_AMOUNT`,`FIRM_ID`,`FIRM_NAME`,`ITEM_TRANS_CRT_DATE`,`ITEM_TRANS_MOD_DATE`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now())";
+			+ "`ITEM_PRICE_PER`,`ITEM_PRICE_1`,`ITEM_PRICE_2`,`ITEM_AMOUNT_1`,`ITEM_AMOUNT_2`,`ITEM_TOTAL_AMOUNT`,`FIRM_ID`,`FIRM_NAME`,`CREATED_DATE`,`MODIFIED_DATE`)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now())";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

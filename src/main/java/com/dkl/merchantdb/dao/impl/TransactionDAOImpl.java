@@ -12,7 +12,7 @@ public class TransactionDAOImpl implements TransactionDAO{
 	
 	private static final String INSERT_INTO_TRANSACTION = "INSERT INTO `dklf`.`transaction`(`FIB_ID`,"
 			+ "`TRANSACTION_ID`,`TRANSACTION_TYPE`,`TRANSACTION_DATE`,`LEDGER_ID`,`LEDGER_NAME`,`PAYMENT_MODE`,`WAY_BILL_NO`,`VEHICLE_NO`,"
-			+ "`TOTAL_AMOUNT`,`SLIP_NO`,`TRANS_CRT_DATE`,`TRANS_MOD_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),now())";
+			+ "`TOTAL_AMOUNT`,`SLIP_NO`,`CREATED_DATE`,`MODIFIED_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),now())";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

@@ -117,10 +117,10 @@ public class PurchaseOrderBO {
 				
 				createLedgerItemAndLedgerPartyRecords(ledgerItemObj,ledgerPartyObj);
 							
-				System.out.println(".....End of LedgerItem and LedgerParty data insertion............");	
+				System.out.println(".....End of LedgerItem and LedgerParty data insertion..Price2.........");	
 				LedgerAccountTO ledgerAccountPartyObj1 = getLedgerAccountRecord(ledgerPartyObj.getLedgerID(), itemTransactionTO2.getAnavathFirmId(), itemTransactionTO2.getBookID());
 				LedgerAccountTO ledgerAccountItemObj2  = getLedgerAccountRecord(ledgerItemObj.getLedgerID(), itemTransactionTO2.getAnavathFirmId(), itemTransactionTO2.getBookID());
-				System.out.println(".....End of LedgerAccountTO Retrieval............");
+				System.out.println(".....End of LedgerAccountTO Retrieval..Price2..........");
 				
 				System.out.println("======ledgerAccountPartyObj1===closeBalance=="+ledgerAccountPartyObj1.getCloseBalance()+"======Amount2====="+ itemTransactionTO2.getAmount2());
 				ledgerAccountPartyObj1.setCredit(itemTransactionTO2.getAmount2());

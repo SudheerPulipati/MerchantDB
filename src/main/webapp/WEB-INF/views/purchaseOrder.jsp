@@ -27,8 +27,11 @@
     
 	var globalTotalAmountTillNow =Number(0);
 	var totalRowCount =0;
+	var finBookId = '${fibId}';// value obtained from spring controller and saved in javascript
    
   $(function() {
+	  
+	 
 	  
 	  $("#submitButtonDiv").hide();
 	  
@@ -90,7 +93,8 @@
         		if(key==='stockPointList'){
         			$.each(val, function(objKey, objVal) {
         				stockPointNames.push(objVal.stockPointName);
-        				stockPointMap.set(objVal.stockPointName, objVal.stockPointID);
+        				stockPointMap.set(objVal.stockPointName, objVal.stockID);
+        				console.log("====="+objVal.stockID);
         			});
         		}
         		if(key==='firmList'){
@@ -109,7 +113,6 @@
         			});
         		}
         	});
-        	
         	/*  alert(firmNames);
              alert(partyNames);
              alert(stockPointNames);
@@ -482,7 +485,7 @@ var doCalculations = function(rowCount) {
 					if(jQuery.inArray(Number(i),globalRemovedRowIds)==-1)
 					{
 						
-						var itemTransactionTO1={"bookID":'FY2013-14',
+						var itemTransactionTO1={"bookID":finBookId,
 										"itemID":itemMap.get($("#row_"+i+"_col_0").val()),
 										"itemName":$("#row_"+i+"_col_0").val(),
 										"itemBatchID":itemBatchMap.get($("#row_"+i+"_col_2").val()),
@@ -518,8 +521,8 @@ var doCalculations = function(rowCount) {
 					
 				}
 				console.log('itemTransactionTOs..........'+itemTransactionTOs);
-		
-				var transactionTO = {"bookID":'FY2013-14',
+				//TODO - FY BOOKID Dynamic
+				var transactionTO = {"bookID":finBookId,
 						 "transactionType":"PURCHASE",
 						 "transactionDate":$("#datepicker").val(),
 						 "paymentMode":$("#paymentModeId").val(),
@@ -538,6 +541,7 @@ var doCalculations = function(rowCount) {
 				 	contentType: 'application/json',
 				 	data: JSON.stringify(transactionTO), 
 				 	success: function (data){
+				 		alert(data);
 				 		if(data==="purchaseOrderTxnSuccess"){
 				 			alert("Successfully Saved");
 				 			location.reload();

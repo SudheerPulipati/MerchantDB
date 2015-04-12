@@ -9,7 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +37,9 @@ public class PurchaseOrderController{
 	private static final Logger logger = LoggerFactory.getLogger(PurchaseOrderController.class);
 	
 	@RequestMapping(value = "/purchaseOrder", method = RequestMethod.GET)
-	public String purchaseOrderHome() {
+	public String purchaseOrderHome(@RequestParam String fibId,Model model) {
+		logger.info("==========/purchaseOrder/{fibId}==========="+fibId);
+		model.addAttribute("fibId",fibId);
 		return "purchaseOrder";
 	}
 	
@@ -108,6 +112,8 @@ public class PurchaseOrderController{
 		}
 		
 		purchaseOrderBO.storePurchaseOrder(transactionTO);
+		
+		logger.info(" saveTransaction! Completed");
 		
 		return "purchaseOrderTxnSuccess";
 	}
