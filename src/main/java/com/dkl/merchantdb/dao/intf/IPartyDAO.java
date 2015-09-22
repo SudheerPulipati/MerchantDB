@@ -14,4 +14,6 @@ public interface IPartyDAO {
 	void updateParty(PartyTO partyTO);
 
 	void deleteParty(String partyID);
+	
+	PartyTO readParty(String partyName,String companyId);
 }

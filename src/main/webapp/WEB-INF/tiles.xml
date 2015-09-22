@@ -205,10 +205,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
 	</definition>
 	<!-- Sales -->
-	<definition name="sales" extends="base">
+	<definition name="salesOrder" extends="base">
 		<put-attribute name="title" value="Under Construction" />
 		<put-attribute name="beforeBody" value="" />
-		<put-attribute name="body" value="/WEB-INF/views/sales.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/salesOrder.jsp" />
 	</definition>
 	<definition name="purchaseOrder" extends="base">
 		<put-attribute name="title" value="Under Construction" />

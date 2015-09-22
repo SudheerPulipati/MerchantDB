@@ -17,6 +17,11 @@ public class TransactionTO {
 	private String wayBillNo;
 	private String vehicleNo;
 	
+	private double coolieAmount;
+	private double gunnyBagAmount;
+	private double totalPaid;
+	private String narration;
+	
 	private CashTransactionTO[] cashTransactionTOs;
 	
 	
@@ -111,5 +116,30 @@ public class TransactionTO {
 	public void setCashTransactionTOs(CashTransactionTO[] cashTransactionTOs) {
 		this.cashTransactionTOs = cashTransactionTOs;
 	}
+	public double getCoolieAmount() {
+		return coolieAmount;
+	}
+	public void setCoolieAmount(double coolieAmount) {
+		this.coolieAmount = coolieAmount;
+	}
+	public double getGunnyBagAmount() {
+		return gunnyBagAmount;
+	}
+	public void setGunnyBagAmount(double gunnyBagAmount) {
+		this.gunnyBagAmount = gunnyBagAmount;
+	}
+	public double getTotalPaid() {
+		return totalPaid;
+	}
+	public void setTotalPaid(double totalPaid) {
+		this.totalPaid = totalPaid;
+	}
+	public String getNarration() {
+		return narration;
+	}
+	public void setNarration(String narration) {
+		this.narration = narration;
+	}
+
 	
 }

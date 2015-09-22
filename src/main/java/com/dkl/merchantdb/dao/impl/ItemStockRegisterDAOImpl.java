@@ -19,10 +19,15 @@ public class ItemStockRegisterDAOImpl implements ItemStockRegisterDAO{
 
 	private static final String INSERT_INTO_STOCK_REGISTER = "INSERT INTO `dklf`.`item_stock_register`(`ITEM_STOCK_POINT_ID`,"
 			+ "`FIB_ID`,`ITEM_ID`,`ITEM_NAME`,`ITEM_BATCH_ID`,`ITEM_BATCH_NAME`,`STOCK_OPEN_QTY`,`STOCK_PURCHASE_QTY`,"
-			+ "`STOCK_SALE_QTY`,`STOCK_TRANSFER_IN`,`STOCK_TRANSFER_OUT`,`STOCK_ON_HAND`,`STOCK_CRT_DATE`,`STOCK_MOD_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now(),now())";
+			+ "`STOCK_SALE_QTY`,`STOCK_TRANSFER_IN`,`STOCK_TRANSFER_OUT`,`STOCK_ON_HAND`,`CREATED_DATE`,`MODIFIED_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now(),now())";
 	
-	private static final String UPDATE_STOCK_REGISTER = "UPDATE `dklf`.`item_stock_register` SET `STOCK_PURCHASE_QTY` = ?,"
-			+ "`STOCK_ON_HAND` = ?,`MODIFIED_DATE` = sysdate() WHERE `ITEM_STOCK_POINT_ID` = ?";	
+	private static final String UPDATE_STOCK_REGISTER_PURCHASE = "UPDATE `dklf`.`item_stock_register` SET `STOCK_PURCHASE_QTY` = STOCK_PURCHASE_QTY+?,"
+			+ "`STOCK_ON_HAND` = STOCK_ON_HAND + ?,`MODIFIED_DATE` = sysdate() WHERE `ITEM_STOCK_POINT_ID` = ? and `FIB_ID` = ? and `ITEM_ID` = ?";	
+	
+	private static final String UPDATE_STOCK_REGISTER_SALE = "UPDATE `dklf`.`item_stock_register` SET `STOCK_SALE_QTY` = STOCK_SALE_QTY+?,"
+			+ "`STOCK_ON_HAND` = STOCK_ON_HAND - ?,`MODIFIED_DATE` = sysdate() WHERE `ITEM_STOCK_POINT_ID` = ? and `FIB_ID` = ? and `ITEM_ID` = ?";	
+
+	private static final String GET_NEW_BATCH_ID = "SELECT ifnull(max(substr(item_batch_id,3)+1),1) as NEW_BATCH_ID FROM dklf.item_stock_register where item_id=? and item_stock_point_id=? and fib_id=?";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -58,13 +63,43 @@ public class ItemStockRegisterDAOImpl implements ItemStockRegisterDAO{
 											itemStockRegisterTO.getStockOnHand()});
 		}else{
 			System.out.println(itemStockRegisterTO.getStockPointID()+"===="+itemStockRegisterTO.getStockOnHand()+"===================="+itemStockRegisterTO.getPurchaseQuantity());
-			result = jdbcTemplate.update(UPDATE_STOCK_REGISTER,new Object[]{
+			result = jdbcTemplate.update(UPDATE_STOCK_REGISTER_PURCHASE,new Object[]{
 											itemStockRegisterTO.getPurchaseQuantity(),
 											itemStockRegisterTO.getStockOnHand(),
-											itemStockRegisterTO.getStockPointID()});
+											itemStockRegisterTO.getStockPointID(),
+											itemStockRegisterTO.getBookID(),
+											itemStockRegisterTO.getItemID()
+											});
 		}
 		System.out.println(result+"====================");
 		return result;
 	}
+	
+	@Override
+	public int getNewBatchIdForAnItem(ItemStockRegisterTO itemStockRegisterTO){
+		System.out.println(itemStockRegisterTO.getStockPointID()+"===="+itemStockRegisterTO.getItemID()+"===================="+itemStockRegisterTO.getBookID()+"========"+itemStockRegisterTO.getItemBatchName());
+		return jdbcTemplate.queryForObject(GET_NEW_BATCH_ID,
+						new Object[]{itemStockRegisterTO.getItemID(),
+				itemStockRegisterTO.getStockPointID(),itemStockRegisterTO.getBookID()},Integer.class);
+	}
+	
+	
+	
+	@Override
+	public int updateItemStockRegisterRecordSale(ItemStockRegisterTO itemStockRegisterTO){
+		int result =0;
+			System.out.println(itemStockRegisterTO.getStockPointID()+"===="+itemStockRegisterTO.getStockOnHand()+"===================="+itemStockRegisterTO.getPurchaseQuantity());
+			result = jdbcTemplate.update(UPDATE_STOCK_REGISTER_SALE,new Object[]{
+											itemStockRegisterTO.getSaleQuantity(),
+											-itemStockRegisterTO.getStockOnHand(),
+											itemStockRegisterTO.getStockPointID(),
+											itemStockRegisterTO.getBookID(),
+											itemStockRegisterTO.getItemID()
+											});
+		System.out.println(result+"====================");
+		return result;
+	}
+	
+	
 	
 }

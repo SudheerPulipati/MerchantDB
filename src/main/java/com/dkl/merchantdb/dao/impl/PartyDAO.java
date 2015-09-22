@@ -22,6 +22,8 @@ public class PartyDAO implements IPartyDAO {
 	private static final String UPDATE_QUERY = "update party set party_name=?,party_type=?,street_name=?,city=?,phone=?,modified_date=sysdate() where party_id=?";
 
 	private static final String DELETE_QUERY = "delete from party where party_id=?";
+	
+	private static final String READ_PARTY_QUERY_WITH_NAME_AND_COMPANY_ID = "select * from party where party_name=? and company_id=?";
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -63,6 +65,11 @@ public class PartyDAO implements IPartyDAO {
 	public void deleteParty(String partyID) {
 		jdbcTemplate.update(DELETE_QUERY, new Object[] { partyID });
 
+	}
+
+	@Override
+	public PartyTO readParty(String partyName, String companyId) {
+		return jdbcTemplate.queryForObject(READ_PARTY_QUERY_WITH_NAME_AND_COMPANY_ID, new Object[] { partyName,companyId }, new PartyMapper());
 	}
 
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,9 +50,6 @@ public class PurchaseOrderBO {
 	@Autowired
 	private TransactionDAO transactionDAO;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 
 	public PurchaseOrderRequestTO prepareDataForPurchaseOrder(Long companyId){
 		return purchaseOrderDAO.prepareDataForPurchaseOrder(companyId);
@@ -74,13 +70,22 @@ public class PurchaseOrderBO {
 		System.out.println(".....transactionID from getNextHighestTransactionSeqNo is............"+transactionID);
 		
 		ItemTransactionTO[] itemTransactionTOs = transactionInputTO.getItemTransactionTOs();
+		
 		Long currentTxnRowSqNo = 0L;
+		Long currentTxnRowSqNo_Txn_table = 0L;
 		for (ItemTransactionTO itemTransactionTO2 : itemTransactionTOs) {
+			currentTxnRowSqNo_Txn_table = currentTxnRowSqNo_Txn_table +1;
 			
 			currentTxnRowSqNo =currentTxnRowSqNo+1;
 			
+			if(itemTransactionTO2.getItemBatchID()==null){
+				int newBatchId = itemStockRegisterDAO.getNewBatchIdForAnItem(setItemStockRegisterDetails(itemTransactionTO2,transactionInputTO));
+				itemTransactionTO2.setItemBatchID("IB"+newBatchId);
+			}
+			
+			System.out.println(".....itemTransactionTO2.getItemBatchID()............"+itemTransactionTO2.getItemBatchID());
 			System.out.println(".....start of ItemTransactionTO loop............");
-			itemTransactionDAO.createNewItemTransactionRecord(setItemTransactionDetails(itemTransactionTO2,transactionInputTO,currentTxnRowSqNo));
+			itemTransactionDAO.createNewItemTransactionRecord(setItemTransactionDetails(itemTransactionTO2,transactionInputTO,currentTxnRowSqNo_Txn_table),"PURCHASE");
 			
 			
 			System.out.println(".....End of createNewItemTransactionRecord............");
@@ -92,6 +97,7 @@ public class PurchaseOrderBO {
 			System.out.println(".....End of getLedgerDetails............");	
 			
 			LedgerTO ledgerItemObj  = setLedgerItemDetails(itemLedgerTO,transactionInputTO,itemTransactionTO2,currentTxnRowSqNo);
+			currentTxnRowSqNo =currentTxnRowSqNo+1;
 			LedgerTO ledgerPartyObj = setLedgerPartyDetails(itemLedgerTO,transactionInputTO,itemTransactionTO2,currentTxnRowSqNo);
 			createLedgerItemAndLedgerPartyRecords(ledgerItemObj,ledgerPartyObj);
 						
@@ -111,10 +117,10 @@ public class PurchaseOrderBO {
 			System.out.println(".....End of LedgerAccount Update............");
 			updateLedgerAccountItemAndPartyRecords(ledgerAccountPartyObj,ledgerAccountItemObj);
 			
-			if(itemTransactionTO2.getPrice2()!=0){
-							
+			if(itemTransactionTO2.getPrice2()>0.0){
+				currentTxnRowSqNo =currentTxnRowSqNo+1;			
 				overrideLedgerDetailsForAnavathRecordCreation(itemTransactionTO2,ledgerItemObj,ledgerPartyObj,currentTxnRowSqNo);
-				
+				currentTxnRowSqNo =currentTxnRowSqNo+1;
 				createLedgerItemAndLedgerPartyRecords(ledgerItemObj,ledgerPartyObj);
 							
 				System.out.println(".....End of LedgerItem and LedgerParty data insertion..Price2.........");	
@@ -161,7 +167,7 @@ public class PurchaseOrderBO {
 		
 		ledgerPartyObj.setFirmID(itemTransactionTO2.getAnavathFirmId());
 		ledgerPartyObj.setFirmName(itemTransactionTO2.getAnavathFirmName());
-		ledgerPartyObj.setLedgerSeqNo(currentSqNo);
+		ledgerPartyObj.setLedgerSeqNo(currentSqNo+1);
 		ledgerPartyObj.setAmount(itemTransactionTO2.getAmount2());
 	}
 
@@ -233,17 +239,17 @@ public class PurchaseOrderBO {
 		itemStockRegisterTO.setItemID(itemTransactionTO2.getItemID().toString());
 		itemStockRegisterTO.setItemName(itemTransactionTO2.getItemName());
 		itemStockRegisterTO.setItemBatchName(itemTransactionTO2.getItemBatchName());
+		
 		if("Y".equalsIgnoreCase(itemTransactionTO2.getNewItemBatchInd()))
 		{
-			itemStockRegisterTO.setItemBatchID(sequenceGenDAO.getSequenceID("ITEM_BATCH_ID", "ITEM_STOCK_REGISTER", "IT"));
+			itemStockRegisterTO.setItemBatchID(itemTransactionTO2.getItemBatchID());
 			itemStockRegisterTO.setPurchaseQuantity(itemTransactionTO2.getQuantity());
 			itemStockRegisterTO.setStockOnHand(itemTransactionTO2.getQuantity());
 		}
 		else
 		{
+			itemStockRegisterTO.setItemBatchID(itemTransactionTO2.getItemBatchID());
 			ItemStockRegisterTO retrievedItemStockRegister = itemStockRegisterDAO.getItemStockRegisterRecord(itemTransactionTO2.getItemID().toString(),itemTransactionTO2.getItemName(),itemTransactionTO2.getStockPointId(),transactionInputTO.getBookID());
-			
-			itemStockRegisterTO.setItemBatchID(itemTransactionTO2.getItemBatchID().toString());
 			itemStockRegisterTO.setPurchaseQuantity(retrievedItemStockRegister.getPurchaseQuantity()+itemTransactionTO2.getQuantity());
 			itemStockRegisterTO.setStockOnHand(retrievedItemStockRegister.getStockOnHand()+itemTransactionTO2.getQuantity());
 		}

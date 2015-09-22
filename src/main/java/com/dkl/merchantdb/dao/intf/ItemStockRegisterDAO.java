@@ -13,4 +13,8 @@ public interface ItemStockRegisterDAO{
 	public int createOrUpdateItemStockRegisterRecord(ItemStockRegisterTO itemStockRegisterTO, String newBatchInd);
 
 	List<ItemStockRegisterTO> getAllItemBatch(String itemId, String stockPointId);
+
+	public int updateItemStockRegisterRecordSale(ItemStockRegisterTO itemStockRegisterTO);
+
+	int getNewBatchIdForAnItem(ItemStockRegisterTO itemStockRegisterTO);
 }

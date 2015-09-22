@@ -4,5 +4,5 @@ import com.dkl.merchantdb.to.ItemTransactionTO;
 
 public interface ItemTransactionDAO {
 
-	public int createNewItemTransactionRecord(ItemTransactionTO itemTransactionTO);
+	public int createNewItemTransactionRecord(ItemTransactionTO itemTransactionTO,String transactionType);
 }

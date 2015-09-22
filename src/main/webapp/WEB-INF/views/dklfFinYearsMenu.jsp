@@ -14,7 +14,7 @@
 			<ul class="subList_<%=financialBookTO.getFinBookId()%>"
 				style="display: none; background: #ccf;">
 				<li><a href="purchaseOrder?fibId=<%=financialBookTO.getFinBookId()%>">Purchase</a></li>
-				<li><a href="sales">Sales</a></li>
+				<li><a href="salesOrder?fibId=<%=financialBookTO.getFinBookId()%>">Sales</a></li>
 				<li><a href="#">Cash Receipt</a></li>
 				<li><a href="#">Cash Payment</a></li>
 				<li><a href="#">Cash Journal</a></li>

@@ -37,16 +37,6 @@ public class HomeController {
 		return "error";
 	}
 	
-	@RequestMapping(value = "/sales", method = RequestMethod.GET)
-	public String sales() {
-		return "sales";
-	}
-	
-	@RequestMapping(value = "/purchaseOder", method = RequestMethod.GET)
-	public String purchaseOrder() {
-		return "purchaseOder";
-	}
-	
 	@RequestMapping(value = "/success", method = { RequestMethod.GET })
 	public String success(@RequestParam("status")String status,Model model) {
 		model.addAttribute("status", status);

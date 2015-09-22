@@ -5,13 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -107,8 +105,6 @@ public class PurchaseOrderController{
 			logger.info("Welcome saveTransaction! getStockPointId===="+itemTransactionTO.getStockPointId());
 			logger.info("Welcome saveTransaction! getStockPointName===="+itemTransactionTO.getStockPointName());
 			logger.info("Welcome saveTransaction! getCompanyId===="+itemTransactionTO.getCompanyId());
-			
-			logger.info("Welcome saveTransaction! getNewItemBatchInd===="+itemTransactionTO.getNewItemBatchInd());
 		}
 		
 		purchaseOrderBO.storePurchaseOrder(transactionTO);
@@ -121,8 +117,8 @@ public class PurchaseOrderController{
 	
 	
 	public static void main(String[] args) throws Exception {
-		ApplicationContext ax=new ClassPathXmlApplicationContext("classpath:*META-INF/spring/applicationcontext-datasoure.xml");
-		PurchaseOrderBO purchaseOrderBO = ax.getBean("purchaseOrderBO",PurchaseOrderBO.class);
+		@SuppressWarnings("resource")
+		PurchaseOrderBO purchaseOrderBO = new ClassPathXmlApplicationContext("classpath:*META-INF/spring/applicationcontext-datasoure.xml").getBean("purchaseOrderBO",PurchaseOrderBO.class);
 		try{
 				/*System.out.println(purchaseOrderBO.prepareDataForPurchaseOrder().getFirmList());
 				System.out.println(purchaseOrderBO.prepareDataForPurchaseOrder().getItemMasterLedgerList());

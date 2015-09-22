@@ -26,7 +26,6 @@ public class ItemTransactionTO {
 		private String stockPointId;
 		private String stockPointName;
 		
-		
 		private String companyId;
 		
 		private String newItemBatchInd;

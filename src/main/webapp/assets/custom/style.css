@@ -1,0 +1,255 @@
+.header{
+	background:#00365B;
+	border: 1px solid #BFA04D;
+	color:white;
+	overflow:auto;
+}
+.header h1,.header h4, .header span, .logoImage {
+	float:left;
+}
+.logoImage{
+	margin: 0 0 0 80px;
+}
+.header h1{
+	font-size:28px;	
+	margin: 10px 40px 10px 25px;
+}
+.header h4{
+	font-size:18px;
+	margin: 25px 20px 0 0;
+}
+.tagline{
+	font-size:10px;
+	font-style:italic;
+	margin:42px 0 0 -55px;
+	position:relative;
+}
+.home{
+	background:url("../images/home.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	font-weight: bold;
+    margin: 25px 0 0 25px;
+	padding:0 0 0 30px;
+	line-height:22px;
+}
+.textField{
+	display:block;
+	margin: 5px 15px;
+    text-align: center;	
+}
+.textField input{
+	border-radius: 5px;
+    display: block;
+    padding: 1px 5px;
+	width:136px;
+}
+.logon{
+	background:url("../images/login.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	font-weight: bold;
+    margin: 25px 0 0 25px;
+	padding:0 0 0 30px;
+	line-height:18px;
+}
+.contactus{
+	background:url("../images/contact.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	font-weight: bold;
+    margin: 25px 0 0 25px;
+	padding:0 0 0 30px;
+	line-height:20px;
+}
+.content{
+	background:none;
+	color:#000;
+	padding:30px;
+}
+.firstPara,.secondPara,.thirdPara,.foruthPara{
+	font-size:36px;
+	width:250px;
+	float:left;	
+	padding:0 30px 270px 20px;
+	background-position: 0 70px;
+	text-align: center;
+	background-repeat: no-repeat;
+	margin-top: 60px;
+}
+.firstPara{
+	background-image: url("../images/jaggery.jpg");
+}
+.secondPara{
+	background-image: url("../images/tamarind.jpg");;
+}
+.thirdPara{
+	background-image: url("../images/redChilles.jpg");
+}
+.foruthPara{
+	background-image: url("../images/sopNuts.jpg");
+}
+.boldfont{
+	font-weight:bold;
+}
+.rightContent{
+	float:left;
+	width:80.8%;
+	border-left:2px solid #7F7F7F;
+	min-height:522px;
+}
+.background{
+	background-color:#f2f2f2;
+	margin:2px 5px;
+}
+.rightHeader{
+	border-bottom:2px solid #7F7F7F;
+	font-size:18px;
+	color:#6187ff;
+	margin:0 0 20px;
+	padding:10px;
+}
+a{
+	text-decoration:none;
+	color:#000;
+}
+a.currentlink{
+	color:#1F49B4;
+	text-decoration:underline;
+}
+a.lineBorder{
+	background:url("../images/imageBorder.jpg") no-repeat scroll 35px 30px #f2f2f2;
+	display:block;
+	line-height:40px;
+}
+form{
+	overflow:auto;
+	clear:both;
+}
+.rightContent label{
+	display:block;
+	width:40%;
+	float:left;
+	line-height:30px;
+	text-align:right;
+	padding:5px 10px;
+}
+.leftForm{
+	float:left;
+	width:50%;
+}
+.rightForm{
+	float:left;
+	width:50%;
+	margin-top:115px;
+}
+.button{
+	background-color:#7F7F7F;
+}
+.rightContent input{
+	margin:5px;
+	padding:5px;
+	width:200px;
+	line-height:20px;	
+	
+}
+.rightContent select{
+	padding:5px 0 6px 0;
+	width:254px;
+	margin:10px;
+}
+.rightContent input.radio{
+	width:20px;
+	margin:14px 0 0 10px;
+}
+.rightForm label{
+	width:30%
+}
+.rightForm input{
+	margin-right:20px;
+}
+.buttons{
+	clear:both;
+	text-align:right;
+	padding:75px 75px 0 0;
+}
+.buttons img{
+	padding:5px;
+}
+.firstLineButtons{
+	margin:0;
+}
+.secondLineButtons{
+	margin:0 90px 0 0;
+}
+.rightContent .cell{
+	width:143px;
+	float:left;
+	font-size:12px;
+	line-height:25px;
+	text-align:center;
+}
+.rightContent .cell .background{
+	margin-right:0;
+	margin-left:3px;
+}
+.cell a.lineBorder{
+	background:url("../images/menuBg.jpg") no-repeat scroll 3px 31px #f2f2f2
+}
+.subMenu .rightHeader{
+	border-top:2px solid #7f7f7f;
+	clear: both;
+}
+.tableContainer{
+	margin:0 30px;
+	height:350px;
+	overflow-y:scroll;	
+}
+.tableContainer table{
+	width:100%;
+}
+.tableContainer th{
+	background-color: #f2f2f2;	
+	line-height:25px;
+	padding:0 10px;
+	width:50%;
+}
+.tableContainer td{
+	padding:3px 10px;
+}
+.tableContainer a{
+	color: #1f49b4;
+    text-decoration: underline;
+}
+.headerTable{
+	border-spacing:3px;
+	margin-left:5px;
+}
+.headerTable td,.headerTable th{
+	border:1px solid #00365b;
+	text-align:center;
+	padding:10px;
+}
+.headerTable th{
+	font-weight:normal;
+	background-color:#f2f2f2;
+}
+.headerTable select, .headerTable input{
+	width:70px;
+	margin:0;
+	padding:0;
+}
+.itemstable th{
+	background-color:#0070C0;
+	color:#fff;
+	font-size:14px;
+	padding:0px;
+}
+tfoot td{
+	background-color:#00365b;
+	color:#fff;
+}
+tfoot td.empty{
+	background-color:#fff;
+	border:0;
+}
+.left-indednt{
+	margin-left:50px;
+}
+input.blue-button{
+	width:auto;
+}

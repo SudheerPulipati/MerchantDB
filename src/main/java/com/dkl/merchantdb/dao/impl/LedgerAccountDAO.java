@@ -42,6 +42,8 @@ public class LedgerAccountDAO implements ILedgerAccountDAO {
 						new Object[] { ledgerAccountItemObj.getCredit(), ledgerAccountItemObj.getDebit(),
 								ledgerAccountItemObj.getCloseBalance(), ledgerAccountItemObj.getBookID(),
 								ledgerAccountItemObj.getFirmID(), ledgerAccountItemObj.getLedgerAccountID() });
+		
+		System.out.println("==================updateLedgerAccountItemAndPartyRecords======================="+result);
 		return result;
 	}
 
