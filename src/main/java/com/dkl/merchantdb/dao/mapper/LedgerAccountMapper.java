@@ -25,6 +25,7 @@ public class LedgerAccountMapper implements RowMapper<LedgerAccountTO> {
 		ledgerAccountTO.setDebit(Double.parseDouble(rs.getString("LEDGER_ACC_DEBIT")));
 		ledgerAccountTO.setCityGroupID(rs.getString("CITY_GROUP_ID"));
 		ledgerAccountTO.setCloseBalance(Double.parseDouble(rs.getString("LEDGER_ACC_CLOSE_BAL")));
+		ledgerAccountTO.setModifiedDate(rs.getDate("MODIFIED_DATE").toString());
 		return ledgerAccountTO;
 	}
 

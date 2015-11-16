@@ -1,6 +1,9 @@
 package com.dkl.merchantdb.dao.intf;
 
+import java.util.List;
+
 import com.dkl.merchantdb.to.LedgerAccountTO;
+import com.dkl.merchantdb.to.LedgerReportDetailTO;
 
 public interface ILedgerAccountDAO {
 
@@ -15,4 +18,6 @@ public interface ILedgerAccountDAO {
 			LedgerAccountTO ledgerAccountCashObj);
 
 	int deleteLedgerAccountRecord(String partyId);
+	
+	public List<LedgerReportDetailTO> getAllLedgerReport(String filterBY, String fib_id, Long companyID, String startDate, String endDate);
 }

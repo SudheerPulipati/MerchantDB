@@ -31,6 +31,36 @@ public class LedgerAccountTO {
 	private String creationDate;
 
 	private String modifiedDate;
+	
+	private String trnasactionType;
+	
+	private String transactionDate;
+	
+	private String transactionDetails;
+
+	public String getTrnasactionType() {
+		return trnasactionType;
+	}
+
+	public void setTrnasactionType(String trnasactionType) {
+		this.trnasactionType = trnasactionType;
+	}
+
+	public String getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(String transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public String getTransactionDetails() {
+		return transactionDetails;
+	}
+
+	public void setTransactionDetails(String transactionDetails) {
+		this.transactionDetails = transactionDetails;
+	}
 
 	public String getBookID() {
 		return bookID;

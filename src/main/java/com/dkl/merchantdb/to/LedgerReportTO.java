@@ -3,42 +3,63 @@ package com.dkl.merchantdb.to;
 import java.util.List;
 
 public class LedgerReportTO {
-
-	private String ledgerName;
-	private String ledgerGroup;
-	private String cityGroup;
-	private List<LedgerReportDetailTO> ledgerReportDetailTOList;
-
-	public String getLedgerName() {
-		return ledgerName;
+	
+	private String startDate;
+	private String endDate;
+	private String filterBy;
+	private List<String> ledgerGroupList;
+	private List<String> cityGroupList;
+	private List<String> partiesList;
+	private List<String> itemsList;
+	private List items;
+	public String getStartDate() {
+		return startDate;
 	}
-
-	public void setLedgerName(String ledgerName) {
-		this.ledgerName = ledgerName;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-
-	public String getLedgerGroup() {
-		return ledgerGroup;
+	public String getEndDate() {
+		return endDate;
 	}
-
-	public void setLedgerGroup(String ledgerGroup) {
-		this.ledgerGroup = ledgerGroup;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-
-	public String getCityGroup() {
-		return cityGroup;
+	public String getFilterBy() {
+		return filterBy;
 	}
-
-	public void setCityGroup(String cityGroup) {
-		this.cityGroup = cityGroup;
+	public void setFilterBy(String filterBy) {
+		this.filterBy = filterBy;
 	}
-
-	public List<LedgerReportDetailTO> getLedgerReportDetailTOList() {
-		return ledgerReportDetailTOList;
+	public List<String> getLedgerGroupList() {
+		return ledgerGroupList;
 	}
-
-	public void setLedgerReportDetailTOList(
-			List<LedgerReportDetailTO> ledgerReportDetailTOList) {
-		this.ledgerReportDetailTOList = ledgerReportDetailTOList;
+	public void setLedgerGroupList(List<String> ledgerGroupList) {
+		this.ledgerGroupList = ledgerGroupList;
 	}
+	public List<String> getCityGroupList() {
+		return cityGroupList;
+	}
+	public void setCityGroupList(List<String> cityGroupList) {
+		this.cityGroupList = cityGroupList;
+	}
+	public List<String> getPartiesList() {
+		return partiesList;
+	}
+	public void setPartiesList(List<String> partiesList) {
+		this.partiesList = partiesList;
+	}
+	public List<String> getItemsList() {
+		return itemsList;
+	}
+	public void setItemsList(List<String> itemsList) {
+		this.itemsList = itemsList;
+	}
+	public List getItems() {
+		return items;
+	}
+	public void setItems(List items) {
+		this.items = items;
+	}
+	
+	
 }

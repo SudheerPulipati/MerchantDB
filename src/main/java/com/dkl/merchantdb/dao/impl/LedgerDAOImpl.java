@@ -1,10 +1,13 @@
 package com.dkl.merchantdb.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dkl.merchantdb.dao.intf.LedgerDAO;
+import com.dkl.merchantdb.dao.mapper.LedgerMapper;
 import com.dkl.merchantdb.to.LedgerTO;
 
 @Repository
@@ -12,7 +15,9 @@ public class LedgerDAOImpl implements LedgerDAO{
 
 	private static final String INSERT_INTO_LEDGER = "INSERT INTO `dklf`.`ledger`(`FIB_ID`,`TRANS_ID`,`TRANS_TYPE`,`TRANS_DATE`,"
 			+ "`LEDGER_ID`,`LEDGER_SEQ_NO`,`LEDGER_NAME`,`FIRM_ID`,`FIRM_NAME`,`LEDGER_CR_DR`,`LEDGER_AMOUNT`,`CREATED_DATE`,`MODIFIED_DATE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),now());";
-
+	
+	private static final String READ = "SELECT * FROM LEDGER WHERE LEDGER_ID = ?";
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -58,5 +63,8 @@ public class LedgerDAOImpl implements LedgerDAO{
 	public int createLedgerCashAndLedgerPartyRecords(LedgerTO ledgerCash,LedgerTO ledgerParty) {
 		return createLedgerItemAndLedgerPartyRecords(ledgerCash,ledgerParty);
 	}
-
+	
+	public LedgerTO readAll(String ledgerAccountID){
+		return jdbcTemplate.query(READ,new Object[]{ledgerAccountID}, new LedgerMapper()).get(0);
+	}
 }

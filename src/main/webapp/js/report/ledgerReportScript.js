@@ -1,7 +1,10 @@
 var globalResponse = "";
+var ledgerReport = null;
 $(document)
 		.ready(
 				function() {
+					var onDateFlag = false;
+					var betweenFlag = false;
 					$("input[name='ledgerReportDate']").click(
 							function() {
 								if ($('input:radio[name=ledgerReportDate]:checked')
@@ -10,6 +13,8 @@ $(document)
 									$("#lrToDateLbl").hide();
 									$("#ledgerReportToDate").val("");
 									$("#ledgerReportToDate").hide();
+									onDateFlag = true;
+									betweenFlag = false;
 								} else if ($(
 										'input:radio[name=ledgerReportDate]:checked')
 										.val() == "betweenDate") {
@@ -18,29 +23,32 @@ $(document)
 									$("#lrToDateLbl").show();
 									$("#ledgerReportToDate").show();
 									$("#ledgerReportFromDate").val("");
+									onDateFlag = false;
+									betweenFlag = true;
 								}
 							});
-					$("#ledgerReportFromDate").datepicker({
+					/*$("#ledgerReportFromDate").datepicker({
 						dateFormat : 'yy-mm-dd'
 					});
 					$("#ledgerReportToDate").datepicker({
 						dateFormat : 'yy-mm-dd'
-					});
-					$("#ledgerReportContainer").hide();
+					});*/
+					//$("#ledgerReportContainer").hide();
 					$("#showLedgerReport").click(function() {
-						$("#ledgerReportContainer").show();
+						$.ajax({
+							"url" : "ledgerReportJSON",
+							"type" : "POST",
+							"data": {filterBy:"LedgerGroup",startDate:"",endDate:""},
+							"success" : function(responseJson) {
+								/*setResponse(jQuery.parseJSON(responseJson));
+								populateLedgerNames(getResponse());
+								populateLedgerGroup(getResponse());
+								populateCityGroup(getResponse());
+								initTable(getResponse());*/
+							}
+						});
 					});
-					$.ajax({
-						"url" : "ledgerReportJSON",
-						"type" : "POST",
-						"success" : function(responseJson) {
-							setResponse(jQuery.parseJSON(responseJson));
-							populateLedgerNames(getResponse());
-							populateLedgerGroup(getResponse());
-							populateCityGroup(getResponse());
-							initTable(getResponse());
-						}
-					});
+					 
 					function setResponse(response) {
 						globalResponse = response;
 					}
@@ -294,7 +302,7 @@ $(document)
 						loadPagination(filteredByCityGroupRow);
 					}
 					/*--------ACTIONS----------------------------------------------------------------------------------*/
-					$("#applyFilter").change(
+					/*$("#applyFilter").change(
 							function() {
 								if ($("#applyFilter").is(':checked')) {
 									$("#filterReport").show();
@@ -310,22 +318,11 @@ $(document)
 											'selected', false);
 									initTable(getResponse());
 								}
-							});
+							});*/
 					$('input[type=radio][name=filterType]').change(function() {
-						if ("ledgerName" === this.value) {
-							$("#filterByLedgerName").show();
-							$("#filterByLedgerGroup").hide();
-							$("#filterByCityGroup").hide();
-						} else if ("ledgerGroup" === this.value) {
-							$("#filterByLedgerName").hide();
-							$("#filterByLedgerGroup").show();
-							$("#filterByCityGroup").hide();
-						} else if ("cityGroup" === this.value) {
-							$("#filterByLedgerName").hide();
-							$("#filterByLedgerGroup").hide();
-							$("#filterByCityGroup").show();
-						}
+						showReport(this.value);
 					});
+					
 					$("#ledgerNameFilter").change(function(e) {
 						ledgerNames = $(e.target).val();
 						if (ledgerNames != null) {
@@ -350,4 +347,104 @@ $(document)
 							initTable(getResponse());
 						}
 					});
+					/**
+					 * Shows Ledger report filtred by ledgerGroup.
+					 */
+					function showReport(filterBy){
+						displayReportTable(filterBy);
+						$("#ledgerReportTable").show();
+						getReport(filterBy);
+						 
+					}
+					/**
+					 * Prepares the headers for the report table.
+					 */
+					function displayReportTable(primaryColumn){
+						$("#ledgerReportTable thead").empty();
+						$("#ledgerReportTable tbody").empty();
+						$("#ledgerReportTable thead").append("<th>"+primaryColumn+"</th>");
+						$("#ledgerReportTable thead").append("<th>Ledger Name</th>");
+						$("#ledgerReportTable thead").append("<th>Type</th>");
+						$("#ledgerReportTable thead").append("<th>Date</th>");
+						$("#ledgerReportTable thead").append("<th>Details</th>");
+						$("#ledgerReportTable thead").append("<th>Cr/Dr</th>");
+						$("#ledgerReportTable thead").append("<th>Close Balance</th>");
+						$("#ledgerReportTable thead").append("<th>Open Balance</th>");
+					}
+					
+					/**
+					 * Fetch data from database by doing ajax call
+					 */
+					function getReport(filterBy){
+						$.ajax({
+							"url" : "ledgerReportJSON",
+							"type" : "POST",
+							"data": {filterBy:filterBy,startDate:"2014-01-01",endDate:"2016-01-01"},
+							"beforeSend": function() {
+								$("#ledgerReportTable tbody").append("<tr><td colspan='8'>Loading Data....</td></tr>");
+					           },
+							"success" : function(responseJson) {
+								 ledgerReport = jQuery.parseJSON(responseJson);
+								 populateReport(filterBy);
+							}
+						});
+					}
+					
+					/**
+					 * Populates all data from JSON to table.
+					 */
+					function populateReport(filterBy){
+						$("#ledgerReportTable tbody").empty();
+						var rowSpanIndex = 0;
+						var item = "";
+						var breakRow = 0;
+						var htmlData = "";
+						$(ledgerReport.items).each(function(index){
+							htmlData+="<tr>";
+							if("LedgerGroup" == filterBy){
+								if(item != ledgerReport.items[index].ledgerGroupID){
+									item = ledgerReport.items[index].ledgerGroupID;
+									var count = 0;
+									for(i=0;i<ledgerReport.items.length;i++){
+										if(ledgerReport.items[index].ledgerGroupID == ledgerReport.items[i].ledgerGroupID){
+											count++;
+										}
+									}
+									htmlData+="<td rowspan='"+count+"'>"+ledgerReport.items[index].ledgerGroupID+"</td>";
+								}
+							} else if("CityGroup" == filterBy){
+								if(item != ledgerReport.items[index].cityGroupID){
+									item = ledgerReport.items[index].cityGroupID;
+									var count = 0;
+									for(i=0;i<ledgerReport.items.length;i++){
+										if(ledgerReport.items[index].cityGroupID == ledgerReport.items[i].cityGroupID){
+											count++;
+										}
+									}
+									htmlData+="<td rowspan='"+count+"'>"+ledgerReport.items[index].cityGroupID+"</td>";
+								}
+							} else if("Parties" == filterBy || "Items" == filterBy){
+								if(item != ledgerReport.items[index].ledgerAccountID){
+									item = ledgerReport.items[index].ledgerAccountID;
+									var count = 0;
+									for(i=0;i<ledgerReport.items.length;i++){
+										if(ledgerReport.items[index].ledgerAccountID == ledgerReport.items[i].ledgerAccountID){
+											count++;
+										}
+									}
+									htmlData+="<td rowspan='"+count+"'>"+ledgerReport.items[index].ledgerAccountID+"</td>";
+								}
+							} 
+							htmlData+="<td>"+ledgerReport.items[index].ledgerAccountName+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].trnasactionType+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].transactionDate+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].transactionDetails+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].Cr_Dr+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].closeBalance+"</td>";
+							htmlData+="<td>"+ledgerReport.items[index].openBalance+"</td>";
+							htmlData+="</tr>";
+						});
+						
+						$("#ledgerReportTable tbody").append(htmlData);
+					}
 				});

@@ -1,5 +1,7 @@
 package com.dkl.merchantdb.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,8 @@ public class ItemLedgerDAOImpl implements ItemLedgerDAO {
 
 	private static final String DELETE_ITEM_LEDGER_RECORD = "DELETE FROM ITEM_LEDGER WHERE ITEM_LEDGER_ID LIKE ?";
 
+	private static final String READ_BY_FK = "SELECT * FROM ITEM_LEDGER WHERE COMPANY_ID=?";
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -38,5 +42,9 @@ public class ItemLedgerDAOImpl implements ItemLedgerDAO {
 	public int deleteItemLedgerRecord(String itemId) {
 		return jdbcTemplate.update(DELETE_ITEM_LEDGER_RECORD,itemId+"%");
 	}
-
+	
+	@Override
+	public List<ItemLedgerTO> readByFK(Long companyID){
+		return jdbcTemplate.query(READ_BY_FK, new Object[]{companyID},new ItemLedgerMapper());
+	}
 }
