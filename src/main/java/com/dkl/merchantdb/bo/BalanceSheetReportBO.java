@@ -9,7 +9,7 @@ import com.dkl.merchantdb.dao.intf.IBalanceSheetDAO;
 import com.dkl.merchantdb.to.BalanceSheetTO;
 
 @Component
-public class BalanceSheetReportBO {
+public class BalanceSheetReportBO{
 
 	@Autowired
 	private IBalanceSheetDAO reportsDAO;
